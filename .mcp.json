@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "memory": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "C:\\NEPTUNO\\.claude\\knowledge-graph.json"
+      }
+    },
+    "chrome-devtools": {
+      "command": "cmd",
+      "args": [
+        "/c", "npx", "-y", "chrome-devtools-mcp@latest",
+        "--isolated",
+        "--viewport=1280x800",
+        "--screenshotFormat=webp",
+        "--screenshotQuality=80",
+        "--screenshotMaxWidth=1280"
+      ]
+    }
+  }
+}

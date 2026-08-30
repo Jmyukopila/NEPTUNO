@@ -1,0 +1,11 @@
+# Dependencias y artefactos
+node_modules/
+__pycache__/
+package-lock.json
+graphify-out/
+
+# .opencode/ es una COPIA GENERADA de .claude/ (tools/sync-opencode.js).
+# Indexarla duplicaría cada skill y cada agente como nodos gemelos y
+# envenenaría las comunidades: la fuente de verdad es .claude/.
+.opencode/
+opencode.json

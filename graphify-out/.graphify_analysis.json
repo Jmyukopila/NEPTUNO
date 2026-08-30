@@ -1,0 +1,568 @@
+{
+  "communities": {
+    "0": [
+      "agent_debugger",
+      "claude_ajuste_por_modelo",
+      "claude_honestidad_resultados",
+      "claude_neptuno_doctrine",
+      "docs_android",
+      "docs_automation",
+      "docs_automation_headless",
+      "docs_automation_loops",
+      "docs_automation_schedules",
+      "docs_capacitor",
+      "docs_data",
+      "docs_debugging",
+      "docs_desktop",
+      "docs_github",
+      "docs_prompting",
+      "docs_react_native",
+      "docs_workflows",
+      "mcp_sequential_thinking",
+      "skill_android_run",
+      "skill_apk_build",
+      "skill_apk_release",
+      "skill_bug_hunt",
+      "skill_capacitor_build",
+      "skill_capacitor_release",
+      "skill_capacitor_run",
+      "skill_data_pipeline",
+      "skill_data_quality",
+      "skill_debug",
+      "skill_desktop_build",
+      "skill_eda",
+      "skill_expo_build",
+      "skill_fable_mode",
+      "skill_ml_experiment",
+      "skill_pr",
+      "skill_pr_merge",
+      "skill_pr_stack",
+      "skill_release"
+    ],
+    "1": [
+      "agent_implementer",
+      "agent_scout",
+      "agent_verifier",
+      "andromeda_vault",
+      "claude_reglas_lectura",
+      "claude_skills_context_prime_skill",
+      "claude_skills_handoff_handoff",
+      "claude_skills_handoff_refrescar_grafo",
+      "claude_skills_handoff_sincronizar_andromeda",
+      "docs_automation_matriz_decision",
+      "docs_economia_tokens",
+      "docs_economia_tokens_jerarquia_coste",
+      "docs_economia_tokens_prompt_caching",
+      "docs_economia_tokens_subagentes_cortafuegos",
+      "docs_economia_tokens_supervivencia_compactacion",
+      "docs_graphify",
+      "docs_graphify_backend_claude_cli",
+      "docs_graphify_filtro_sensibles",
+      "docs_graphify_hook_pretooluse",
+      "docs_graphify_refs_re",
+      "docs_graphify_tres_grafos",
+      "docs_graphify_update_ast_puro",
+      "docs_opencode",
+      "handoff",
+      "handoff_decision_backend_claude_cli",
+      "handoff_decision_hook_nudge",
+      "handoff_decision_mcp_no_registrado",
+      "handoff_gotcha_git_bash",
+      "handoff_gotcha_opencode_mcp_command",
+      "handoff_graphifyignore_funcional",
+      "handoff_hueco_tokens_md",
+      "handoff_pin_modelo_subagente",
+      "handoff_regresion_provider_google",
+      "handoff_trampas_sincronizacion",
+      "mcp_memory",
+      "readme",
+      "readme_economia_modelos",
+      "readme_paralelismo_subagentes",
+      "skill_graphify",
+      "skill_optimize_tokens",
+      "skill_parallel_split",
+      "tools_sync_global",
+      "tools_sync_global_count",
+      "tools_sync_global_fs",
+      "tools_sync_global_globalsettingspath",
+      "tools_sync_global_mastersettings",
+      "tools_sync_global_pairs",
+      "tools_sync_global_path",
+      "tools_sync_global_walk"
+    ],
+    "2": [
+      "_claude_skills_ml_experiment_skill_data_leakage",
+      "_claude_skills_ml_experiment_skill_ml_experiment",
+      "_claude_skills_optimize_prompt_skill_optimize_prompt",
+      "_claude_skills_optimize_tokens_skill_optimize_tokens",
+      "_claude_skills_parallel_split_skill_disjoint_files",
+      "_claude_skills_parallel_split_skill_parallel_split",
+      "_claude_skills_refactor_skill_characterization_tests",
+      "_claude_skills_refactor_skill_refactor",
+      "_claude_skills_self_review_skill_attack_checklist",
+      "_claude_skills_self_review_skill_self_review",
+      "_claude_skills_sql_optimize_skill_explain_first",
+      "_claude_skills_sql_optimize_skill_sql_optimize",
+      "_claude_skills_verify_work_skill_verify_work",
+      "_claude_skills_write_tests_skill_mutation_test",
+      "_claude_skills_write_tests_skill_write_tests",
+      "docs_data_data",
+      "docs_data_five_laws",
+      "docs_debugging_bisection",
+      "docs_debugging_debugging",
+      "docs_debugging_symptom_taxonomy",
+      "docs_fullstack_contract_first",
+      "docs_fullstack_fullstack",
+      "docs_prompting_prompting",
+      "docs_prompting_seven_components",
+      "docs_workflows_workflows"
+    ],
+    "3": [
+      "agent_architect",
+      "agent_backend",
+      "agent_frontend",
+      "claude_ciclo_obligatorio",
+      "docs_design",
+      "docs_fullstack",
+      "docs_graphify_bucle_realimentacion",
+      "mcp_chrome_devtools",
+      "skill_a11y_review",
+      "skill_api_contract",
+      "skill_db_migration",
+      "skill_deep_plan",
+      "skill_editorial_layout",
+      "skill_frontend_design",
+      "skill_full_stack_feature",
+      "skill_generative_art",
+      "skill_sql_optimize",
+      "skill_theme_factory",
+      "skill_verify_work"
+    ],
+    "4": [
+      "tools_sync_opencode",
+      "tools_sync_opencode_bash_tools",
+      "tools_sync_opencode_buildagents",
+      "tools_sync_opencode_buildcommands",
+      "tools_sync_opencode_edit_tools",
+      "tools_sync_opencode_fs",
+      "tools_sync_opencode_mcpentriesfromclaudemcp",
+      "tools_sync_opencode_mergemcpintoconfig",
+      "tools_sync_opencode_nagents",
+      "tools_sync_opencode_ncommands",
+      "tools_sync_opencode_parsefrontmatter",
+      "tools_sync_opencode_path",
+      "tools_sync_opencode_provider_tables",
+      "tools_sync_opencode_rewritedocs",
+      "tools_sync_opencode_rewritetoglobalgraph",
+      "tools_sync_opencode_rewrittenglobal",
+      "tools_sync_opencode_rewrittenproject",
+      "tools_sync_opencode_task_tools",
+      "tools_sync_opencode_yamlline"
+    ],
+    "5": [
+      "_claude_skills_graphify_references_add_watch_add_watch",
+      "_claude_skills_graphify_references_exports_exports",
+      "_claude_skills_graphify_references_extraction_spec_confidence_rubric",
+      "_claude_skills_graphify_references_extraction_spec_extraction_spec",
+      "_claude_skills_graphify_references_extraction_spec_node_id_format",
+      "_claude_skills_graphify_references_extraction_spec_source_file_rule",
+      "_claude_skills_graphify_references_github_and_merge_github_and_merge",
+      "_claude_skills_graphify_references_hooks_hooks",
+      "_claude_skills_graphify_references_query_query",
+      "_claude_skills_graphify_references_query_query_expansion",
+      "_claude_skills_graphify_references_query_work_memory",
+      "_claude_skills_graphify_references_transcribe_transcribe",
+      "_claude_skills_graphify_references_update_update",
+      "_claude_skills_graphify_skill_ast_extraction",
+      "_claude_skills_graphify_skill_fast_path_query",
+      "_claude_skills_graphify_skill_graph_health_check",
+      "_claude_skills_graphify_skill_graphify",
+      "_claude_skills_graphify_skill_semantic_cache",
+      "_claude_skills_graphify_skill_semantic_extraction",
+      "_claude_skills_graphify_skill_shrink_guard"
+    ],
+    "6": [
+      "_claude_skills_graphify_skill_honesty_rules",
+      "_claude_skills_pr_merge_skill_pr_merge",
+      "_claude_skills_pr_skill_pr",
+      "_claude_skills_pr_stack_skill_pr_stack",
+      "_claude_skills_release_skill_release",
+      "_claude_skills_verify_work_skill_verdict_format",
+      "docs_android_android",
+      "docs_android_jdk_gradle_agp_triad",
+      "docs_capacitor_cap_sync",
+      "docs_capacitor_capacitor",
+      "docs_desktop_desktop",
+      "docs_desktop_electron_vs_tauri",
+      "docs_github_github",
+      "docs_github_stacked_prs",
+      "docs_github_token_economy",
+      "docs_react_native_cng",
+      "docs_react_native_react_native"
+    ],
+    "7": [
+      "claude_compatibilidad_opencode",
+      "docs_automation_hooks",
+      "docs_graphify_hook_no_portado_opencode",
+      "docs_opencode_opencode",
+      "docs_opencode_provider_pinning",
+      "skill_context_prime",
+      "tools_hooks_andromeda_context",
+      "tools_hooks_andromeda_context_fs",
+      "tools_hooks_andromeda_context_norm",
+      "tools_hooks_andromeda_context_normpath",
+      "tools_hooks_andromeda_context_path",
+      "tools_hooks_handoff_reminder",
+      "tools_hooks_handoff_reminder_fs",
+      "tools_hooks_handoff_reminder_path",
+      "tools_hooks_protect_secrets",
+      "tools_hooks_protect_secrets_patterns",
+      "tools_plugins_opencode"
+    ],
+    "8": [
+      "claude_agents_android",
+      "claude_agents_capacitor",
+      "claude_agents_react_native",
+      "claude_skills_android_doctor_skill",
+      "claude_skills_android_run_skill",
+      "claude_skills_apk_build_skill",
+      "claude_skills_apk_release_skill",
+      "claude_skills_capacitor_build_skill",
+      "claude_skills_capacitor_doctor_skill",
+      "claude_skills_capacitor_release_skill",
+      "claude_skills_capacitor_run_skill",
+      "claude_skills_expo_build_skill",
+      "claude_skills_expo_doctor_skill",
+      "claude_skills_expo_release_skill",
+      "claude_skills_expo_run_skill"
+    ],
+    "9": [
+      "_claude_skills_generative_art_skill_algorithm_families",
+      "_claude_skills_generative_art_skill_generative_art",
+      "_claude_skills_motion_design_skill_motion_design",
+      "_claude_skills_responsive_grid_skill_clamp_scaling",
+      "_claude_skills_responsive_grid_skill_responsive_grid",
+      "_claude_skills_theme_factory_skill_theme_catalog",
+      "_claude_skills_theme_factory_skill_theme_factory",
+      "docs_design_design",
+      "docs_design_direction_before_execution",
+      "docs_design_motion_performance_rule"
+    ],
+    "11": [
+      "claude_agents_architect",
+      "claude_agents_critic",
+      "claude_agents_debugger",
+      "claude_agents_scout",
+      "claude_skills_bug_hunt_skill",
+      "claude_skills_debug_skill",
+      "claude_skills_deep_plan_skill",
+      "claude_skills_fable_mode_skill"
+    ],
+    "12": [
+      "claude_agents_backend",
+      "claude_agents_frontend",
+      "claude_skills_a11y_review_skill",
+      "claude_skills_api_contract_skill",
+      "claude_skills_db_migration_skill",
+      "claude_skills_editorial_layout_skill",
+      "claude_skills_frontend_design_skill",
+      "claude_skills_full_stack_feature_skill"
+    ],
+    "13": [
+      "env_var_memory_file_path",
+      "mcp",
+      "mcp_command_cmd",
+      "mcp_mcp_server_chrome_devtools",
+      "mcp_mcp_server_memory",
+      "mcp_mcp_server_sequential_thinking",
+      "mcp_package_modelcontextprotocol_server_memory",
+      "mcp_package_modelcontextprotocol_server_sequential_thinking"
+    ],
+    "14": [
+      "claude_agents_desktop",
+      "claude_skills_desktop_build_skill",
+      "claude_skills_desktop_doctor_skill",
+      "claude_skills_desktop_release_skill",
+      "claude_skills_desktop_run_skill"
+    ],
+    "15": [
+      "tools_plugins_andromeda_context",
+      "tools_plugins_andromeda_context_andromedacontext",
+      "tools_plugins_andromeda_context_norm",
+      "tools_plugins_andromeda_context_normpath"
+    ],
+    "16": [
+      "skill_android_doctor",
+      "skill_capacitor_doctor",
+      "skill_expo_doctor"
+    ],
+    "17": [
+      "tools_plugins_protect_secrets",
+      "tools_plugins_protect_secrets_patterns",
+      "tools_plugins_protect_secrets_protectsecrets"
+    ],
+    "18": [
+      "agent_android",
+      "agent_capacitor"
+    ],
+    "19": [
+      "agent_critic",
+      "skill_self_review"
+    ],
+    "20": [
+      "claude_agents_data_engineer",
+      "claude_skills_data_pipeline_skill"
+    ],
+    "21": [
+      "claude_agents_data_scientist",
+      "claude_skills_eda_skill"
+    ],
+    "22": [
+      "skill_refactor",
+      "skill_write_tests"
+    ],
+    "23": [
+      "tools_plugins_handoff_reminder",
+      "tools_plugins_handoff_reminder_handoffreminder"
+    ],
+    "24": [
+      "agent_data_engineer"
+    ],
+    "25": [
+      "agent_data_scientist"
+    ],
+    "26": [
+      "agent_desktop"
+    ],
+    "27": [
+      "agent_react_native"
+    ],
+    "28": [
+      "claude_agents_implementer"
+    ],
+    "29": [
+      "claude_agents_verifier"
+    ],
+    "30": [
+      "claude_skills_data_quality_skill"
+    ],
+    "31": [
+      "claude_skills_figma_to_code_skill"
+    ],
+    "32": [
+      "skill_desktop_doctor"
+    ],
+    "33": [
+      "skill_desktop_release"
+    ],
+    "34": [
+      "skill_desktop_run"
+    ],
+    "35": [
+      "skill_expo_release"
+    ],
+    "36": [
+      "skill_expo_run"
+    ],
+    "37": [
+      "skill_figma_to_code"
+    ],
+    "38": [
+      "skill_motion_design"
+    ],
+    "39": [
+      "skill_optimize_prompt"
+    ],
+    "40": [
+      "skill_responsive_grid"
+    ]
+  },
+  "cohesion": {
+    "0": 0.06006006006006006,
+    "1": 0.06547619047619048,
+    "2": 0.12,
+    "3": 0.1111111111111111,
+    "4": 0.1286549707602339,
+    "5": 0.15263157894736842,
+    "6": 0.21323529411764705,
+    "7": 0.1323529411764706,
+    "8": 0.34285714285714286,
+    "9": 0.3111111111111111,
+    "11": 0.32142857142857145,
+    "12": 0.35714285714285715,
+    "13": 0.32142857142857145,
+    "14": 0.9,
+    "15": 0.8333333333333334,
+    "16": 0.6666666666666666,
+    "17": 0.6666666666666666,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0
+  },
+  "gods": [
+    {
+      "id": "claude_neptuno_doctrine",
+      "label": "NEPTUNO — Protocolo de ejecución de alto rendimiento (CLAUDE.md)",
+      "degree": 26
+    },
+    {
+      "id": "docs_graphify",
+      "label": "GRAPHIFY.md — grafo de conocimiento como capa 0 de recuperación",
+      "degree": 20
+    },
+    {
+      "id": "handoff",
+      "label": "HANDOFF.md — nota de traspaso del ecosistema",
+      "degree": 19
+    },
+    {
+      "id": "_claude_skills_graphify_skill_graphify",
+      "label": "graphify skill",
+      "degree": 14
+    },
+    {
+      "id": "readme",
+      "label": "README — Manual del ecosistema NEPTUNO",
+      "degree": 13
+    },
+    {
+      "id": "docs_workflows_workflows",
+      "label": "WORKFLOWS.md — Recetas end-to-end",
+      "degree": 11
+    },
+    {
+      "id": "docs_economia_tokens",
+      "label": "ECONOMIA-TOKENS.md — Economía de tokens",
+      "degree": 11
+    },
+    {
+      "id": "claude_skills_android_doctor_skill",
+      "label": "Skill: /android-doctor",
+      "degree": 8
+    },
+    {
+      "id": "claude_skills_android_run_skill",
+      "label": "Skill: /android-run",
+      "degree": 8
+    },
+    {
+      "id": "docs_design_design",
+      "label": "DESIGN.md — Doctrina de diseño y frontend",
+      "degree": 8
+    }
+  ],
+  "surprises": [
+    {
+      "source": "optimize-tokens skill",
+      "target": "Regla de tokens: JSON filtrado (--json … -q)",
+      "source_files": [
+        ".claude/skills/optimize-tokens/SKILL.md",
+        "docs/GITHUB.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; semantically similar concepts with no structural link; peripheral node `optimize-tokens skill` unexpectedly reaches hub `Regla de tokens: JSON filtrado (--json … -q)`"
+    },
+    {
+      "source": "graphify reference: commit hook and CLAUDE.md integration",
+      "target": "Hooks — automatización a coste cero de tokens",
+      "source_files": [
+        ".claude/skills/graphify/references/hooks.md",
+        "docs/AUTOMATION.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Skill: /context-prime",
+      "target": "HANDOFF.md — nota de traspaso del ecosistema",
+      "source_files": [
+        ".claude/skills/context-prime/SKILL.md",
+        "HANDOFF.md"
+      ],
+      "confidence": "AMBIGUOUS",
+      "relation": "references",
+      "why": "ambiguous connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Skill: /context-prime` unexpectedly reaches hub `HANDOFF.md — nota de traspaso del ecosistema`"
+    },
+    {
+      "source": "Bisección espacial y temporal (git bisect run)",
+      "target": "ml-experiment skill",
+      "source_files": [
+        "docs/DEBUGGING.md",
+        ".claude/skills/ml-experiment/SKILL.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "pr-stack skill",
+      "target": "Técnica de stacked PRs con git puro",
+      "source_files": [
+        ".claude/skills/pr-stack/SKILL.md",
+        "docs/GITHUB.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Técnica de stacked PRs con git puro` unexpectedly reaches hub `pr-stack skill`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Skill: /context-prime` and `HANDOFF.md — nota de traspaso del ecosistema`?",
+      "why": "Edge tagged AMBIGUOUS (relation: references) - confidence is low."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Hooks — automatización a coste cero de tokens` connect `Session Hooks & Opencode Layer` to `Core Execution Doctrine`, `Graphify Extraction Reference`?",
+      "why": "High betweenness centrality (0.243) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `graphify skill` connect `Graphify Extraction Reference` to `Mobile & Desktop Build Doctrine`?",
+      "why": "High betweenness centrality (0.239) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `graphify reference: commit hook and CLAUDE.md integration` connect `Graphify Extraction Reference` to `Session Hooks & Opencode Layer`?",
+      "why": "High betweenness centrality (0.231) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `fs`, `globalSettingsPath`, `masterSettings` to the rest of the system?",
+      "why": "100 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Core Execution Doctrine` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06006006006006006 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Token Economy & Knowledge Graph Docs` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06547619047619048 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

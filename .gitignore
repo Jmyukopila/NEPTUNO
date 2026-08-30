@@ -1,0 +1,42 @@
+# Estado local del ecosistema (no versionar)
+.claude/knowledge-graph.json
+.claude/settings.local.json
+
+# Dependencias y artefactos habituales
+node_modules/
+__pycache__/
+.venv/
+venv/
+dist/
+build/
+*.log
+
+# Entornos y secretos
+.env
+.env.*
+!.env.example
+
+# --- backup pre-formato: ignores estÃ¡ndar ---
+node_modules/
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+dist/
+build/
+.next/
+.turbo/
+.cache/
+.vercel/
+.netlify/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+*.keystore
+*.pem
+*.key
+
