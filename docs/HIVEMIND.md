@@ -415,15 +415,31 @@ Por eso `tools/hivemind.js` no se fía del código de salida y clasifica el resu
 | `HIVEMIND_STATUS` | Qué pasó | Qué hacer |
 |---|---|---|
 | `ok` | terminó y produjo salida | verifícala igualmente |
-| `permisos` | auto-denegó una herramienta | repite con `--yolo`, o acota el encargo a algo sin herramientas |
+| `permisos` | auto-denegó una herramienta | solo pasa con `--safe`: repite sin él, o acota el encargo a algo sin herramientas |
 | `sin-salida` | terminó sin producir nada | el encargo no dice qué devolver: reescríbelo |
 | `timeout` | superó `--timeout` sin producir nada | sube el tope o parte la tarea |
 | `timeout-con-salida` | respondió pero **no terminó el proceso** | el trabajo está en el log: léelo antes de reintentar |
 | `error` | la CLI falló | lee el log |
 
-**Regla:** un encargo que escriba, instale o toque red va con `--yolo`. Y como `--yolo` auto-aprueba
-**todo**, ese es justamente el encargo que debe llevar el ALCANCE más estrecho y, si de verdad toca
-red o instala cosas, irse a Devin con sandbox.
+**La aprobación va encendida por defecto.** Quien despacha es el jefe: pedirle al usuario que
+apruebe cada herramienta de un agente que él mismo encargó es fricción sin decisión detrás. `run`
+auto-aprueba salvo que pases `--safe`; `session` ya respondía `allow_always` salvo `--safe`. El
+precio no se puede maquillar: aprobado todo, **el ALCANCE del encargo es la única frontera**, así
+que un encargo que escriba mucho debe llevarlo estrecho y, si toca red o instala cosas, irse a
+Devin con `--sandbox`.
+
+Qué hace realmente el flag en cada agente, **medido** con un encargo que escribe un archivo:
+
+| Agente | Por defecto | Con `--safe` | Qué cambia de verdad |
+|---|---|---|---|
+| `devin` | escribió | **no escribió** | `--permission-mode dangerous` vs `accept-edits`. Aquí el flag manda |
+| `antigravity` | escribió | **escribió igual** | `--dangerously-skip-permissions` no cambió nada observable |
+| `opencode` | `--auto` | sin `--auto` | ya era el comportamiento por defecto; el flag solo lo quita |
+
+Ese resultado de `agy` **contradice** lo que decía este documento («sin `--yolo` auto-deniega y sale
+con 0»). Fue cierto en su día; con la lista blanca de `~/.gemini/antigravity-cli/settings.json`
+puesta, ya no lo es para escrituras. La clasificación de `HIVEMIND_STATUS` sigue valiendo: no te
+fíes del código de salida.
 
 Para los encargos de solo lectura hay una salida mejor que `--yolo`: **una lista blanca**. En
 `~/.gemini/antigravity-cli/settings.json` (`permissions.allow`) están permitidos los ~30 comandos de

@@ -91,15 +91,18 @@ node tools/hivemind.js run <agente> --prompt-file /tmp/encargo.md --timeout 900
 
 ```bash
 node tools/hivemind.js run antigravity "<encargo>" --timeout 600
-node tools/hivemind.js run devin --prompt-file encargo.md --yolo --timeout 1800
+node tools/hivemind.js run devin --prompt-file encargo.md --timeout 1800
 node tools/hivemind.js run opencode "<encargo>" --model anthropic/claude-sonnet-5
 ```
 
-**Todo encargo que toque archivos o terminal va con `--yolo`.** Un agente headless no puede pedirte
-permiso: sin `--yolo` auto-deniega, no hace nada y **sale con código 0**. El despachador lo detecta y
-lo marca `HIVEMIND_STATUS=permisos`, pero el encargo lo tienes que repetir tú. Y como `--yolo`
-auto-aprueba todo, es justo el encargo que necesita el ALCANCE más estrecho; si toca red o instala
-dependencias, va a Devin con sandbox.
+**La aprobación va encendida por defecto: tú apruebas por ellos.** Un agente headless no puede
+pedir permiso a nadie, y molestar al usuario por cada herramienta de un encargo que él mismo pidió
+es fricción sin decisión detrás. `--safe` restaura el comportamiento cauto cuando lo quieras.
+
+Como se aprueba **todo**, el ALCANCE del encargo es la única frontera: escríbelo estrecho. Si toca
+red o instala dependencias, va a Devin con `--sandbox`. Medido: con `--safe`, devin no escribe y
+antigravity sí (su lista blanca ya lo permitía), así que no des el flag por equivalente entre
+agentes.
 
 Lee siempre `HIVEMIND_STATUS`: `ok` · `permisos` · `sin-salida` · `timeout` · `error`. Solo `ok`
 significa que hubo trabajo — y aun así lo verificas.

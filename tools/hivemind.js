@@ -19,7 +19,8 @@
 //   --model <id>       modelo concreto; si se omite, el default del agente
 //   --timeout <seg>    default 900
 //   --out <archivo>    dónde escribir el log (default: .hivemind/runs/<ts>-<agente>.log)
-//   --yolo             auto-aprueba permisos de herramientas en el agente destino
+//   --safe             NO auto-aprueba: el agente pedirá permiso y, headless, se auto-denegará
+//   --yolo             (obsoleto, ya es el default) auto-aprueba permisos en el agente destino
 //   --prompt-file <f>  lee el prompt de un archivo en vez de argv (mejor para prompts largos)
 //   --quiet            no imprime la cola del log, solo la ruta
 //
@@ -203,7 +204,12 @@ function run(argv) {
     return 2;
   }
   const rest = argv.slice(1);
-  const opt = { cwd: process.cwd(), model: null, timeout: 900, out: null, yolo: false, quiet: false, addDir: [], agent: null, safe: false };
+  // `yolo` viene ENCENDIDO: quien despacha es el jefe, y un agente headless no puede pedir
+  // permiso a nadie — sin auto-aprobación se auto-deniega, no hace nada y sale con 0, que es
+  // el fallo silencioso mas caro de esta flota. `--safe` restaura el comportamiento cauto.
+  // El precio, que no se puede maquillar: aprobado todo, el ALCANCE del encargo es la unica
+  // frontera. Para trabajo que toque red o instale cosas, `devin --sandbox`.
+  const opt = { cwd: process.cwd(), model: null, timeout: 900, out: null, yolo: true, quiet: false, addDir: [], agent: null, safe: false };
   const positional = [];
   for (let i = 0; i < rest.length; i++) {
     const t = rest[i];
@@ -214,7 +220,7 @@ function run(argv) {
     else if (t === '--add-dir') opt.addDir.push(path.resolve(rest[++i]));
     else if (t === '--prompt-file') positional.push(fs.readFileSync(rest[++i], 'utf8'));
     else if (t === '--yolo') opt.yolo = true;
-    else if (t === '--safe') opt.safe = true;
+    else if (t === '--safe') { opt.safe = true; opt.yolo = false; }
     else if (t === '--agent') opt.agent = rest[++i];
     else if (t === '--quiet') opt.quiet = true;
     else positional.push(t);
@@ -330,7 +336,7 @@ function run(argv) {
   console.log(`HIVEMIND_STATUS=${estado} agente=${name} duracion=${secs}s exit=${r.status}`);
   if (estado === 'timeout') console.log(`Timeout a los ${opt.timeout}s sin salida. Sube --timeout o parte la tarea en trozos más pequeños.`);
   if (estado === 'timeout-con-salida') console.log(`El agente produjo respuesta pero no terminó el proceso (típico de \`opencode run\`): el trabajo está en el log, revísalo antes de reintentar.`);
-  if (denied) console.log(`El agente auto-denegó una herramienta: en modo headless no puede pedirte permiso. Repite con --yolo, o acota el encargo a algo que no necesite herramientas.`);
+  if (denied) console.log(`El agente auto-denegó una herramienta: en modo headless no puede pedirte permiso. Solo pasa si lanzaste con --safe: repite sin él, o acota el encargo a algo que no necesite herramientas.`);
   if (vacio && !timedOut) console.log(`El agente no produjo salida. Revisa el encargo: puede que no haya entendido qué devolver.`);
   if (estado !== 'ok') return timedOut ? 124 : r.status || 1;
   return 0;
