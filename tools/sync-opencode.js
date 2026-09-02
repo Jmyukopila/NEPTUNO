@@ -23,7 +23,7 @@ const SRC = path.resolve(__dirname, '..');
 const GLOBAL_CLAUDE = path.join(os.homedir(), '.claude');
 const GLOBAL_OPENCODE = path.join(os.homedir(), '.config', 'opencode');
 const DOCS_ABS_CLAUDE = path.join(GLOBAL_CLAUDE, 'docs') + path.sep;
-const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND)\.md`/g;
+const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND|PIXEL-AGENTS)\.md`/g;
 // La skill `graphify` es la única que carga archivos hermanos (`references/*.md`) en
 // lugar de ser autocontenida. buildCommands() copia SOLO el cuerpo del SKILL.md a
 // .opencode/command/graphify.md, así que esas rutas relativas quedarían colgando: se

@@ -48,15 +48,15 @@
     "semantic_hash": "4e337bfdd6fa75c3a936b2e20cdcdcd9"
   },
   "tools/sync-global.js": {
-    "mtime": 1788309004.4614992,
-    "seen": 1788309574.4568894,
-    "ast_hash": "6f9128e9460b0f9fcdf47c5c391a224b",
+    "mtime": 1788311369.5372179,
+    "seen": 1788311396.8640842,
+    "ast_hash": "002cff74723b7bb88b2395bd1f0b440f",
     "semantic_hash": ""
   },
   "tools/sync-opencode.js": {
-    "mtime": 1788309004.4615738,
-    "seen": 1788309574.4568906,
-    "ast_hash": "81dca69786d1686de7ee558453ecf052",
+    "mtime": 1788311369.537316,
+    "seen": 1788311396.8640854,
+    "ast_hash": "d572ddefada6fffb55ca6ac9a9e2780d",
     "semantic_hash": ""
   },
   ".claude/agents/android.md": {
@@ -492,9 +492,9 @@
     "semantic_hash": "aac74bf72ce634fb9e55095c37bae445"
   },
   "CLAUDE.md": {
-    "mtime": 1788309004.446016,
-    "seen": 1788309574.4570212,
-    "ast_hash": "676b70c31cb93b0d63444ac9f40c8abc",
+    "mtime": 1788311369.5375104,
+    "seen": 1788311396.8641596,
+    "ast_hash": "3c3c6d2677d2214542cd5b5cb02822e1",
     "semantic_hash": ""
   },
   "HANDOFF.md": {
@@ -504,9 +504,9 @@
     "semantic_hash": "8b724b70f528d42547b5d39370316d6d"
   },
   "README.md": {
-    "mtime": 1788310932.3168693,
-    "seen": 1788310982.8768134,
-    "ast_hash": "6c71b4b03b78873bd17224b20b518e60",
+    "mtime": 1788311395.7658455,
+    "seen": 1788311396.8641615,
+    "ast_hash": "e410a48186f5f51830f5f7950384c573",
     "semantic_hash": ""
   },
   "docs/ANDROID.md": {
@@ -600,9 +600,9 @@
     "semantic_hash": ""
   },
   "installer/install.js": {
-    "mtime": 1788309004.4611623,
-    "seen": 1788309574.4568691,
-    "ast_hash": "0975be928b31d97c944fd4515384c99f",
+    "mtime": 1788311369.5374007,
+    "seen": 1788311396.8640714,
+    "ast_hash": "3335554d4b98bc15f3697806c1fb2cce",
     "semantic_hash": ""
   },
   "tools/hivemind.js": {
@@ -660,15 +660,21 @@
     "semantic_hash": ""
   },
   "docs/HIVEMIND.md": {
-    "mtime": 1788310910.408253,
-    "seen": 1788310982.876824,
-    "ast_hash": "ee73a4b3d348728f3c5e38c8b4489cb1",
+    "mtime": 1788311369.537682,
+    "seen": 1788311396.864172,
+    "ast_hash": "61c8e87ae1506dd37a5921628751bc57",
     "semantic_hash": ""
   },
   "tools/session.js": {
     "mtime": 1788310818.0953107,
     "seen": 1788310982.8767328,
     "ast_hash": "c853f377342781b28586cdf468c66700",
+    "semantic_hash": ""
+  },
+  "docs/PIXEL-AGENTS.md": {
+    "mtime": 1788311352.0471413,
+    "seen": 1788311396.8641744,
+    "ast_hash": "ac7a6e696fe655864015aefaad596592",
     "semantic_hash": ""
   }
 }

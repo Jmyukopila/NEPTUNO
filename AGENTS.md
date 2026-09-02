@@ -209,6 +209,12 @@ Grafos vivos: `~/github/Jmyukopila/NEPTUNO` (el ecosistema), `~/ANDROMEDA` (la b
 
 Para vigilancia recurrente usa `/loop` (babysitting de CI/PRs), para tareas periódicas sin sesión `/schedule`, y para usar Claude como paso de un script `claude -p` (matriz de decisión en `docs/AUTOMATION.md`).
 
+### Interfaz visual
+`pixel-agents --port 3100` levanta una oficina pixel-art donde cada sesión de Claude Code y cada
+subagente es un personaje: teclean al editar, leen al buscar, y levantan un bocadillo cuando están
+**bloqueados esperándote**. La flota externa (`opencode`, `agy`, `devin`) **no** aparece — solo hay
+proveedor para Claude Code. Trata la URL con `?token=` como un secreto. Detalle en `docs/PIXEL-AGENTS.md`.
+
 ### MCPs
 | MCP | Cuándo usarlo |
 |---|---|
@@ -216,7 +222,7 @@ Para vigilancia recurrente usa `/loop` (babysitting de CI/PRs), para tareas peri
 | `memory` | Grafo de conocimiento persistente entre sesiones |
 | `chrome-devtools` | Verificación real de frontend: navega, hace click/rellena, captura pantalla, lee consola/red y traza performance en un Chrome de verdad — úsalo en `/verify-work`, `/full-stack-feature` (capa frontend) y `a11y-review` en vez de declarar la UI "no verificada" |
 
-Guías detalladas: `docs/PROMPTING.md`, `docs/ECONOMIA-TOKENS.md`, `docs/GRAPHIFY.md`, `docs/WORKFLOWS.md`, `docs/DEBUGGING.md`, `docs/FULLSTACK.md`, `docs/DATA.md`, `docs/ANDROID.md`, `docs/REACT-NATIVE.md`, `docs/CAPACITOR.md`, `docs/DESKTOP.md`, `docs/GITHUB.md`, `docs/AUTOMATION.md`, `docs/DESIGN.md`, `docs/OPENCODE.md`, `docs/HIVEMIND.md`.
+Guías detalladas: `docs/PROMPTING.md`, `docs/ECONOMIA-TOKENS.md`, `docs/GRAPHIFY.md`, `docs/WORKFLOWS.md`, `docs/DEBUGGING.md`, `docs/FULLSTACK.md`, `docs/DATA.md`, `docs/ANDROID.md`, `docs/REACT-NATIVE.md`, `docs/CAPACITOR.md`, `docs/DESKTOP.md`, `docs/GITHUB.md`, `docs/AUTOMATION.md`, `docs/DESIGN.md`, `docs/OPENCODE.md`, `docs/HIVEMIND.md`, `docs/PIXEL-AGENTS.md`.
 
 ## 9. Hivemind — la flota externa
 

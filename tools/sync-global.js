@@ -10,7 +10,7 @@ const os = require('os');
 const SRC = path.resolve(__dirname, '..');
 const DST = path.join(os.homedir(), '.claude');
 const DOCS_ABS = path.join(DST, 'docs') + path.sep;
-const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND)\.md`/g;
+const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND|PIXEL-AGENTS)\.md`/g;
 
 const pairs = [
   [path.join(SRC, '.claude/skills'), path.join(DST, 'skills')],
@@ -47,7 +47,8 @@ for (const f of pairs.flatMap(([, dst]) => walk(dst))) {
 
 // Fusiona SOLO la clave "hooks" del settings.json maestro en el global (el resto del
 // settings global — prefs de UI, permisos — no se toca). Las rutas de los hooks se
-// reescriben a la copia global para que ~/.claude sea autocontenido.
+// reescriben a la copia global para que ~/.claude sea autocontenido, y los hooks que no
+// gestiona NEPTUNO se conservan intactos.
 const masterSettings = JSON.parse(fs.readFileSync(path.join(SRC, '.claude/settings.json'), 'utf8'));
 const globalSettingsPath = path.join(DST, 'settings.json');
 const globalSettings = fs.existsSync(globalSettingsPath)
@@ -57,11 +58,31 @@ const globalSettings = fs.existsSync(globalSettingsPath)
 // PROYECTO). En el global esa variable apuntaría al proyecto en el que estés, que no
 // tiene tools/hooks/: aquí se fija a la copia global, que sí es autocontenida.
 const globalHooksDir = path.join(DST, 'hooks').split(path.sep).join('/');
-globalSettings.hooks = JSON.parse(
+const hooksNeptuno = JSON.parse(
   JSON.stringify(masterSettings.hooks).replaceAll('$CLAUDE_PROJECT_DIR/tools/hooks/', globalHooksDir + '/')
 );
+
+// Este script MANDA sobre sus propios hooks, pero no sobre los de nadie más. Antes
+// reemplazaba la clave "hooks" entera, así que cualquier hook de terceros instalado en el
+// settings global (pixel-agents, por ejemplo, que engancha 9 eventos para animar la oficina)
+// desaparecía en el siguiente resync, en silencio y sin que nada fallara de forma visible.
+// Ahora se fusiona: se reescriben los hooks de NEPTUNO y se conserva todo lo demás.
+const esDeNeptuno = (entrada) => {
+  const c = JSON.stringify(entrada);
+  return c.includes(globalHooksDir) || c.includes('$CLAUDE_PROJECT_DIR/tools/hooks/') || c.includes('graphify hook-guard');
+};
+const previos = globalSettings.hooks || {};
+const fusionados = {};
+let ajenos = 0;
+for (const evento of new Set([...Object.keys(previos), ...Object.keys(hooksNeptuno)])) {
+  const deTerceros = (previos[evento] || []).filter((m) => !esDeNeptuno(m));
+  ajenos += deTerceros.length;
+  const lista = [...(hooksNeptuno[evento] || []), ...deTerceros];
+  if (lista.length) fusionados[evento] = lista;
+}
+globalSettings.hooks = fusionados;
 fs.writeFileSync(globalSettingsPath, JSON.stringify(globalSettings, null, 2) + '\n', 'utf8');
 
 const count = d => fs.readdirSync(path.join(DST, d)).length;
 console.log(`Sincronizado: ${count('skills')} skills, ${count('agents')} agentes, ${count('docs')} docs, ${count('hooks')} hooks, CLAUDE.md global.`);
-console.log(`Archivos con referencias reescritas: ${rewritten}. Hooks fusionados en settings.json global.`);
+console.log(`Archivos con referencias reescritas: ${rewritten}. Hooks fusionados en settings.json global (${ajenos} de terceros preservados).`);

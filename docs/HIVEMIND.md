@@ -457,6 +457,17 @@ Cuando repartes en paralelo, cada agente hace un trozo y **nadie hace la integra
 entre trozos, las decisiones que afectan a dos, la coherencia del conjunto. Eso no se delega — es
 tuyo, y suele ser lo que más piensa de todo el trabajo.
 
+## 4 ter. Verlo: la interfaz
+
+Repartir trabajo entre subagentes y flota crea un problema nuevo: **saber quién está parado**.
+`pixel-agents --port 3100` lo resuelve mostrando cada sesión de Claude Code y cada subagente como un
+personaje en una oficina, con bocadillo cuando alguien está bloqueado esperándote.
+
+Ojo con el alcance: **la flota externa no sale ahí** (solo hay proveedor para Claude Code), así que
+un `hivemind.js run` no aparece — verás al agente `delegate` supervisándolo, que sí es sesión de
+Claude Code. Para el estado real de la flota, `doctor` y `.hivemind/runs/`. Detalle, y la trampa de
+sincronización que hubo que arreglar antes de instalarlo, en `docs/PIXEL-AGENTS.md`.
+
 ## 5. Interoperabilidad: una doctrina, cuatro lectores
 
 NEPTUNO tiene **una sola fuente de verdad** (`.claude/`) y capas generadas para cada dialecto:

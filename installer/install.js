@@ -127,7 +127,7 @@ function copyCore(vaultPath) {
   // Reescribe referencias `docs/X.md` a la ruta absoluta de esta máquina, y
   // cualquier mención de la bóveda de ejemplo a la bóveda real del usuario.
   const DOCS_ABS = path.join(CLAUDE_DIR, 'docs') + path.sep;
-  const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND)\.md`/g;
+  const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND|PIXEL-AGENTS)\.md`/g;
   const walk = p => (fs.statSync(p).isFile() ? (p.endsWith('.md') ? [p] : []) : fs.readdirSync(p).flatMap(n => walk(path.join(p, n))));
   const mdFiles = [path.join(CLAUDE_DIR, 'skills'), path.join(CLAUDE_DIR, 'agents'), path.join(CLAUDE_DIR, 'docs')].flatMap(walk);
   for (const f of mdFiles) {
