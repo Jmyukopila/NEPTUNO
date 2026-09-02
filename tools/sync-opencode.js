@@ -2,7 +2,7 @@
 // canónica de Claude Code (.claude/skills/, .claude/agents/, .mcp.json) y la sincroniza
 // también a nivel global (~/.config/opencode/), igual que tools/sync-global.js hace con
 // ~/.claude/. Los archivos .claude/* siguen siendo la fuente de verdad; este script solo
-// traduce formato. Uso: node tools\sync-opencode.js [--provider=anthropic|google|openai]
+// traduce formato. Uso: node tools/sync-opencode.js [--provider=anthropic|google|openai]
 //
 // Mapeos (ver docs/OPENCODE.md para el detalle y las notas de confianza):
 //   .claude/skills/<n>/SKILL.md  -> .opencode/command/<n>.md
@@ -17,18 +17,19 @@
 // con `opencode run --model ...`. Ver docs/OPENCODE.md para el detalle y la evidencia.
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
-const SRC = 'C:/NEPTUNO';
-const GLOBAL_CLAUDE = 'C:/Users/Usuario/.claude';
-const GLOBAL_OPENCODE = 'C:/Users/Usuario/.config/opencode';
-const DOCS_ABS_CLAUDE = 'C:\\Users\\Usuario\\.claude\\docs\\';
-const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY)\.md`/g;
+const SRC = path.resolve(__dirname, '..');
+const GLOBAL_CLAUDE = path.join(os.homedir(), '.claude');
+const GLOBAL_OPENCODE = path.join(os.homedir(), '.config', 'opencode');
+const DOCS_ABS_CLAUDE = path.join(GLOBAL_CLAUDE, 'docs') + path.sep;
+const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND)\.md`/g;
 // La skill `graphify` es la única que carga archivos hermanos (`references/*.md`) en
 // lugar de ser autocontenida. buildCommands() copia SOLO el cuerpo del SKILL.md a
 // .opencode/command/graphify.md, así que esas rutas relativas quedarían colgando: se
 // reescriben a la copia global de la skill, igual que DOCS_RE hace con `docs/*.md`.
 const REFS_RE = /`references\/([\w-]+)\.md`/g;
-const REFS_ABS_CLAUDE = 'C:\\Users\\Usuario\\.claude\\skills\\graphify\\references\\';
+const REFS_ABS_CLAUDE = path.join(GLOBAL_CLAUDE, 'skills', 'graphify', 'references') + path.sep;
 
 // Tabla de niveles por proveedor (fast/barato "haiku", equilibrado "sonnet", razonamiento
 // profundo "opus"). Solo "anthropic" y "google" están verificados con una llamada real en
@@ -52,6 +53,27 @@ const PROVIDER_TABLES = {
     sonnet: 'openai/gpt-4.1',
     opus: 'openai/o3',
     fable: 'openai/gpt-4.1',
+  },
+  // OpenCode Zen: la pasarela propia de opencode. Es el proveedor REAL de esta cuenta
+  // (`opencode providers list` -> "OpenCode Zen"), y sus IDs llevan el prefijo `opencode/`,
+  // no `anthropic/`: un agente fijado a `anthropic/...` no resuelve con esta credencial.
+  zen: {
+    haiku: 'opencode/claude-haiku-4-5',
+    sonnet: 'opencode/claude-sonnet-5',
+    opus: 'opencode/claude-opus-5',
+    fable: 'opencode/claude-fable-5',
+  },
+  // Los modelos de pago de Zen fallan con "Insufficient balance" si el workspace no tiene
+  // saldo (verificado). Esta tabla usa los gratuitos, que SÍ ejecutan: es lo que hace que
+  // opencode sea utilizable hoy. Cuando haya saldo, regenera con --provider=zen.
+  // Medido: `nemotron-3-ultra-free` se cuelga en cola (>117 s sin responder), mientras que
+  // `nemotron-3.5-lightning-free` y `ling-3.0-flash-fin-free` contestan en 8 s con exit=0.
+  // El gratuito "más potente" es aquí el menos utilizable: se prefiere el que responde.
+  'zen-free': {
+    haiku: 'opencode/nemotron-3.5-lightning-free',
+    sonnet: 'opencode/nemotron-3.5-lightning-free',
+    opus: 'opencode/ling-3.0-flash-fin-free',
+    fable: 'opencode/ling-3.0-flash-fin-free',
   },
 };
 const PROVIDER = (process.argv.find((a) => a.startsWith('--provider=')) || '').split('=')[1] || 'anthropic';
@@ -175,7 +197,7 @@ function mergeMcpIntoConfig(configPath, mcpEntries) {
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n', 'utf8');
 }
 
-// ============ Proyecto (C:\NEPTUNO) ============
+// ============ Proyecto (la raíz del repo) ============
 const nCommands = buildCommands(path.join(SRC, '.opencode/command'));
 const nAgents = buildAgents(path.join(SRC, '.opencode/agent'));
 fs.rmSync(path.join(SRC, '.opencode/plugin'), { recursive: true, force: true });
@@ -193,7 +215,7 @@ const rewrittenGlobal = rewriteDocs(GLOBAL_OPENCODE);
 // El servidor "memory" apunta al grafo de conocimiento; en global debe usar el grafo
 // global (separado del de NEPTUNO), igual que ya hace el MCP memory de Claude Code.
 const rewriteToGlobalGraph = (v) =>
-  v.replaceAll('C:\\NEPTUNO\\.claude\\knowledge-graph.json', path.join(GLOBAL_CLAUDE, 'knowledge-graph.json'));
+  v.replace(/^~[\\/\\\\]/, os.homedir() + path.sep).replaceAll('C:\\NEPTUNO\\.claude\\knowledge-graph.json', path.join(GLOBAL_CLAUDE, 'knowledge-graph.json'));
 mergeMcpIntoConfig(path.join(GLOBAL_OPENCODE, 'opencode.json'), mcpEntriesFromClaudeMcp(rewriteToGlobalGraph));
 
 console.log(`Proveedor de modelos: ${PROVIDER} (haiku=${MODEL_MAP.haiku}, sonnet=${MODEL_MAP.sonnet}, opus=${MODEL_MAP.opus}).`);

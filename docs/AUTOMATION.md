@@ -4,13 +4,13 @@ Tres mecanismos, del más barato al más caro. Regla de oro: **automatiza con el
 
 ## 1. Hooks — automatización a coste cero de tokens
 
-Scripts que el harness ejecuta solo en eventos concretos (`settings.json` → `"hooks"`). No consumen contexto ni razonamiento: son la capa refleja del ecosistema. Los instalados (scripts en `C:\NEPTUNO\tools\hooks\`):
+Scripts que el harness ejecuta solo en eventos concretos (`settings.json` → `"hooks"`). No consumen contexto ni razonamiento: son la capa refleja del ecosistema. Los instalados (scripts en `~/github/Jmyukopila/NEPTUNO/tools/hooks/`):
 
 | Hook | Evento | Qué hace |
 |---|---|---|
 | `protect-secrets.js` | PreToolUse (Edit\|Write) | Bloquea escrituras sobre `.env*`, keystores/`.jks`/`.pem`, `id_rsa`, `credentials.*`, `.npmrc`… El modelo recibe el motivo del bloqueo. |
 | `handoff-reminder.js` | SessionStart | Si el proyecto tiene `HANDOFF.md`, inyecta el recordatorio de leerlo (§0 de CLAUDE.md) — el protocolo deja de depender de la memoria del modelo. |
-| `andromeda-context.js` | SessionStart | Busca el proyecto actual en la bóveda `C:\ANDROMEDA\01-Proyectos\` (por `ruta:` del frontmatter o por nombre, subiendo hasta 2 directorios) e inyecta el cuerpo de su nota (tope 2.500 chars) — mapa inicial del proyecto sin explorar en frío. El ciclo lo cierra `/handoff`, que actualiza la nota al terminar la sesión: la bóveda se mantiene viva sola. |
+| `andromeda-context.js` | SessionStart | Busca el proyecto actual en la bóveda `~/ANDROMEDA\01-Proyectos\` (por `ruta:` del frontmatter o por nombre, subiendo hasta 2 directorios) e inyecta el cuerpo de su nota (tope 2.500 chars) — mapa inicial del proyecto sin explorar en frío. El ciclo lo cierra `/handoff`, que actualiza la nota al terminar la sesión: la bóveda se mantiene viva sola. |
 
 Anatomía (para añadir los tuyos): el hook recibe el evento como JSON por stdin; en PreToolUse, `exit 2` bloquea y el stderr le llega al modelo; en SessionStart, el stdout se añade al contexto. Usa Node para que funcione igual en PowerShell y Git Bash. Ideas que compensan: formatear al guardar (PostToolUse + prettier si el proyecto lo tiene), bloquear `git push --force` a main (PreToolUse sobre Bash), notificación de sistema al terminar (Stop).
 

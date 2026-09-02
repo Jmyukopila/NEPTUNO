@@ -1,14 +1,16 @@
-// Sincroniza el ecosistema NEPTUNO (copia maestra) hacia C:\Users\Usuario\.claude\ (copia global).
-// Uso: node tools\sync-global.js
+// Sincroniza el ecosistema NEPTUNO (copia maestra) hacia <home>/.claude/ (copia global).
+// Uso: node tools/sync-global.js
+// Rutas derivadas del propio script y de os.homedir(): funciona igual en Windows y Linux.
 // Copia skills/, agents/, docs/ y CLAUDE.md, y reescribe en las copias las referencias
 // `docs/X.md` (relativas al workspace) a rutas absolutas globales, más la frase de intro.
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
-const SRC = 'C:/NEPTUNO';
-const DST = 'C:/Users/Usuario/.claude';
-const DOCS_ABS = 'C:\\Users\\Usuario\\.claude\\docs\\';
-const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY)\.md`/g;
+const SRC = path.resolve(__dirname, '..');
+const DST = path.join(os.homedir(), '.claude');
+const DOCS_ABS = path.join(DST, 'docs') + path.sep;
+const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND)\.md`/g;
 
 const pairs = [
   [path.join(SRC, '.claude/skills'), path.join(DST, 'skills')],
@@ -36,7 +38,7 @@ for (const f of pairs.flatMap(([, dst]) => walk(dst))) {
     out = out
       .replace(
         'Este workspace está diseñado para que cualquier modelo (Haiku, Sonnet, Opus) trabaje',
-        'Esta configuración global (copia del ecosistema maestro en C:\\NEPTUNO) hace que cualquier modelo (Haiku, Sonnet, Opus) trabaje, en cualquier proyecto,'
+        `Esta configuración global (copia del ecosistema maestro en ${SRC}) hace que cualquier modelo (Haiku, Sonnet, Opus) trabaje, en cualquier proyecto,`
       )
       .replace('son el contrato de calidad de este proyecto.', 'son el contrato de calidad de todas tus sesiones.');
   }
@@ -51,8 +53,12 @@ const globalSettingsPath = path.join(DST, 'settings.json');
 const globalSettings = fs.existsSync(globalSettingsPath)
   ? JSON.parse(fs.readFileSync(globalSettingsPath, 'utf8'))
   : {};
+// El master apunta a $CLAUDE_PROJECT_DIR/tools/hooks/ (correcto para un settings de
+// PROYECTO). En el global esa variable apuntaría al proyecto en el que estés, que no
+// tiene tools/hooks/: aquí se fija a la copia global, que sí es autocontenida.
+const globalHooksDir = path.join(DST, 'hooks').split(path.sep).join('/');
 globalSettings.hooks = JSON.parse(
-  JSON.stringify(masterSettings.hooks).replaceAll('C:/NEPTUNO/tools/hooks/', 'C:/Users/Usuario/.claude/hooks/')
+  JSON.stringify(masterSettings.hooks).replaceAll('$CLAUDE_PROJECT_DIR/tools/hooks/', globalHooksDir + '/')
 );
 fs.writeFileSync(globalSettingsPath, JSON.stringify(globalSettings, null, 2) + '\n', 'utf8');
 

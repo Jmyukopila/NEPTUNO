@@ -104,7 +104,7 @@ Para automatizar disciplina sin depender de que el modelo se acuerde, se pueden 
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -Command \"if (git -C C:\\NEPTUNO status --porcelain 2>$null) { Write-Output 'Hay cambios sin commitear: ¿se ejecutó /verify-work y /self-review?' }\""
+            "command": "test -n \"$(git -C \"$CLAUDE_PROJECT_DIR\" status --porcelain 2>/dev/null)\" && echo 'Hay cambios sin commitear: ¿se ejecutó /verify-work y /self-review?'"
           }
         ]
       }

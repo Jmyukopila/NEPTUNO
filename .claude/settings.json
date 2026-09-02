@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node C:/NEPTUNO/tools/hooks/protect-secrets.js"
+            "command": "node \"$CLAUDE_PROJECT_DIR/tools/hooks/protect-secrets.js\""
           }
         ]
       },
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "C:/Users/Usuario/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/graphify.exe hook-guard search"
+            "command": "graphify hook-guard search"
           }
         ]
       },
@@ -53,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "C:/Users/Usuario/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/graphify.exe hook-guard read"
+            "command": "graphify hook-guard read"
           }
         ]
       }
@@ -63,11 +63,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node C:/NEPTUNO/tools/hooks/handoff-reminder.js"
+            "command": "node \"$CLAUDE_PROJECT_DIR/tools/hooks/handoff-reminder.js\""
           },
           {
             "type": "command",
-            "command": "node C:/NEPTUNO/tools/hooks/andromeda-context.js"
+            "command": "node \"$CLAUDE_PROJECT_DIR/tools/hooks/andromeda-context.js\""
           }
         ]
       }

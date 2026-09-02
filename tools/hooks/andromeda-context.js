@@ -1,16 +1,18 @@
 // Hook SessionStart: si el proyecto actual tiene nota en la bóveda ANDROMEDA
-// (C:\ANDROMEDA\01-Proyectos\*.md), inyecta su cuerpo como contexto inicial — un
+// (<bóveda>/01-Proyectos/*.md), inyecta su cuerpo como contexto inicial — un
 // mapa del proyecto a coste casi cero que evita explorar en frío. Silencioso si
 // no hay bóveda o no hay nota. La nota la mantiene viva la skill /handoff.
+// La ruta de la bóveda sale de $ANDROMEDA_VAULT o de <home>/ANDROMEDA: sin rutas fijas
+// de ninguna plataforma. El instalador la reescribe a la bóveda real de la máquina.
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
-const VAULT = 'C:\\ANDROMEDA\\01-Proyectos';
+const VAULT = process.env.ANDROMEDA_VAULT || path.join(os.homedir(), 'ANDROMEDA', '01-Proyectos');
 const MAX_CHARS = 2500; // tope duro: el contexto inyectado debe ser barato
 
 const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-const normPath = s =>
-  s.replace(/\\\\/g, '\\').replace(/\//g, '\\').replace(/\\+$/, '').toLowerCase();
+const normPath = s => path.resolve(s).replace(/[\\/]+$/, '').toLowerCase();
 
 let raw = '';
 process.stdin.on('data', d => (raw += d));
@@ -18,7 +20,7 @@ process.stdin.on('end', () => {
   let cwd = process.cwd();
   try { cwd = JSON.parse(raw).cwd || cwd; } catch {}
   if (!fs.existsSync(VAULT)) process.exit(0);
-  if (normPath(cwd).startsWith(normPath('C:\\ANDROMEDA'))) process.exit(0);
+  if (normPath(cwd).startsWith(normPath(path.dirname(VAULT)))) process.exit(0);
 
   const notes = fs.readdirSync(VAULT).filter(f => f.endsWith('.md')).map(f => {
     const full = path.join(VAULT, f);

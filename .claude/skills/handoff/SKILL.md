@@ -35,9 +35,9 @@ comandos exactos que funcionan, causas raíz diagnosticadas>
 <comando(s) exacto(s) para comprobar que el estado actual funciona>
 ```
 
-## Sincronizar la bóveda ANDROMEDA (si existe `C:\ANDROMEDA`)
+## Sincronizar la bóveda ANDROMEDA (si existe `~/ANDROMEDA`)
 
-Tras escribir `HANDOFF.md`, actualiza la nota del proyecto en `C:\ANDROMEDA\01-Proyectos\<proyecto>.md` (créala con `Plantillas\Proyecto.md` si no existe, con `ruta:` apuntando a la raíz real del proyecto). Es lo que el hook `andromeda-context` inyectará en la próxima sesión de cualquier terminal, así que debe ser un **mapa denso, no un diario**:
+Tras escribir `HANDOFF.md`, actualiza la nota del proyecto en `~/ANDROMEDA\01-Proyectos\<proyecto>.md` (créala con `Plantillas\Proyecto.md` si no existe, con `ruta:` apuntando a la raíz real del proyecto). Es lo que el hook `andromeda-context` inyectará en la próxima sesión de cualquier terminal, así que debe ser un **mapa denso, no un diario**:
 
 - Frontmatter: `ultima_modificacion:` a hoy; `estado:` si cambió (activo/pausado/archivado).
 - Cuerpo: descripción de una línea, stack y comandos clave (build/test/run), y una sección `## Estado` de 3-6 líneas con lo esencial del handoff (en curso + siguiente paso + gotcha principal). Máximo ~40 líneas totales: el hook trunca a 2.500 caracteres.
@@ -55,7 +55,7 @@ Así el código y el grafo terminan la sesión sincronizados, y la siguiente arr
 
 **Cuidado con lo que `update` NO hace** — dilo en vez de fingir que el grafo está al día:
 
-- **`update` es AST puro: no lee markdown semánticamente.** En un corpus de solo documentación (la bóveda `C:\ANDROMEDA`, o `docs/` de un repo) es literalmente un no-op: imprime `No code-graph topology changes detected` y no toca nada. Si la sesión añadió o reescribió **docs o notas**, el grafo se queda viejo hasta una pasada semántica: `graphify extract <ruta> --backend claude-cli --max-concurrency 2` (usa la suscripción, sin gasto nuevo — ver `docs/GRAPHIFY.md`).
+- **`update` es AST puro: no lee markdown semánticamente.** En un corpus de solo documentación (la bóveda `~/ANDROMEDA`, o `docs/` de un repo) es literalmente un no-op: imprime `No code-graph topology changes detected` y no toca nada. Si la sesión añadió o reescribió **docs o notas**, el grafo se queda viejo hasta una pasada semántica: `graphify extract <ruta> --backend claude-cli --max-concurrency 2` (usa la suscripción, sin gasto nuevo — ver `docs/GRAPHIFY.md`).
 - **Si `graphify` avisa de que el grafo encogería**, es la guarda anti-corrupción. Tras un refactor que borró código de verdad, `--force`; en cualquier otro caso, investiga antes de forzar.
 
 `graphify check-update <ruta>` responde si hay re-extracción semántica pendiente, sin hacerla.

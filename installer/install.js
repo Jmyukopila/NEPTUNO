@@ -105,6 +105,7 @@ function writeClaudeMd(vaultPath) {
       `Esta configuración global (copia del ecosistema maestro en ${nativePath(REPO_ROOT)}) hace que cualquier modelo (Haiku, Sonnet, Opus) trabaje, en cualquier proyecto,`
     )
     .replace('son el contrato de calidad de este proyecto.', 'son el contrato de calidad de todas tus sesiones.')
+    .split('~/ANDROMEDA').join(vaultPath.replace(/\\/g, '/'))
     .split('C:\\ANDROMEDA').join(nativePath(vaultPath))
     .split('C:/ANDROMEDA').join(vaultPath.replace(/\\/g, '/'));
   fs.writeFileSync(dst, out, 'utf8');
@@ -126,13 +127,14 @@ function copyCore(vaultPath) {
   // Reescribe referencias `docs/X.md` a la ruta absoluta de esta máquina, y
   // cualquier mención de la bóveda de ejemplo a la bóveda real del usuario.
   const DOCS_ABS = path.join(CLAUDE_DIR, 'docs') + path.sep;
-  const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY)\.md`/g;
+  const DOCS_RE = /`docs\/(PROMPTING|ECONOMIA-TOKENS|WORKFLOWS|DEBUGGING|FULLSTACK|DATA|ANDROID|REACT-NATIVE|CAPACITOR|DESKTOP|GITHUB|AUTOMATION|DESIGN|OPENCODE|GRAPHIFY|HIVEMIND)\.md`/g;
   const walk = p => (fs.statSync(p).isFile() ? (p.endsWith('.md') ? [p] : []) : fs.readdirSync(p).flatMap(n => walk(path.join(p, n))));
   const mdFiles = [path.join(CLAUDE_DIR, 'skills'), path.join(CLAUDE_DIR, 'agents'), path.join(CLAUDE_DIR, 'docs')].flatMap(walk);
   for (const f of mdFiles) {
     let out = fs.readFileSync(f, 'utf8');
     out = out.replace(DOCS_RE, (_, name) => '`' + DOCS_ABS + name + '.md`');
     const rewritten = out
+      .split('~/ANDROMEDA').join(vaultPath.replace(/\\/g, '/'))
       .split('C:\\ANDROMEDA').join(nativePath(vaultPath))
       .split('C:/ANDROMEDA').join(vaultPath.replace(/\\/g, '/'));
     if (rewritten !== fs.readFileSync(f, 'utf8')) fs.writeFileSync(f, rewritten, 'utf8');
@@ -141,7 +143,7 @@ function copyCore(vaultPath) {
   // Personaliza el hook de contexto de proyecto con la bóveda elegida.
   const hookFile = path.join(CLAUDE_DIR, 'hooks', 'andromeda-context.js');
   let hookSrc = fs.readFileSync(hookFile, 'utf8');
-  hookSrc = hookSrc.replace(/const VAULT = '.*?';/, `const VAULT = ${JSON.stringify(path.join(vaultPath, '01-Proyectos'))};`);
+  hookSrc = hookSrc.replace(/const VAULT = .*?;\n/, `const VAULT = process.env.ANDROMEDA_VAULT || ${JSON.stringify(path.join(vaultPath, '01-Proyectos'))};\n`);
   fs.writeFileSync(hookFile, hookSrc, 'utf8');
 
   return { ok: true };

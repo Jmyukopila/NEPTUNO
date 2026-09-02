@@ -33,16 +33,16 @@ Lo que graphify NO sustituye: leer el fragmento exacto antes de editarlo (§2 de
 | Binarios | `…\Python311\Scripts\graphify.exe`, `graphify-mcp.exe` | ese `Scripts` se añadió al PATH de usuario |
 | Skill | `.claude/skills/graphify/` (SKILL.md + `references/`) | instalada con `--platform windows` (variante PowerShell) |
 | Hook | `.claude/settings.json` → `PreToolUse` | ver §5 |
-| Ignores | `C:\NEPTUNO\.graphifyignore`, `C:\ANDROMEDA\.graphifyignore` | ver §4 |
+| Ignores | `~/github/Jmyukopila/NEPTUNO/.graphifyignore`, `~/ANDROMEDA\.graphifyignore` | ver §4 |
 
 Reinstalar la skill tras actualizar el paquete (**siempre con `CLAUDE_CONFIG_DIR`**, ver §6):
 
 ```powershell
-$env:CLAUDE_CONFIG_DIR = "C:\NEPTUNO\.claude"
+$env:CLAUDE_CONFIG_DIR = "~/github/Jmyukopila/NEPTUNO/.claude"
 graphify install --platform windows
-Remove-Item C:\NEPTUNO\.claude\CLAUDE.md -Force   # el instalador crea este archivo espurio
-node C:\NEPTUNO\tools\sync-global.js
-node C:\NEPTUNO\tools\sync-opencode.js
+Remove-Item ~/github/Jmyukopila/NEPTUNO/.claude/CLAUDE.md -Force   # el instalador crea este archivo espurio
+node ~/github/Jmyukopila/NEPTUNO/tools/sync-global.js
+node ~/github/Jmyukopila/NEPTUNO/tools/sync-opencode.js
 ```
 
 ### Extras opcionales no instalados
@@ -80,21 +80,21 @@ graphify extract <ruta> --backend claude-cli --max-concurrency 2
 
 | Grafo | Ruta | Contenido |
 |---|---|---|
-| NEPTUNO | `C:\NEPTUNO\graphify-out\graph.json` | skills, agentes, docs, hooks, sincronizadores |
-| ANDROMEDA | `C:\ANDROMEDA\graphify-out\graph.json` | las notas de proyecto de la bóveda |
-| Global | `~\.graphify\global-graph.json` | unión de los anteriores, consultable cross-proyecto |
+| NEPTUNO | `~/github/Jmyukopila/NEPTUNO/graphify-out\graph.json` | skills, agentes, docs, hooks, sincronizadores |
+| ANDROMEDA | `~/ANDROMEDA\graphify-out\graph.json` | las notas de proyecto de la bóveda |
+| Global | `~/.graphify/global-graph.json` | unión de los anteriores, consultable cross-proyecto |
 
 `graphify` busca `graphify-out/graph.json` **relativo al cwd**. Desde otro directorio hay que pasar `--graph`:
 
 ```powershell
-graphify query "¿qué skill cubre releases firmadas?" --graph C:\NEPTUNO\graphify-out\graph.json
+graphify query "¿qué skill cubre releases firmadas?" --graph ~/github/Jmyukopila/NEPTUNO/graphify-out\graph.json
 graphify query "¿qué proyectos usan Expo?"          --graph $HOME\.graphify\global-graph.json
 ```
 
 ### Los dos ignores son obligatorios, no cosméticos
 
-- `C:\NEPTUNO\.graphifyignore` excluye **`.opencode/`**: es una copia generada de `.claude/` (`tools/sync-opencode.js`). Indexar ambas duplicaría cada skill y cada agente como nodos gemelos y envenenaría la detección de comunidades.
-- `C:\ANDROMEDA\.graphifyignore` excluye **`04-Recursos/Grafo/`**: es el export Obsidian del propio grafo. Sin esa línea, cada reconstrucción de la bóveda ingiere su salida anterior y el grafo se realimenta consigo mismo.
+- `~/github/Jmyukopila/NEPTUNO/.graphifyignore` excluye **`.opencode/`**: es una copia generada de `.claude/` (`tools/sync-opencode.js`). Indexar ambas duplicaría cada skill y cada agente como nodos gemelos y envenenaría la detección de comunidades.
+- `~/ANDROMEDA\.graphifyignore` excluye **`04-Recursos/Grafo/`**: es el export Obsidian del propio grafo. Sin esa línea, cada reconstrucción de la bóveda ingiere su salida anterior y el grafo se realimenta consigo mismo.
 
 ---
 
@@ -130,10 +130,10 @@ Para endurecerlo puntualmente sin reinstalar: `GRAPHIFY_HOOK_STRICT=1` deniega l
 
 Ambas nacen de que `.claude/` es la única fuente de verdad y los sincronizadores **borran el destino antes de copiar**:
 
-1. **`sync-global.js` hace `fs.rmSync` sobre `~/.claude/skills`.** Una skill instalada directamente ahí (que es lo que `graphify install --platform claude` hace por defecto) desaparece en el siguiente sync. Por eso la instalación va con `CLAUDE_CONFIG_DIR=C:\NEPTUNO\.claude`.
-2. **`sync-global.js` sobrescribe la clave `hooks` del settings global** con la del maestro. Un hook escrito a mano en `~/.claude/settings.json` se pierde igual. Por eso las entradas de graphify viven en `C:\NEPTUNO\.claude\settings.json`.
+1. **`sync-global.js` hace `fs.rmSync` sobre `~/.claude/skills`.** Una skill instalada directamente ahí (que es lo que `graphify install --platform claude` hace por defecto) desaparece en el siguiente sync. Por eso la instalación va con `CLAUDE_CONFIG_DIR=~/github/Jmyukopila/NEPTUNO/.claude`.
+2. **`sync-global.js` sobrescribe la clave `hooks` del settings global** con la del maestro. Un hook escrito a mano en `~/.claude/settings.json` se pierde igual. Por eso las entradas de graphify viven en `~/github/Jmyukopila/NEPTUNO/.claude/settings.json`.
 
-Efecto colateral útil: la ruta absoluta del `.exe` no contiene el prefijo `C:/NEPTUNO/tools/hooks/` que `sync-global.js` reescribe, así que viaja intacta al settings global.
+Efecto colateral útil: la ruta absoluta del `.exe` no contiene el prefijo `~/github/Jmyukopila/NEPTUNO/tools/hooks/` que `sync-global.js` reescribe, así que viaja intacta al settings global.
 
 ---
 
@@ -161,8 +161,8 @@ Efecto colateral útil: la ruta absoluta del `.exe` no contiene el prefijo `C:/N
 Verificado ejecutándolo sobre la bóveda:
 
 ```
-> graphify update C:\ANDROMEDA
-Re-extracting code files in C:\ANDROMEDA (no LLM needed)...
+> graphify update ~/ANDROMEDA
+Re-extracting code files in ~/ANDROMEDA (no LLM needed)...
 [graphify watch] No code-graph topology changes detected; outputs left untouched.
 ```
 
@@ -194,7 +194,7 @@ Consecuencia: **el grafo es más denso donde se ha tocado recientemente**, lo qu
 Para un grafo homogéneo, una reconstrucción completa con chunks más pequeños:
 
 ```powershell
-graphify extract C:\NEPTUNO --backend claude-cli --force --token-budget 15000 --max-concurrency 2
+graphify extract ~/github/Jmyukopila/NEPTUNO --backend claude-cli --force --token-budget 15000 --max-concurrency 2
 ```
 
 Más llamadas al LLM (sigue sin coste monetario, §3) a cambio de que todos los archivos reciban atención comparable. Es una decisión de una vez, no de cada cierre de sesión.
@@ -208,7 +208,7 @@ graphify guarda las respuestas que da y aprende de cuáles sirvieron:
 ```powershell
 graphify save-result --question "..." --answer "..." --nodes A B --outcome useful
 graphify save-result --question "..." --outcome corrected --correction "lo correcto era ..."
-graphify reflect --graph C:\NEPTUNO\graphify-out\graph.json
+graphify reflect --graph ~/github/Jmyukopila/NEPTUNO/graphify-out\graph.json
 ```
 
 `reflect` agrega esas señales en `graphify-out/reflections/LESSONS.md` de forma **determinista** (sin LLM), con vida media de 30 días y exigiendo corroboración de 2 resultados distintos antes de preferir un nodo. Nodos que ya no existen en el grafo se descartan.
@@ -228,7 +228,7 @@ Esto es la pieza que ataca el *acierto* y no solo el gasto: `--outcome dead_end`
 | `graphify god-nodes --top 10` | los hubs arquitectónicos: por dónde empezar en un repo desconocido |
 | `graphify benchmark` | reducción de tokens medida frente a leer el corpus entero |
 
-Salidas navegables para humanos: `graphify-out/GRAPH_REPORT.md` (arquitectura en prosa), `graph.html` (visualización interactiva) y el export Obsidian en `C:\ANDROMEDA\04-Recursos\Grafo\`.
+Salidas navegables para humanos: `graphify-out/GRAPH_REPORT.md` (arquitectura en prosa), `graph.html` (visualización interactiva) y el export Obsidian en `~/ANDROMEDA\04-Recursos\Grafo\`.
 
 ---
 
@@ -268,11 +268,11 @@ Verificar que no hay descartes silenciosos tras cualquier reconstrucción: la l�
 
 ```powershell
 graphify --version                                          # → graphify 0.9.50
-graphify god-nodes --graph C:\NEPTUNO\graphify-out\graph.json --top 5
-graphify query "¿qué agente usa modelo opus?" --graph C:\NEPTUNO\graphify-out\graph.json
+graphify god-nodes --graph ~/github/Jmyukopila/NEPTUNO/graphify-out\graph.json --top 5
+graphify query "¿qué agente usa modelo opus?" --graph ~/github/Jmyukopila/NEPTUNO/graphify-out\graph.json
 graphify global list                                        # → los repos del grafo global
 
 # El hook (JSON con Python, NUNCA con printf — ver §5)
 python -c "import json;json.dump({'tool_name':'Grep','tool_input':{'pattern':'x'}},open('t.json','w'))"
-cd C:\NEPTUNO; graphify hook-guard search < t.json          # → debe emitir el aviso
+cd ~/github/Jmyukopila/NEPTUNO; graphify hook-guard search < t.json          # → debe emitir el aviso
 ```

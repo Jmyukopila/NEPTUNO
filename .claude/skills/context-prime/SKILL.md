@@ -10,7 +10,7 @@ Construye el contexto esencial del proyecto (o del área indicada en los argumen
 
 ## Proceso
 
-0. **Nota ANDROMEDA primero** — si al inicio de sesión se inyectó la nota del proyecto (hook `andromeda-context`, prefijo `[hook NEPTUNO·ANDROMEDA]`), o existe `C:\ANDROMEDA\01-Proyectos\<proyecto>.md`, pártela como base del mapa y ejecuta los pasos siguientes SOLO para lo que la nota no cubra o parezca desactualizado (contrasta su `ultima_modificacion` con el estado git). Si detectas que la nota miente sobre el estado real, corrígela (o anótalo para `/handoff`).
+0. **Nota ANDROMEDA primero** — si al inicio de sesión se inyectó la nota del proyecto (hook `andromeda-context`, prefijo `[hook NEPTUNO·ANDROMEDA]`), o existe `~/ANDROMEDA\01-Proyectos\<proyecto>.md`, pártela como base del mapa y ejecuta los pasos siguientes SOLO para lo que la nota no cubra o parezca desactualizado (contrasta su `ultima_modificacion` con el estado git). Si detectas que la nota miente sobre el estado real, corrígela (o anótalo para `/handoff`).
 0.5. **El grafo, si existe** — si hay `graphify-out/graph.json` en el repo, este paso sustituye a la mitad de los siguientes por una fracción del coste:
    - `graphify god-nodes --top 10` → los hubs arquitectónicos: el esqueleto del proyecto en 10 líneas.
    - `graphify query "¿cuál es la arquitectura y los puntos de entrada?"` → subgrafo acotado.

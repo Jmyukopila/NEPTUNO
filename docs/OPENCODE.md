@@ -13,7 +13,7 @@ tools/hooks/*.js (Claude)    ──puerto a mano──▶     tools/plugins/*.js
 CLAUDE.md                    ──sin traducir: opencode ya lo lee nativo (§5)
 ```
 
-`node tools\sync-opencode.js` regenera `.opencode/command/`, `.opencode/agent/`, `.opencode/plugin/` y fusiona `mcp` en `opencode.json`, en el proyecto Y en `~/.config/opencode/` (mismo patrón que `tools/sync-global.js` con `~/.claude/`). Re-ejecutar siempre que cambie algo en `.claude/skills/`, `.claude/agents/`, `.mcp.json` o `tools/plugins/`.
+`node tools/sync-opencode.js` regenera `.opencode/command/`, `.opencode/agent/`, `.opencode/plugin/` y fusiona `mcp` en `opencode.json`, en el proyecto Y en `~/.config/opencode/` (mismo patrón que `tools/sync-global.js` con `~/.claude/`). Re-ejecutar siempre que cambie algo en `.claude/skills/`, `.claude/agents/`, `.mcp.json` o `tools/plugins/`.
 
 **Convención de carpetas verificada empíricamente** (no solo por doc): opencode busca agentes/comandos/plugins en `.opencode/agent/`, `.opencode/command/`, `.opencode/plugin/` — **singular**, igual que las claves `agent`/`command`/`plugin`/`mcp` de `opencode.json`. Se confirmó creando un agente de prueba en un directorio temporal y comprobando con `opencode agent list`.
 
@@ -44,7 +44,7 @@ Frontmatter Claude Code (`name`, `description`, `argument-hint`) se traduce a fr
 
 **Por qué existe esto (no es capricho, es un hallazgo con evidencia)**: un agente `mode: subagent` con `model:` fijado GANA sobre el `--model` de la sesión de opencode — probado creando un agente de prueba con `model: anthropic/claude-haiku-4-5-20251001` y delegándole una tarea desde una sesión corriendo en `google/gemini-3-flash-preview`: en los logs (`--print-logs --log-level DEBUG`) el subagente intentó igual `providerID=anthropic modelID=claude-haiku-4-5-20251001` y falló con el mismo error de crédito — el `--model` de fuera no se propaga al subagente pinneado. Peor aún: el agente primario absorbió el fallo y devolvió una respuesta genérica ("ok.") sin exponer el error — un fallo silencioso a tener en cuenta si algún día un proveedor falla a mitad de sesión. Conclusión práctica: para que TODA la flota de agentes use otro proveedor hace falta regenerar con `--provider`, no basta con pasar `--model` al invocar opencode.
 
-**Estado actual de esta cuenta** (2026-07-13): `anthropic` está sin saldo (`Your credit balance is too low`) y `openai` devuelve `Quota exceeded` — ambos verificados con llamadas reales que fallaron. `google` sí tiene crédito y respondió correctamente. Por eso la generación activa ahora mismo (`.opencode/agent/*.md`, proyecto y global) está en `--provider=google`, verificado con una prueba real de extremo a extremo: delegar en el agente `scout` (real, con su `permission.edit: deny` real) la búsqueda de un dato concreto en `tools/plugins/andromeda-context.js` — devolvió la línea y el hook exactos, correctos. Volver a `anthropic` en cuanto haya saldo: `node tools\sync-opencode.js` (sin flag).
+**Estado actual de esta cuenta** (2026-07-13): `anthropic` está sin saldo (`Your credit balance is too low`) y `openai` devuelve `Quota exceeded` — ambos verificados con llamadas reales que fallaron. `google` sí tiene crédito y respondió correctamente. Por eso la generación activa ahora mismo (`.opencode/agent/*.md`, proyecto y global) está en `--provider=google`, verificado con una prueba real de extremo a extremo: delegar en el agente `scout` (real, con su `permission.edit: deny` real) la búsqueda de un dato concreto en `tools/plugins/andromeda-context.js` — devolvió la línea y el hook exactos, correctos. Volver a `anthropic` en cuanto haya saldo: `node tools/sync-opencode.js` (sin flag).
 
 Si un agente no fija `model` (no aplica hoy a ninguno de los 14; posible en agentes futuros), opencode usa el modelo por defecto de la sesión.
 
@@ -71,7 +71,7 @@ Es una traducción de intención (agentes de solo-lectura siguen siendo de solo-
 
 **Gotcha real encontrado y corregido**: la primera versión del script generaba `command`+`args` por separado (calcando la forma de `.mcp.json`) y opencode lo ignoraba en silencio — `opencode mcp list` solo mostraba los servidores remotos, los locales no aparecían ni como error. Se detectó comparando contra el JSON Schema publicado en `https://opencode.ai/config.json`, no adivinando. Verificado tras el fix: `opencode mcp list` muestra los 3 servidores (`sequential-thinking`, `memory`, `chrome-devtools`) como `connected`.
 
-La fusión es aditiva por nombre de servidor: el `opencode.json` global ya tenía un MCP `Neon` propio del usuario (no relacionado con NEPTUNO) — el script lo preserva, solo añade/actualiza las claves que él mismo gestiona. El servidor `memory` usa un `knowledge-graph.json` distinto en cada nivel (proyecto: `C:\NEPTUNO\.claude\knowledge-graph.json`; global: `C:\Users\Usuario\.claude\knowledge-graph.json`), igual que ya hace el MCP `memory` de Claude Code.
+La fusión es aditiva por nombre de servidor: el `opencode.json` global ya tenía un MCP `Neon` propio del usuario (no relacionado con NEPTUNO) — el script lo preserva, solo añade/actualiza las claves que él mismo gestiona. El servidor `memory` usa un `knowledge-graph.json` distinto en cada nivel (proyecto: `~/github/Jmyukopila/NEPTUNO/.claude/knowledge-graph.json`; global: `~/.claude\knowledge-graph.json`), igual que ya hace el MCP `memory` de Claude Code.
 
 ## 5. CLAUDE.md — sin traducir, y no hace falta
 
@@ -88,16 +88,16 @@ opencode no tiene los 4 eventos de hooks de Claude Code (PreToolUse, SessionStar
 
 Los 3 plugins (`tools/plugins/protect-secrets.js`, `handoff-reminder.js`, `andromeda-context.js`) están escritos a mano (no generados) porque son puertos de lógica, no una traducción mecánica de frontmatter — cada uno documenta en su cabecera de qué hook Claude Code viene y por qué se eligió su equivalente.
 
-**Verificado empíricamente**: con `opencode debug config` dentro de `C:\NEPTUNO`, los 6 archivos de plugin (3 del proyecto + 3 de la copia global) aparecen en la clave `"plugin"` de la configuración resuelta como URLs `file://` — opencode los descubre y los carga. Efecto secundario conocido (cosmético, no roto): al trabajar dentro de NEPTUNO se cargan AMBAS copias (proyecto y global) del mismo plugin; para `protect-secrets` es inofensivo (el segundo chequeo es redundante), para los 2 de contexto significa que el recordatorio se inyectaría duplicado. No se ha corregido porque opencode no ofrece hoy una forma de excluir la copia global cuando hay una de proyecto (a diferencia de MCP/agentes, que si son iguales por nombre simplemente se pisan).
+**Verificado empíricamente**: con `opencode debug config` dentro de `~/github/Jmyukopila/NEPTUNO`, los 6 archivos de plugin (3 del proyecto + 3 de la copia global) aparecen en la clave `"plugin"` de la configuración resuelta como URLs `file://` — opencode los descubre y los carga. Efecto secundario conocido (cosmético, no roto): al trabajar dentro de NEPTUNO se cargan AMBAS copias (proyecto y global) del mismo plugin; para `protect-secrets` es inofensivo (el segundo chequeo es redundante), para los 2 de contexto significa que el recordatorio se inyectaría duplicado. No se ha corregido porque opencode no ofrece hoy una forma de excluir la copia global cuando hay una de proyecto (a diferencia de MCP/agentes, que si son iguales por nombre simplemente se pisan).
 
 **No verificado con una sesión real de opencode** (para no gastar tokens/llamadas del usuario sin que lo pida): que el texto inyectado por `experimental.chat.system.transform` efectivamente aparezca en el contexto que ve el modelo. La firma del hook y el mecanismo de carga sí están verificados; el comportamiento en tiempo de ejecución de un hook `experimental.*` es lo único que queda como inferido. Verificación sugerida (barata): abrir `opencode` dentro de un proyecto con `HANDOFF.md`, primer turno, preguntar algo trivial y comprobar si el modelo menciona el HANDOFF sin que se le haya dicho.
 
 ## 7. Re-sincronizar y verificar
 
 ```powershell
-node tools\sync-opencode.js                    # regenera con el proveedor por defecto (anthropic)
-node tools\sync-opencode.js --provider=google   # o cambia toda la flota a otro proveedor (§3)
-node tools\sync-global.js        # sin relación con opencode; mantiene ~/.claude/ al día
+node tools/sync-opencode.js                    # regenera con el proveedor por defecto (anthropic)
+node tools/sync-opencode.js --provider=google   # o cambia toda la flota a otro proveedor (§3)
+node tools/sync-global.js        # sin relación con opencode; mantiene ~/.claude/ al día
 
 opencode agent list               # deben aparecer los 14 agentes NEPTUNO como (subagent)
 opencode mcp list                 # deben aparecer sequential-thinking, memory, chrome-devtools conectados (+ los que el usuario tenga propios, ej. Neon)
