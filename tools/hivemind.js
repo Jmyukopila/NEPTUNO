@@ -266,7 +266,9 @@ function run(argv) {
 
   // El aviso de inicio va antes del spawn para que el personaje aparezca mientras trabaja,
   // no al terminar.
-  const sesionUI = `neptuno-${name}-${stamp}`;
+  // Estable por agente (lo decide el puente): el personaje se queda ocioso al acabar y el
+  // siguiente encargo lo reutiliza, en vez de dejar un escritorio muerto por cada despacho.
+  const sesionUI = (puente && puente.sesionDe) ? puente.sesionDe(name) : `neptuno-${name}-${stamp}`;
   avisar('inicio', { session: sesionUI, agente: name, cwd: opt.cwd, encargo: encargoOriginal });
   // Sin latido el personaje se marca ocioso a los 5 s y pasa el resto del encargo aparentando
   // que no hace nada. El hijo se mata solo si este proceso muere de golpe (SIGKILL del tope).

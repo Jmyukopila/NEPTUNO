@@ -106,10 +106,38 @@ como cadenas y de ahí ramifica:
 | `PostToolUse` | al terminar | acaba la herramienta |
 | `Stop` | si salió `ok` | fin de turno, se queda tranquilo |
 | `Notification` (`idle_prompt`) | si salió mal | **bocadillo: te está reclamando** |
-| `SessionEnd` (`reason`) | siempre | se marcha, con el estado como motivo |
+| `SessionEnd` (`reason`) | **nunca al terminar** — solo `retirar` | se marcha de la oficina |
 
-Esa penúltima fila es el punto: un despacho que falló por permisos, timeout o error **levanta la mano
-en la oficina** en vez de irse callado. Es exactamente cuando quieres mirar la pantalla.
+La fila del bocadillo es el punto: un despacho que falló por permisos, timeout o error **levanta la
+mano en la oficina** en vez de irse callado. Es exactamente cuando quieres mirar la pantalla.
+
+### Por qué al acabar se quedan ociosos y no desaparecen
+
+`SessionEnd` no se manda al terminar un encargo, a propósito. En el servidor, `onSessionEnd` hace
+`removeAgent` para todo agente externo: el personaje desaparece de la oficina en el mismo instante en
+que acaba el despacho, que es justo cuando quieres ver el resultado. Sin ese evento el agente se
+queda en su escritorio y a los 5 s pasa a *esperando* — ocioso, visible, listo para el siguiente.
+
+Para que además reutilicen escritorio en vez de acumular uno muerto por cada `run`, el `session_id`
+es **estable por agente** (`neptuno-opencode`, no `neptuno-opencode-<marca de tiempo>`). El precio:
+dos despachos simultáneos al mismo agente comparten personaje y el texto se alterna. En este flujo
+no pasa, porque quien despacha usa `spawnSync` y bloquea.
+
+```bash
+node tools/pixel-bridge.js poblar             # sienta a los tres, ociosos, sin esperar un encargo
+node tools/pixel-bridge.js retirar [agente…]  # los echa de verdad (sin args, a los tres)
+```
+
+`poblar` va como `ExecStartPost` del servicio, porque los agentes externos **no se restauran** al
+arrancar: `restoreExternalAgents` exige que exista su `jsonlFile`, y el de la flota es la cadena
+vacía. Sin eso la oficina sale vacía después de cada reinicio.
+
+**Cuidado con apagar los hooks en los ajustes de la oficina.** Hay un barredor que cada 30 s borra
+todo agente externo cuyo `jsonlFile` no se pueda `statSync` — el nuestro es `""`, así que lanza y
+entrarían todos en la lista. Lo que lo salva es que ese barredor sale antes si los hooks están
+activos, que es como viene de fábrica. Comprobado dejándolos ociosos 80 s (dos barridos) sin una
+sola línea `removing stale external agent`. Con los hooks apagados, la flota se borraría sola cada
+medio minuto.
 
 Funciona en los dos transportes: `hivemind.js run` y `hivemind.js session`. `doctor` dice si hay
 servidor escuchando.

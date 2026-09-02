@@ -35,6 +35,8 @@
 // Uso (CLI):
 //   node tools/pixel-bridge.js preparar          (obligatorio ANTES de arrancar el servidor)
 //   node tools/pixel-bridge.js url               (la URL con su token; rota en cada arranque)
+//   node tools/pixel-bridge.js poblar            (sienta a los 3 ociosos, sin esperar un encargo)
+//   node tools/pixel-bridge.js retirar [agente…] (los echa de la oficina; sin args, a los tres)
 //   node tools/pixel-bridge.js servers
 //   node tools/pixel-bridge.js inicio --session <id> --agente <n> --cwd <d> --encargo "..."
 //   node tools/pixel-bridge.js fin    --session <id> --cwd <d> --estado ok
@@ -114,6 +116,14 @@ async function emitir(evento, campos = {}) {
 
 // Ciclo de vida de un encargo a un agente externo, tal como lo ve la oficina.
 const AGENTE_MODELO = { opencode: 'opencode', antigravity: 'antigravity (agy)', devin: 'devin' };
+
+// Un session_id ESTABLE por agente, no uno por despacho: el personaje sobrevive al encargo y el
+// siguiente lo reutiliza, en vez de acumular un escritorio muerto por cada `run`. El precio es
+// que dos despachos simultaneos al mismo agente comparten personaje (el texto se alterna); en
+// este flujo no pasa, porque quien despacha usa `spawnSync` y bloquea.
+function sesionDe(agente) {
+  return `neptuno-${String(agente || 'externo').replace(/[^\w.-]+/g, '-')}`;
+}
 
 // La oficina rotula al personaje con `basename(cwd)`. Si los tres agentes reportan el directorio
 // real del repo, los tres salen llamandose igual; por eso cada uno reporta un escritorio propio
@@ -196,8 +206,28 @@ async function despachoTerminado({ sesion, agente, cwd, estado }) {
   } else {
     await emitir('Stop', { session_id: sesion, cwd });
   }
-  await emitir('SessionEnd', { session_id: sesion, cwd, reason: estado || 'ok' });
+  // Aqui NO va SessionEnd a proposito: `onSessionEnd` del servidor hace `removeAgent` para todo
+  // agente externo, y el personaje desaparece. Sin el se queda en su escritorio y a los 5 s pasa
+  // a "esperando" — que es el ocioso que se quiere ver. Para echarlo de verdad: `retirar`.
   return true;
+}
+
+// Echa al personaje de la oficina. Unico camino que lo borra: `onSessionEnd` -> `removeAgent`.
+async function retirar({ sesion, agente, cwd }) {
+  await emitir('SessionEnd', { session_id: sesion, cwd: escritorio(agente, cwd), reason: 'ok' });
+  return true;
+}
+
+// Sienta a los tres en su escritorio sin encargo, para que la oficina no este vacia hasta el
+// primer despacho. Reusa el mismo session_id estable que usa el hivemind, asi que el siguiente
+// encargo lo recoge el mismo personaje en vez de crear uno nuevo.
+async function poblar(cwd) {
+  for (const agente of Object.keys(AGENTE_MODELO)) {
+    const d = escritorio(agente, cwd);
+    await emitir('SessionStart', { session_id: sesionDe(agente), cwd: d, source: `neptuno-hivemind:${agente}` });
+    await emitir('Stop', { session_id: sesionDe(agente), cwd: d });
+  }
+  return Object.keys(AGENTE_MODELO).length;
 }
 
 // Sin "Watch All Sessions" el servidor descarta toda sesion externa: adopta una sesion solo si
@@ -215,7 +245,7 @@ function preparar() {
   return { antes, ahora: true, reinicioNecesario: antes !== true && servidores().length > 0 };
 }
 
-module.exports = { emitir, servidores, escritorio, preparar, despachoIniciado, despachoTerminado, arrancarLatido, pararLatido };
+module.exports = { emitir, servidores, escritorio, sesionDe, preparar, poblar, retirar, despachoIniciado, despachoTerminado, arrancarLatido, pararLatido };
 
 // --- CLI ---------------------------------------------------------------------
 if (require.main === module) {
@@ -231,6 +261,20 @@ if (require.main === module) {
       const s = servidores();
       if (!s.length) { console.log('Sin servidores de Pixel Agents vivos. Arranca uno con: pixel-agents --port 3100'); process.exit(1); }
       for (const e of s) console.log(`  puerto ${e.port}  pid ${e.pid}  token ${String(e.token).slice(0, 8)}…`);
+      process.exit(0);
+    }
+    if (cmd === 'poblar') {
+      // Va como ExecStartPost del servicio, y ahi el servidor todavia no ha escrito su registro:
+      // sin esta espera `poblar` no encontraria a nadie y se callaria (la regla dura del puente).
+      for (let i = 0; i < 20 && !servidores().length; i++) await new Promise((r) => setTimeout(r, 500));
+      const n = await poblar(process.cwd());
+      console.log(`${n} agentes sentados en la oficina (ociosos, sin encargo)`);
+      process.exit(0);
+    }
+    if (cmd === 'retirar') {
+      const quienes = argv.length ? argv : Object.keys(AGENTE_MODELO);
+      for (const a of quienes) await retirar({ sesion: sesionDe(a), agente: a, cwd: process.cwd() });
+      console.log(`retirados: ${quienes.join(', ')}`);
       process.exit(0);
     }
     if (cmd === 'url') {

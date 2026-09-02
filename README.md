@@ -767,6 +767,10 @@ bash tools/pixel-service.sh instalar 3100   # servicio de usuario de systemd, co
 node tools/pixel-bridge.js url              # la URL de ahora: el token rota en cada arranque
 ```
 
+Al acabar un encargo el personaje **se queda ocioso en su escritorio** en vez de desaparecer, y el
+siguiente encargo lo recoge el mismo. `node tools/pixel-bridge.js poblar` los sienta sin esperar a un
+despacho (el servicio ya lo hace al arrancar) y `retirar` los echa.
+
 La URL con `?token=` es un secreto. `docs/PIXEL-AGENTS.md` explica el resto: las tres condiciones no
 obvias de su protocolo de hooks, cómo comprobar el resultado por WebSocket, la trampa de
 sincronización que hubo que arreglar para que sus hooks sobrevivan a `sync-global.js`, y la

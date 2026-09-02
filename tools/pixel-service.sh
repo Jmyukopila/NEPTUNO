@@ -53,6 +53,9 @@ After=default.target
 Type=simple
 ExecStartPre=$NODE $RAIZ/tools/pixel-bridge.js preparar
 ExecStart=$NODE $CLI --port $puerto --host 127.0.0.1
+# Los agentes externos no se restauran al arrancar (el servidor exige que exista su
+# jsonlFile y el de la flota es vacio), asi que se les vuelve a sentar en su escritorio.
+ExecStartPost=$NODE $RAIZ/tools/pixel-bridge.js poblar
 Restart=always
 RestartSec=2
 
