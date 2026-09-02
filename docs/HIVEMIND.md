@@ -180,10 +180,14 @@ Estado en vivo: `node tools/hivemind.js doctor`. Enrutado resumido: `node tools/
 ## El interruptor: trabajar solo con Claude
 
 ```bash
-node tools/hivemind.js off      # modo solo Claude
-node tools/hivemind.js on       # vuelve a haber flota
-node tools/hivemind.js status   # cuál de los dos, y de dónde sale el estado
+hivemind off      # modo solo Claude
+hivemind on       # vuelve a haber flota
+hivemind status   # cuál de los dos, y de dónde sale el estado
 ```
+
+`hivemind` es el atajo de `tools/bin/hivemind`, copiado a `~/.local/bin/` para no depender del
+directorio en el que estés. La forma larga —`node tools/hivemind.js off`— hace exactamente lo
+mismo y funciona con ruta absoluta desde cualquier sitio.
 
 Apagada, `run` y `session` **no llaman a ninguna CLI externa**: salen con código 3 y un mensaje.
 Es un bloqueo, no una advertencia — la decisión de no delegar no debe depender de que el modelo se

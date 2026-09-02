@@ -721,7 +721,7 @@ casos borde, nombres, tests que de verdad fallen) lo pone Claude encima.
 
 | Comando | Qué hace |
 |---|---|
-| `node tools/hivemind.js on` / `off` / `status` | **Interruptor** de la flota. Apagada, se trabaja en modo solo Claude y el despachador rechaza cualquier encargo |
+| `hivemind on` / `off` / `status` | **Interruptor** de la flota (atajo global en `~/.local/bin`). Apagada, se trabaja en modo solo Claude y el despachador rechaza cualquier encargo |
 | `node tools/hivemind.js doctor` | Quién está instalado **y autenticado** (corrige las rutas XDG si la sesión vive dentro de un snap) |
 | `node tools/hivemind.js roster` | Enrutado resumido por forma de tarea |
 | `node tools/hivemind.js run <agente> "<encargo>"` | Despacha; el log va a `.hivemind/runs/`, no al contexto de la sesión |

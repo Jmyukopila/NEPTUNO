@@ -247,7 +247,7 @@ propias herramientas y **sus propios subagentes**, que tienen permiso de usar.
 
 | Comando | Qué hace |
 |---|---|
-| `node tools/hivemind.js on` / `off` / `status` | **Interruptor**: enciende o apaga la flota. Apagada, `run` y `session` no despachan nada |
+| `hivemind on` / `off` / `status` | **Interruptor**: enciende o apaga la flota. Apagada, `run` y `session` no despachan nada |
 | `node tools/hivemind.js doctor` | Quién está instalado **y autenticado** |
 | `node tools/hivemind.js roster` | Enrutado resumido |
 | `node tools/hivemind.js run <agente> "<encargo>"` | Despacha; el log va a `.hivemind/runs/`, no a tu contexto |

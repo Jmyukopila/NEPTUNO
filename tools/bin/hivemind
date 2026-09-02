@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# NEPTUNO · Atajo global al despachador. Se instala en ~/.local/bin/hivemind (que ya está en el
+# PATH) para poder encender y apagar la flota desde cualquier directorio, sin recordar la ruta.
+exec node "$HOME/github/Jmyukopila/NEPTUNO/tools/hivemind.js" "$@"
