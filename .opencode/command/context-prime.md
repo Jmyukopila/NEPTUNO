@@ -10,13 +10,13 @@ Construye el contexto esencial del proyecto (o del área indicada en los argumen
 
 ## Proceso
 
-0. **Nota ANDROMEDA primero** — si al inicio de sesión se inyectó la nota del proyecto (hook `andromeda-context`, prefijo `[hook NEPTUNO·ANDROMEDA]`), o existe `C:\ANDROMEDA\01-Proyectos\<proyecto>.md`, pártela como base del mapa y ejecuta los pasos siguientes SOLO para lo que la nota no cubra o parezca desactualizado (contrasta su `ultima_modificacion` con el estado git). Si detectas que la nota miente sobre el estado real, corrígela (o anótalo para `/handoff`).
+0. **Nota ANDROMEDA primero** — si al inicio de sesión se inyectó la nota del proyecto (hook `andromeda-context`, prefijo `[hook NEPTUNO·ANDROMEDA]`), o existe `~/ANDROMEDA\01-Proyectos\<proyecto>.md`, pártela como base del mapa y ejecuta los pasos siguientes SOLO para lo que la nota no cubra o parezca desactualizado (contrasta su `ultima_modificacion` con el estado git). Si detectas que la nota miente sobre el estado real, corrígela (o anótalo para `/handoff`).
 0.5. **El grafo, si existe** — si hay `graphify-out/graph.json` en el repo, este paso sustituye a la mitad de los siguientes por una fracción del coste:
    - `graphify god-nodes --top 10` → los hubs arquitectónicos: el esqueleto del proyecto en 10 líneas.
    - `graphify query "¿cuál es la arquitectura y los puntos de entrada?"` → subgrafo acotado.
    - `graphify-out/GRAPH_REPORT.md` solo si necesitas la panorámica en prosa; nunca antes de haber probado `query`.
 
-   Con eso hecho, ejecuta los pasos 1-5 SOLO para lo que el grafo no cubra (comandos de build/test y estado git, que el grafo no conoce). Si NO hay grafo y el repo es grande y va a durar varias sesiones, propón construirlo: `graphify extract . --backend claude-cli` (ver `C:\Users\Usuario\.claude\docs\GRAPHIFY.md`).
+   Con eso hecho, ejecuta los pasos 1-5 SOLO para lo que el grafo no cubra (comandos de build/test y estado git, que el grafo no conoce). Si NO hay grafo y el repo es grande y va a durar varias sesiones, propón construirlo: `graphify extract . --backend claude-cli` (ver `/home/jasen/.claude/docs/GRAPHIFY.md`).
 1. **Estructura** — `Get-ChildItem` del raíz + Glob de los directorios de código principales (2 niveles). NO recursivo total.
 2. **Identidad del proyecto** — Lee (si existen): `README.md` (primeras ~50 líneas), `package.json`/`pyproject.toml`/`Cargo.toml`/`*.csproj` (deps y scripts), `CLAUDE.md` del repo.
 3. **Convenciones** — Abre UN archivo representativo del código principal y UNO de tests; anota estilo, framework de tests, patrones de import.

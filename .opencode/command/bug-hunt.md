@@ -21,7 +21,7 @@ Si el usuario indicó un foco en los argumentos, ese foco va primero. Para local
 
 ## Fase 2 — Barrido adversarial
 
-Recorre cada zona priorizada con la taxonomía de `C:\Users\Usuario\.claude\docs\DEBUGGING.md` §1 como checklist de ataque, apoyada en greps dirigidos (adapta al stack):
+Recorre cada zona priorizada con la taxonomía de `/home/jasen/.claude/docs/DEBUGGING.md` §1 como checklist de ataque, apoyada en greps dirigidos (adapta al stack):
 - Errores tragados: `catch`/`except` vacíos o que solo loguean y siguen; valores de retorno de error ignorados.
 - Deuda confesa: `TODO|FIXME|HACK|XXX|workaround`.
 - Datos: floats en dinero, `datetime.now()`/`new Date()` sin timezone en lógica de negocio, casts que matan ceros a la izquierda, comparaciones de strings con números.

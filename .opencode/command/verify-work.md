@@ -37,7 +37,7 @@ graphify save-result --question "<...>" --outcome corrected --correction "lo cor
 graphify reflect      # agrega las señales en graphify-out/reflections/LESSONS.md (determinista, sin LLM)
 ```
 
-Registra `corrected` sobre todo cuando el grafo te llevó a un sitio equivocado: es la señal de más valor y la que nadie apunta. Ver `C:\Users\Usuario\.claude\docs\GRAPHIFY.md` §9.
+Registra `corrected` sobre todo cuando el grafo te llevó a un sitio equivocado: es la señal de más valor y la que nadie apunta. Ver `/home/jasen/.claude/docs/GRAPHIFY.md` §9.
 
 ## Reglas
 - Nada de "debería funcionar": cada afirmación del veredicto lleva el comando y el output que la respalda.

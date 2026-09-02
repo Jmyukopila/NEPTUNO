@@ -1,7 +1,7 @@
 ---
 description: Explorador rápido y barato (Haiku) para búsquedas amplias por el código, inventarios de archivos y localización de símbolos. Úsalo para cualquier búsqueda que requiera mirar muchos archivos, en lugar de quemar el contexto principal. Solo lectura.
 mode: subagent
-model: google/gemini-3-flash-preview
+model: opencode/nemotron-3.5-lightning-free
 permission:
   edit: deny
   task: deny

@@ -4,8 +4,6 @@
     "sequential-thinking": {
       "type": "local",
       "command": [
-        "cmd",
-        "/c",
         "npx",
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
@@ -16,22 +14,18 @@
     "memory": {
       "type": "local",
       "command": [
-        "cmd",
-        "/c",
         "npx",
         "-y",
         "@modelcontextprotocol/server-memory"
       ],
       "environment": {
-        "MEMORY_FILE_PATH": "C:\\NEPTUNO\\.claude\\knowledge-graph.json"
+        "MEMORY_FILE_PATH": "~/.claude/knowledge-graph.json"
       },
       "enabled": true
     },
     "chrome-devtools": {
       "type": "local",
       "command": [
-        "cmd",
-        "/c",
         "npx",
         "-y",
         "chrome-devtools-mcp@latest",

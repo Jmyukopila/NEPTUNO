@@ -9,3 +9,10 @@ graphify-out/
 # envenenaría las comunidades: la fuente de verdad es .claude/.
 .opencode/
 opencode.json
+
+# .agents/, AGENTS.md y .windsurf/ son COPIAS GENERADAS de .claude/ y CLAUDE.md
+# (tools/sync-agents.js), el dialecto que leen Devin y Antigravity. Mismo motivo
+# que .opencode/: indexarlas duplica cada skill como nodo gemelo.
+.agents/
+AGENTS.md
+.windsurf/

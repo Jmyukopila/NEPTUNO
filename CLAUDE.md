@@ -84,6 +84,16 @@ Si alguna respuesta es dudosa, corrige antes de reportar. Para revisión formal 
 | `/handoff` | Generar nota de traspaso al acabar una sesión larga |
 | `/parallel-split` | Descomponer una tarea grande en subagentes paralelos |
 | `/graphify` | Construir el grafo de conocimiento de una carpeta (código, docs, papers, vídeo) |
+| `/hivemind` | Repartir una tarea entre las CLIs externas (opencode, antigravity, devin) y verificar el resultado |
+
+### Comandos de calidad, documentación y lenguaje
+| Comando | Cuándo usarlo |
+|---|---|
+| `/code-standards` | Auditar/aplicar buenas prácticas contra las convenciones reales del repo |
+| `/document-code` | README, ADR, docstrings, runbooks — documentación derivada del código |
+| `/diagram-mermaid` | Elegir el diagrama correcto y escribir Mermaid válido, renderizado antes de entregar |
+| `/write-natural` | Prosa que no suena a IA: quita los tics delatores y ajusta registro |
+| `/translate-localize` | Traducir/localizar texto o UI con variante, plurales, placeholders e i18n |
 
 ### Grafo de conocimiento (capa 0 de recuperación — ver `docs/GRAPHIFY.md`)
 Consultas de coste acotado sobre `graphify-out/graph.json`, más baratas que Grep. Se responden desde Bash, sin coste de contexto.
@@ -97,7 +107,7 @@ Consultas de coste acotado sobre `graphify-out/graph.json`, más baratas que Gre
 | `graphify god-nodes --top 10` | Los hubs arquitectónicos: por dónde entrar a un repo desconocido |
 | `graphify update <ruta>` | Refrescar el grafo tras cambios (AST puro, sin LLM, coste cero) |
 
-Grafos vivos: `C:\NEPTUNO` (el ecosistema), `C:\ANDROMEDA` (la bóveda) y el global (`~\.graphify\global-graph.json`, cross-proyecto). Desde otro cwd, pasa `--graph <ruta a graph.json>`.
+Grafos vivos: `~/github/Jmyukopila/NEPTUNO` (el ecosistema), `~/ANDROMEDA` (la bóveda) y el global (`~/.graphify/global-graph.json`, cross-proyecto). Desde otro cwd, pasa `--graph <ruta a graph.json>`.
 
 ### Comandos full stack
 | Comando | Cuándo usarlo |
@@ -184,13 +194,14 @@ Grafos vivos: `C:\NEPTUNO` (el ecosistema), `C:\ANDROMEDA` (la bóveda) y el glo
 | `react-native` | sonnet | Builds EAS, Metro bundler, emulador/dispositivo Expo/RN sin quemar contexto |
 | `capacitor` | sonnet | Compilar capa web, sincronizar y ejecutar apps Capacitor/Ionic en Android |
 | `desktop` | sonnet | Builds Electron/Tauri, empaquetado e instaladores de escritorio en Windows |
+| `delegate` | sonnet | Despachar encargos a la flota externa absorbiendo sus logs fuera del contexto principal |
 
 ### Automatizaciones (hooks — coste cero de tokens, ver `docs/AUTOMATION.md`)
 | Hook | Evento | Qué hace |
 |---|---|---|
 | `protect-secrets` | antes de Edit/Write | Bloquea escrituras sobre `.env*`, keystores, claves y credenciales |
 | `handoff-reminder` | inicio de sesión | Si existe `HANDOFF.md`, inyecta el recordatorio de leerlo (§0) |
-| `andromeda-context` | inicio de sesión | Inyecta la nota del proyecto desde la bóveda `C:\ANDROMEDA` (mapa inicial sin explorar en frío; `/handoff` la mantiene viva) |
+| `andromeda-context` | inicio de sesión | Inyecta la nota del proyecto desde la bóveda `~/ANDROMEDA` (mapa inicial sin explorar en frío; `/handoff` la mantiene viva) |
 | `graphify hook-guard search` | antes de Bash/Grep | Si hay `graphify-out/graph.json` en el proyecto, recuerda consultar el grafo antes de grepear. Nunca bloquea |
 | `graphify hook-guard read` | antes de Read/Glob | Igual, antes de leer fuentes indexadas. El aviso pide propagar la regla a los subagentes |
 
@@ -203,8 +214,48 @@ Para vigilancia recurrente usa `/loop` (babysitting de CI/PRs), para tareas peri
 | `memory` | Grafo de conocimiento persistente entre sesiones |
 | `chrome-devtools` | Verificación real de frontend: navega, hace click/rellena, captura pantalla, lee consola/red y traza performance en un Chrome de verdad — úsalo en `/verify-work`, `/full-stack-feature` (capa frontend) y `a11y-review` en vez de declarar la UI "no verificada" |
 
-Guías detalladas: `docs/PROMPTING.md`, `docs/ECONOMIA-TOKENS.md`, `docs/GRAPHIFY.md`, `docs/WORKFLOWS.md`, `docs/DEBUGGING.md`, `docs/FULLSTACK.md`, `docs/DATA.md`, `docs/ANDROID.md`, `docs/REACT-NATIVE.md`, `docs/CAPACITOR.md`, `docs/DESKTOP.md`, `docs/GITHUB.md`, `docs/AUTOMATION.md`, `docs/DESIGN.md`, `docs/OPENCODE.md`.
+Guías detalladas: `docs/PROMPTING.md`, `docs/ECONOMIA-TOKENS.md`, `docs/GRAPHIFY.md`, `docs/WORKFLOWS.md`, `docs/DEBUGGING.md`, `docs/FULLSTACK.md`, `docs/DATA.md`, `docs/ANDROID.md`, `docs/REACT-NATIVE.md`, `docs/CAPACITOR.md`, `docs/DESKTOP.md`, `docs/GITHUB.md`, `docs/AUTOMATION.md`, `docs/DESIGN.md`, `docs/OPENCODE.md`, `docs/HIVEMIND.md`.
 
-## 9. Compatibilidad opencode
+## 9. Hivemind — la flota externa
 
-Todo lo de la sección 8 (skills, agentes, MCPs) también existe en formato `opencode` — `.opencode/command/`, `.opencode/agent/` y la clave `mcp` de `opencode.json`, generados por `node tools\sync-opencode.js` a partir de `.claude/` (fuente de verdad única) y sincronizados también a `~/.config/opencode/`. `CLAUDE.md` no se duplica: opencode lo lee de forma nativa como `AGENTS.md`. Los 3 hooks de automatización tienen su puerto a mano en `tools/plugins/` (opencode no comparte el modelo de hooks de Claude Code). Detalle completo, tabla de modelos y notas de confianza en `docs/OPENCODE.md`.
+Claude Code es la corteza de un ecosistema multi-agente: entiende, **decide quién ejecuta**, encarga
+y **verifica**. Los ejecutores son CLIs agénticas externas, cada una con sus propios modelos, sus
+propias herramientas y **sus propios subagentes**, que tienen permiso de usar.
+
+| Agente | Fuerte en | Débil en |
+|---|---|---|
+| `antigravity` (`agy`) | Contexto grande, exploración de repos desconocidos, volumen, multimodal, barato y rápido | Menos disciplinado con protocolos largos; necesita criterios de salida explícitos |
+| `opencode` | Refactors multi-archivo; ya tiene la doctrina NEPTUNO y sus 14 agentes | Sin navegador ni visión; se cuelga en silencio sin credenciales |
+| `devin` | Trabajo autónomo largo; único con sandbox de proceso real (bwrap+seccomp) y entornos en la nube | Caro y de arranque lento; su autonomía es riesgo si el encargo está mal acotado |
+
+| Comando | Qué hace |
+|---|---|
+| `node tools/hivemind.js doctor` | Quién está instalado **y autenticado** |
+| `node tools/hivemind.js roster` | Enrutado resumido |
+| `node tools/hivemind.js run <agente> "<encargo>"` | Despacha; el log va a `.hivemind/runs/`, no a tu contexto |
+
+Las cuatro reglas que no se saltan:
+
+1. **No se delega el criterio ni la verificación.** Arquitectura y comprobación son tuyas. Un agente
+   que reporta éxito no es evidencia de éxito: lee el diff y ejecuta el criterio de salida tú mismo.
+2. **El encargo es un contrato autocontenido** (objetivo, contexto, alcance, criterio de salida,
+   formato, autonomía). El agente externo arranca en frío: lo que no esté escrito, no existe.
+3. **Nada con navegador o pantalla se delega** — ninguna CLI de la flota tiene Computer Use. Eso es
+   tuyo, con el MCP `chrome-devtools`.
+4. **Reporta quién hizo qué.** El usuario tiene derecho a saber qué parte del diff no la escribiste tú.
+
+Interoperabilidad: una sola fuente de verdad (`.claude/`) y capas generadas — `.opencode/` para
+opencode, `.agents/` + `AGENTS.md` + `.windsurf/rules/` (que Devin y Antigravity leen los dos) con
+`node tools/sync-agents.js`. Devin además lee `.claude/skills/` de forma nativa. Doctrina completa,
+fichas por agente, las 4 capas del ecosistema agéntico (MCP, A2A/ACP, Computer Use, sandboxes) y el
+registro de deuda de verificación: `docs/HIVEMIND.md`.
+
+## 10. Compatibilidad opencode
+
+Todo lo de la sección 8 (skills, agentes, MCPs) también existe en formato `opencode` — `.opencode/command/`, `.opencode/agent/` y la clave `mcp` de `opencode.json`, generados por `node tools/sync-opencode.js` a partir de `.claude/` (fuente de verdad única) y sincronizados también a `~/.config/opencode/`. `CLAUDE.md` no se duplica: opencode lo lee de forma nativa como `AGENTS.md`. Los 3 hooks de automatización tienen su puerto a mano en `tools/plugins/` (opencode no comparte el modelo de hooks de Claude Code). Detalle completo, tabla de modelos y notas de confianza en `docs/OPENCODE.md`.
+
+Tras editar cualquier cosa en `.claude/`, resincroniza las tres capas generadas (idempotentes):
+
+```bash
+node tools/sync-global.js && node tools/sync-opencode.js && node tools/sync-agents.js
+```

@@ -1,7 +1,7 @@
 ---
 description: Revisor adversarial (Opus) que busca bugs reales, casos borde y desviaciones del pedido en un diff antes de entregarlo. Úsalo como control de calidad final en cambios importantes. Solo lectura.
 mode: subagent
-model: google/gemini-3.1-pro-preview
+model: opencode/ling-3.0-flash-fin-free
 permission:
   edit: deny
   task: deny

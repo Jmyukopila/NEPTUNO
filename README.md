@@ -18,6 +18,7 @@ Ecosistema diseñado para que cualquier modelo Claude (Haiku, Sonnet, Opus) trab
 8. [Llevarlo a otros proyectos](#8-llevarlo-a-otros-proyectos)
 9. [Compatibilidad opencode](#9-compatibilidad-opencode)
 10. [Grafo de conocimiento (graphify)](#10-grafo-de-conocimiento-graphify)
+11. [Hivemind: la flota externa](#11-hivemind--la-flota-externa)
 
 ---
 
@@ -40,7 +41,7 @@ Cada `.md` define un subagente: qué modelo usa (haiku/sonnet/opus), qué herram
 
 ### `.mcp.json` + `.claude/settings.json` — infraestructura
 - `.mcp.json` declara los servidores MCP del proyecto; Claude Code los arranca al iniciar sesión (la primera vez pide tu aprobación).
-- `settings.json` pre-aprueba permisos para operaciones seguras (git y `gh` de solo lectura, tests, typecheck) y declara los **hooks de automatización** (`tools/hooks/`): guardarraíles que corren a coste cero de tokens — bloqueo de escrituras sobre secretos, recordatorio automático de `HANDOFF.md` al abrir sesión, e inyección de la nota del proyecto desde la bóveda **ANDROMEDA** (`C:\ANDROMEDA`): la sesión arranca con el mapa del proyecto sin explorar en frío, y `/handoff` actualiza esa nota al cerrar — memoria viva entre sesiones a coste casi cero. Cómo funcionan y cómo añadir más: `docs/AUTOMATION.md`.
+- `settings.json` pre-aprueba permisos para operaciones seguras (git y `gh` de solo lectura, tests, typecheck) y declara los **hooks de automatización** (`tools/hooks/`): guardarraíles que corren a coste cero de tokens — bloqueo de escrituras sobre secretos, recordatorio automático de `HANDOFF.md` al abrir sesión, e inyección de la nota del proyecto desde la bóveda **ANDROMEDA** (`~/ANDROMEDA`): la sesión arranca con el mapa del proyecto sin explorar en frío, y `/handoff` actualiza esa nota al cerrar — memoria viva entre sesiones a coste casi cero. Cómo funcionan y cómo añadir más: `docs/AUTOMATION.md`.
 
 ---
 
@@ -608,7 +609,7 @@ Guías de doctrina por dominio: `docs/FULLSTACK.md` (reglas por capa, contract-f
 ## 7. Estructura de archivos
 
 ```
-C:\NEPTUNO
+~/github/Jmyukopila/NEPTUNO
 ├── CLAUDE.md                        ← Doctrina (se carga sola en cada sesión)
 ├── README.md                        ← Este manual
 ├── .mcp.json                        ← MCPs: sequential-thinking + memory
@@ -649,8 +650,8 @@ C:\NEPTUNO
 │   ├── agent/                       ← 14 agentes (espejo de .claude/agents/*.md)
 │   └── plugin/                      ← Copia de tools/plugins/
 └── tools/
-    ├── sync-global.js               ← Re-sincroniza la copia global en ~/.claude (node tools\sync-global.js)
-    ├── sync-opencode.js             ← Genera .opencode/ + opencode.json, proyecto y global (node tools\sync-opencode.js)
+    ├── sync-global.js               ← Re-sincroniza la copia global en ~/.claude (node tools/sync-global.js)
+    ├── sync-opencode.js             ← Genera .opencode/ + opencode.json, proyecto y global (node tools/sync-opencode.js)
     ├── hooks/                       ← Automatizaciones Claude Code a coste cero de tokens
     │   ├── protect-secrets.js       ← Bloquea Edit/Write sobre .env, keystores, credenciales
     │   ├── handoff-reminder.js      ← Inyecta el recordatorio de HANDOFF.md al abrir sesión
@@ -662,12 +663,12 @@ C:\NEPTUNO
 
 ## 8. Llevarlo a otros proyectos
 
-El ecosistema es **por-directorio**: aplica a las sesiones abiertas en `C:\NEPTUNO` (y sus subdirectorios — puedes clonar tus repos dentro y todo aplica).
+El ecosistema es **por-directorio**: aplica a las sesiones abiertas en `~/github/Jmyukopila/NEPTUNO` (y sus subdirectorios — puedes clonar tus repos dentro y todo aplica).
 
 - **Copiarlo a otro proyecto:** copia `.claude/` y `.mcp.json`, y fusiona `CLAUDE.md` con el del destino (si el destino ya tiene CLAUDE.md, pega la doctrina encima de lo específico del proyecto).
-- **Global — HECHO (2026-07-06)**: skills, agentes, docs y doctrina están copiados en `C:\Users\Usuario\.claude\` (con las referencias `docs/*.md` reescritas a rutas absolutas para que resuelvan desde cualquier proyecto), y los dos MCPs registrados a nivel usuario (el `memory` global usa su propio grafo en `C:\Users\Usuario\.claude\knowledge-graph.json`). **C:\NEPTUNO sigue siendo la copia maestra**: dentro de NEPTUNO manda la versión del proyecto (precedencia normal de Claude Code). Tras editar skills/agentes/docs/CLAUDE.md aquí, re-sincroniza la copia global con:
+- **Global — HECHO (2026-07-06)**: skills, agentes, docs y doctrina están copiados en `~/.claude\` (con las referencias `docs/*.md` reescritas a rutas absolutas para que resuelvan desde cualquier proyecto), y los dos MCPs registrados a nivel usuario (el `memory` global usa su propio grafo en `~/.claude\knowledge-graph.json`). **~/github/Jmyukopila/NEPTUNO sigue siendo la copia maestra**: dentro de NEPTUNO manda la versión del proyecto (precedencia normal de Claude Code). Tras editar skills/agentes/docs/CLAUDE.md aquí, re-sincroniza la copia global con:
   ```powershell
-  node C:\NEPTUNO\tools\sync-global.js
+  node ~/github/Jmyukopila/NEPTUNO/tools/sync-global.js
   ```
   (borra y re-copia las carpetas globales y re-aplica las reescrituras; es idempotente). El `settings.json` global NO se toca: los permisos pre-aprobados siguen siendo por-proyecto.
 - **Personalizarlo:** cada skill/agente es un `.md` editable — ajusta protocolos a tu gusto y la próxima sesión los usa. Si un olvido se vuelve recurrente, automatízalo con un hook (ejemplo en `docs/WORKFLOWS.md`).
@@ -678,7 +679,7 @@ El ecosistema es **por-directorio**: aplica a las sesiones abiertas en `C:\NEPTU
 
 El ecosistema no es exclusivo de Claude Code: los mismos 49 comandos, 14 agentes y 3 servidores MCP funcionan con [opencode](https://opencode.ai) como runtime alternativo. `.claude/` sigue siendo la única fuente de verdad — nada se edita a mano en `.opencode/`.
 
-- **Generarlo/actualizarlo:** `node tools\sync-opencode.js [--provider=anthropic|google|openai]` — traduce `.claude/skills/` → `.opencode/command/`, `.claude/agents/` → `.opencode/agent/` (con tabla de modelos `haiku/sonnet/opus` por proveedor y traducción de `tools:` a `permission:`) y fusiona `.mcp.json` en la clave `mcp` de `opencode.json`, en el proyecto y en `~/.config/opencode/` (mismo patrón que `sync-global.js` con `~/.claude/`, preservando cualquier MCP propio que el usuario ya tuviera registrado globalmente).
+- **Generarlo/actualizarlo:** `node tools/sync-opencode.js [--provider=anthropic|google|openai]` — traduce `.claude/skills/` → `.opencode/command/`, `.claude/agents/` → `.opencode/agent/` (con tabla de modelos `haiku/sonnet/opus` por proveedor y traducción de `tools:` a `permission:`) y fusiona `.mcp.json` en la clave `mcp` de `opencode.json`, en el proyecto y en `~/.config/opencode/` (mismo patrón que `sync-global.js` con `~/.claude/`, preservando cualquier MCP propio que el usuario ya tuviera registrado globalmente).
 - **Otros modelos, de verdad:** un agente subagente fija su propio `model:`, y eso GANA sobre el `--model` de la sesión de opencode (verificado con evidencia — ver `docs/OPENCODE.md` §3) — por eso cambiar de proveedor para toda la flota de agentes exige `--provider`, no basta con invocar `opencode run --model otro/proveedor`. Ahora mismo la generación activa usa `--provider=google` (la cuenta de Anthropic de esta máquina está sin saldo; OpenAI sin cuota; Google sí respondió), verificado con una delegación real al agente `scout` sobre contenido real del repo.
 - **Doctrina:** `CLAUDE.md` no se traduce — opencode lo lee de forma nativa como `AGENTS.md` (documentado en sus propios docs), así que la doctrina de la sección 0-7 de este ecosistema aplica igual sin ningún paso extra.
 - **Hooks → plugins:** los 3 hooks de `tools/hooks/` (Claude Code) tienen puerto a mano en `tools/plugins/` (opencode), porque el modelo de hooks no es el mismo entre ambos runtimes. `protect-secrets` es una traducción directa y de alta confianza; los 2 que inyectan contexto al inicio de sesión usan un hook `experimental.*` de opencode — funciona, pero está marcado como de confianza media en `docs/OPENCODE.md`.
@@ -692,10 +693,53 @@ El ecosistema no es exclusivo de Claude Code: los mismos 49 comandos, 14 agentes
 `graphify` indexa una carpeta (código, docs, papers, imágenes, vídeo) en un grafo consultable y persistente. En NEPTUNO ocupa el escalón que faltaba en la jerarquía de coste: **responder sin leer**. Manual completo en `docs/GRAPHIFY.md`.
 
 - **Por qué**: `graphify query "<pregunta>"` devuelve un subgrafo con presupuesto de tokens (`--budget`, 2000 por defecto) en lugar de 40 archivos completos. La primera construcción cuesta una llamada de LLM por chunk; después, `graphify update` es AST puro y **no vuelve a llamar al LLM**.
-- **Tres grafos vivos**: `C:\NEPTUNO` (el propio ecosistema: skills, agentes, docs, sincronizadores), `C:\ANDROMEDA` (la bóveda de notas) y el global en `~\.graphify\global-graph.json` (unión de ambos, para preguntas cross-proyecto). Desde otro cwd hay que pasar `--graph`.
+- **Tres grafos vivos**: `~/github/Jmyukopila/NEPTUNO` (el propio ecosistema: skills, agentes, docs, sincronizadores), `~/ANDROMEDA` (la bóveda de notas) y el global en `~/.graphify/global-graph.json` (unión de ambos, para preguntas cross-proyecto). Desde otro cwd hay que pasar `--graph`.
 - **Sin gasto nuevo**: backend `claude-cli`, que enruta por el binario `claude` local y autentica con la suscripción de Claude Code ya pagada (esta máquina no tiene ninguna API key, y la clave de Anthropic de la cuenta está sin saldo). Ollama queda documentado como alternativa de coste literalmente cero pero peor extracción.
 - **Enganchado en la doctrina, no solo instalado**: §2 y §5 de `CLAUDE.md` (el grafo antes que el grep, y la jerarquía de coste revisada), paso 0.5 de `/context-prime`, paso 0 del agente `scout`, refresco del grafo al cerrar en `/handoff`, y realimentación `save-result`/`reflect` en `/verify-work`.
 - **Hook PreToolUse** (`Bash|Grep` y `Read|Glob`): recuerda consultar el grafo antes de grepear o leer fuentes indexadas. Modo nudge — inyecta contexto, nunca bloquea, y falla abierto ante cualquier error. Verificado por stdin en los cuatro casos (con grafo / sin grafo / dentro / fuera del proyecto).
-- **Dos trampas de sincronización resueltas**: `sync-global.js` borra `~/.claude/skills` y sobrescribe la clave `hooks` del settings global en cada ejecución, así que tanto la skill como el hook de graphify viven en `C:\NEPTUNO\.claude\` (la fuente de verdad) y no en la copia global. La instalación va con `CLAUDE_CONFIG_DIR=C:\NEPTUNO\.claude`.
+- **Dos trampas de sincronización resueltas**: `sync-global.js` borra `~/.claude/skills` y sobrescribe la clave `hooks` del settings global en cada ejecución, así que tanto la skill como el hook de graphify viven en `~/github/Jmyukopila/NEPTUNO/.claude/` (la fuente de verdad) y no en la copia global. La instalación va con `CLAUDE_CONFIG_DIR=~/github/Jmyukopila/NEPTUNO/.claude`.
 - **Ignores obligatorios**: `.graphifyignore` excluye `.opencode/` en NEPTUNO (es copia generada de `.claude/`: indexarla duplicaría cada skill como nodo gemelo) y `04-Recursos/Grafo/` en ANDROMEDA (es el export del propio grafo: sin esa línea la bóveda se realimentaría con su propia salida).
 - **opencode**: los grafos son artefactos neutros — mismo `graph.json`, mismo CLI, mismo resultado. La doctrina llega nativa vía `CLAUDE.md` y la skill vía `sync-opencode.js`. El hook no se portó a plugin: `tool.execute.before` solo puede bloquear, no inyectar contexto (razonado en `docs/GRAPHIFY.md` §7).
+
+---
+
+## 11. Hivemind — la flota externa
+
+Claude Code decide y verifica; los ejecutores son CLIs agénticas externas con sus propios modelos,
+herramientas y subagentes. La regla que lo sostiene: **delegar no es dejar de responder**. Un agente
+que reporta éxito no es evidencia de éxito, y quien encarga es quien responde ante el usuario.
+
+Y delegar tampoco termina al recibir el trabajo. La salida normal no es aceptarlo ni reencargarlo:
+es **intervenirlo** — el agente entrega entre el 60% y el 90%, y el resto (convenciones del repo,
+casos borde, nombres, tests que de verdad fallen) lo pone Claude encima.
+
+| Agente | Fuerte en | Débil en |
+|---|---|---|
+| `antigravity` (`agy`) | Repos desconocidos, contexto grande, volumen mecánico, multimodal. Rápido y barato en Flash; salida validable con `--json-schema` | Menos disciplinado con protocolos largos. Ejecuta los comandos en su propio scratch: sin rutas absolutas devuelve `0` fingiendo éxito |
+| `opencode` | Refactors multi-archivo con plan cerrado. Es el único que ya tiene la doctrina NEPTUNO entera y sus 15 agentes | Sin navegador ni visión. Sin `--auto` se queda esperando un permiso que nadie responderá |
+| `devin` | Trabajo autónomo largo. Único con sandbox de proceso real (`bwrap`+`seccomp`) y entornos en la nube. Lee `.claude/skills/` nativamente | Caro y de arranque lento. Responde por inferencia si el criterio de salida no es un comando |
+
+| Comando | Qué hace |
+|---|---|
+| `node tools/hivemind.js doctor` | Quién está instalado **y autenticado** (corrige las rutas XDG si la sesión vive dentro de un snap) |
+| `node tools/hivemind.js roster` | Enrutado resumido por forma de tarea |
+| `node tools/hivemind.js run <agente> "<encargo>"` | Despacha; el log va a `.hivemind/runs/`, no al contexto de la sesión |
+
+**No se delega**: las decisiones de arquitectura, la verificación final, nada que necesite navegador
+(ninguna CLI trae Computer Use propio) y la integración entre trozos repartidos en paralelo — que
+suele ser la parte que más piensa. Tampoco lo que se hace en cinco minutos: el arranque en frío de un
+agente externo cuesta más que la tarea.
+
+**El encargo es un contrato autocontenido** — objetivo, contexto, alcance, criterio de salida,
+formato, autonomía — porque el agente externo arranca sin tu contexto. Y el criterio de salida tiene
+que ser **un comando ejecutable**: medido en esta flota, el mismo encargo en prosa dio una respuesta
+incorrecta que el agente reportó como éxito, y reescrito como «ejecuta esto y reporta su salida»
+acertó en un tercio del tiempo.
+
+La interoperabilidad sale de una sola fuente de verdad (`.claude/`): `.opencode/` para opencode y
+`.agents/` + `AGENTS.md` + `.windsurf/rules/` — el terreno común que leen Devin y Antigravity — con
+`node tools/sync-agents.js`.
+
+Doctrina completa, fichas por agente, las cuatro capas del ecosistema agéntico (MCP, A2A/ACP, Computer
+Use, sandboxes), las trampas de operación con su evidencia y el registro de deuda de verificación:
+`docs/HIVEMIND.md`.

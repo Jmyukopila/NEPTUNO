@@ -35,7 +35,7 @@ Compila la app de escritorio indicada (o la del directorio actual) para Windows 
 4. **Si falla, diagnostica por la causa raíz real**, no por el último mensaje:
    - **Electron**: dependencia nativa no reconstruida para la versión de Electron instalada (`NODE_MODULE_VERSION` mismatch / "was compiled against a different Node.js version") → `npx electron-rebuild` (paquete `@electron/rebuild`).
    - **Tauri**: errores de compilación Rust → lee el primer `error[E...]` del log, no el resumen final; `webview2-com-sys` / "WebView2Loader.dll" en el error → falta WebView2 Runtime; `` error: linker `link.exe` not found `` → faltan las Visual Studio C++ Build Tools (MSVC). Ambos casos son entorno, no bug de código → `/desktop-doctor`.
-   Tabla completa de síntoma→causa→fix en `C:\Users\Usuario\.claude\docs\DESKTOP.md`.
+   Tabla completa de síntoma→causa→fix en `/home/jasen/.claude/docs/DESKTOP.md`.
 5. **Verifica el artefacto**: existe, tamaño plausible, timestamp fresco.
    ```powershell
    Get-Item dist\*.exe, dist\*.msi -ErrorAction SilentlyContinue | Select Name, Length, LastWriteTime                                                    # Electron

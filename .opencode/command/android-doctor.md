@@ -10,7 +10,7 @@ Audita las 6 piezas de las que depende cualquier build Android y arregla lo que 
 
 ## Chequeos (en orden de dependencia)
 
-1. **JDK**: `java -version`. La versión debe cuadrar con el AGP del proyecto (AGP 8.x → JDK 17+; ver tabla en `C:\Users\Usuario\.claude\docs\ANDROID.md`). Android Studio trae su propio JBR — si los builds funcionan en Studio pero no en terminal, es casi seguro esto: apunta `JAVA_HOME` al JBR (`<Android Studio>\jbr`) o a un JDK 17.
+1. **JDK**: `java -version`. La versión debe cuadrar con el AGP del proyecto (AGP 8.x → JDK 17+; ver tabla en `/home/jasen/.claude/docs/ANDROID.md`). Android Studio trae su propio JBR — si los builds funcionan en Studio pero no en terminal, es casi seguro esto: apunta `JAVA_HOME` al JBR (`<Android Studio>\jbr`) o a un JDK 17.
 2. **SDK**: `$env:ANDROID_HOME` (o `ANDROID_SDK_ROOT`) debe existir y contener `platform-tools\adb.exe`. Ubicación típica en Windows: `%LOCALAPPDATA%\Android\Sdk`. Si la variable no está, defínela persistente:
    ```powershell
    [Environment]::SetEnvironmentVariable('ANDROID_HOME', "$env:LOCALAPPDATA\Android\Sdk", 'User')

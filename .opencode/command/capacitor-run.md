@@ -30,11 +30,11 @@ Instala el build más reciente en un target real y **observa** el resultado — 
    adb logcat --pid=$p -d -v brief
    ```
    Busca `FATAL EXCEPTION` (crash nativo) y también errores de la WebView (`chromium`, `Console` tags) — un error de JS en la capa web no siempre tumba el proceso Android, así que "sigue vivo" no basta: hay que ver la UI o el log de consola.
-4. **Síntoma específico de Capacitor**: WebView en blanco con proceso vivo y sin `FATAL EXCEPTION` = build web no llegó al nativo (sync olvidado) o `webDir` mal configurado. Ver tabla de síntomas en `C:\Users\Usuario\.claude\docs\CAPACITOR.md` antes de asumir un bug de código.
+4. **Síntoma específico de Capacitor**: WebView en blanco con proceso vivo y sin `FATAL EXCEPTION` = build web no llegó al nativo (sync olvidado) o `webDir` mal configurado. Ver tabla de síntomas en `/home/jasen/.claude/docs/CAPACITOR.md` antes de asumir un bug de código.
 
 ### iOS: fuera de alcance en esta máquina
 
-No hay simulador ni `xcodebuild` en Windows. Cualquier pedido de "ejecuta en iOS" se responde derivando a la sección CI de `C:\Users\Usuario\.claude\docs\CAPACITOR.md` — no hay equivalente local que probar.
+No hay simulador ni `xcodebuild` en Windows. Cualquier pedido de "ejecuta en iOS" se responde derivando a la sección CI de `/home/jasen/.claude/docs/CAPACITOR.md` — no hay equivalente local que probar.
 
 ## Reporte
 ```

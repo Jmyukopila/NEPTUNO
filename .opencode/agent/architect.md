@@ -1,7 +1,7 @@
 ---
 description: Arquitecto de software (Opus) para decisiones de diseño, planes de implementación y análisis de trade-offs. Úsalo antes de implementar features complejas o refactors. Solo lectura - devuelve planes, no código.
 mode: subagent
-model: google/gemini-3.1-pro-preview
+model: opencode/ling-3.0-flash-fin-free
 permission:
   edit: deny
   task: deny

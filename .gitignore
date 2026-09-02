@@ -40,3 +40,6 @@ Thumbs.db
 *.pem
 *.key
 
+
+# Logs de despacho del hivemind (efímeros, no se versionan)
+.hivemind/runs/

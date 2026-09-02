@@ -18,7 +18,7 @@ Compila el proyecto Android indicado (o el del directorio actual) y entrega la r
    ```
    - **Regla de tokens**: NO vuelques el output entero a la conversación. Redirige a un archivo del scratchpad y muestra solo las últimas ~20 líneas; si falla, filtra con `Select-String -Pattern "error|FAILURE|Caused by|Execution failed"` y sus 3 líneas de contexto.
    - Un rebuild normal NO necesita `clean`: Gradle es incremental. Usa `clean` solo si hay síntomas de caché corrupta (clases fantasma, recursos viejos).
-4. **Si falla**, diagnostica por la primera causa real (`Caused by` más profundo), no por el último mensaje. Sospechosos por frecuencia: JDK incompatible con AGP, licencia SDK sin aceptar, dependencia sin resolver (¿repositorio caído/proxy?), recurso duplicado, heap de Gradle (`org.gradle.jvmargs` en `gradle.properties`). La tabla completa está en `C:\Users\Usuario\.claude\docs\ANDROID.md`.
+4. **Si falla**, diagnostica por la primera causa real (`Caused by` más profundo), no por el último mensaje. Sospechosos por frecuencia: JDK incompatible con AGP, licencia SDK sin aceptar, dependencia sin resolver (¿repositorio caído/proxy?), recurso duplicado, heap de Gradle (`org.gradle.jvmargs` en `gradle.properties`). La tabla completa está en `/home/jasen/.claude/docs/ANDROID.md`.
 5. **Verifica el artefacto**: existe y tiene tamaño plausible.
    ```powershell
    Get-Item app\build\outputs\apk\debug\*.apk | Select-Object Name, Length, LastWriteTime

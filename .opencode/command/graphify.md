@@ -59,7 +59,7 @@ Follow these steps in order. Do not skip steps.
 
 ### Step 0 - GitHub repos and multi-path merge (only if a URL or several paths)
 
-Only when the path is one or more `https://github.com/...` URLs, or several local subfolders to merge. See `C:\Users\Usuario\.claude\skills\graphify\references\github-and-merge.md` for the clone, cross-repo merge, and monorepo flow, then continue with the resolved local path. A plain local path skips this step.
+Only when the path is one or more `https://github.com/...` URLs, or several local subfolders to merge. See `/home/jasen/.claude/skills/graphify/references/github-and-merge.md` for the clone, cross-repo merge, and monorepo flow, then continue with the resolved local path. A plain local path skips this step.
 
 ### Step 1 - Ensure graphify is installed
 
@@ -172,7 +172,7 @@ Then act on it:
 
 ### Step 2.5 - Video and audio (only if video files detected)
 
-Skip this step entirely if `detect` returned zero `video` files. When the corpus has video or audio, see `C:\Users\Usuario\.claude\skills\graphify\references\transcribe.md` to transcribe them to text first, then treat the transcripts as doc files in Step 3.
+Skip this step entirely if `detect` returned zero `video` files. When the corpus has video or audio, see `/home/jasen/.claude/skills/graphify/references/transcribe.md` to transcribe them to text first, then treat the transcripts as doc files in Step 3.
 
 ### Step 3 - Extract entities and relationships
 
@@ -243,7 +243,7 @@ Before dispatching subagents, print a timing estimate:
 
 Before dispatching any subagents, check which files already have cached extraction results:
 
-SPEC_PATH below is the **absolute** path of the `C:\Users\Usuario\.claude\skills\graphify\references\extraction-spec.md` that ships beside this SKILL.md — the same file Step B2 loads and hands to every subagent. It is the extraction prompt, so cache entries are attributed to it: when a graphify upgrade changes the prompt, entries produced by the old one are re-extracted instead of replayed, and unchanged prompts keep their entries (#1939). Substitute the real path in both Step B0 and Step B3 — pass the same one to each, and do not drop the argument.
+SPEC_PATH below is the **absolute** path of the `/home/jasen/.claude/skills/graphify/references/extraction-spec.md` that ships beside this SKILL.md — the same file Step B2 loads and hands to every subagent. It is the extraction prompt, so cache entries are attributed to it: when a graphify upgrade changes the prompt, entries produced by the old one are re-extracted instead of replayed, and unchanged prompts keep their entries (#1939). Substitute the real path in both Step B0 and Step B3 — pass the same one to each, and do not drop the argument.
 
 ```powershell
 @'
@@ -300,7 +300,7 @@ $PROJECT_ROOT = (Get-Location).Path  # cwd — where Part C globs graphify-out\ 
 
 Subagent prompt template:
 
-See `C:\Users\Usuario\.claude\skills\graphify\references\extraction-spec.md` for the exact subagent prompt (JSON schema, node-ID rules, confidence rubric, frontmatter, hyperedge, and vision rules). Load it only here, only when at least one chunk holds a doc, paper, or image; a pure-code corpus has skipped Part B and never reads it. Pass each subagent that prompt verbatim with FILE_LIST, CHUNK_NUM, TOTAL_CHUNKS, DEEP_MODE, and CHUNK_PATH substituted, and have it write the result to CHUNK_PATH.
+See `/home/jasen/.claude/skills/graphify/references/extraction-spec.md` for the exact subagent prompt (JSON schema, node-ID rules, confidence rubric, frontmatter, hyperedge, and vision rules). Load it only here, only when at least one chunk holds a doc, paper, or image; a pure-code corpus has skipped Part B and never reads it. Pass each subagent that prompt verbatim with FILE_LIST, CHUNK_NUM, TOTAL_CHUNKS, DEEP_MODE, and CHUNK_PATH substituted, and have it write the result to CHUNK_PATH.
 
 **Step B3 - Collect, cache, and merge**
 
@@ -576,7 +576,7 @@ graphify export html  # auto-aggregates to community view if graph > 5000 nodes
 
 ### Steps 6b-8 - Wiki, Neo4j, FalkorDB, SVG, GraphML, MCP, benchmark (only on their flags)
 
-These run only when their flag is present (`--wiki`, `--neo4j`/`--neo4j-push`, `--falkordb`/`--falkordb-push`, `--svg`, `--graphml`, `--mcp`) or, for the token-reduction benchmark, when `total_words` exceeds 5,000. A default run with no export flags skips all of them. See `C:\Users\Usuario\.claude\skills\graphify\references\exports.md` for each one. Run any `--wiki` export before Step 9 cleanup so `.graphify_labels.json` is still available.
+These run only when their flag is present (`--wiki`, `--neo4j`/`--neo4j-push`, `--falkordb`/`--falkordb-push`, `--svg`, `--graphml`, `--mcp`) or, for the token-reduction benchmark, when `total_words` exceeds 5,000. A default run with no export flags skips all of them. See `/home/jasen/.claude/skills/graphify/references/exports.md` for each one. Run any `--wiki` export before Step 9 cleanup so `.graphify_labels.json` is still available.
 
 ---
 
@@ -704,7 +704,7 @@ if (-not (Test-Path graphify-out\.graphify_python)) {
 
 ## For --update and --cluster-only
 
-Both are non-default subcommands. `--update` re-extracts only new or changed files; `--cluster-only` reruns clustering on the existing graph. See `C:\Users\Usuario\.claude\skills\graphify\references\update.md` for both flows.
+Both are non-default subcommands. `--update` re-extracts only new or changed files; `--cluster-only` reruns clustering on the existing graph. See `/home/jasen/.claude/skills/graphify/references/update.md` for both flows.
 
 ---
 
@@ -716,19 +716,19 @@ When `graphify-out/graph.json` already exists and the user asks a question about
 graphify query "<question>"
 ```
 
-Before traversal, expand the question against the graph's own vocabulary so a wording mismatch does not collapse the answer to noise. If the `graphify query` CLI is unavailable, fall back to an inline NetworkX traversal of `graphify-out/graph.json`. Answer using only what the graph output contains, and quote `source_location` when citing a specific fact. For that vocab-expansion step, the BFS/DFS traversal modes, the `--budget` cap, the NetworkX fallback, `save-result` feedback, and the `/graphify path` and `/graphify explain` flows, see `C:\Users\Usuario\.claude\skills\graphify\references\query.md`.
+Before traversal, expand the question against the graph's own vocabulary so a wording mismatch does not collapse the answer to noise. If the `graphify query` CLI is unavailable, fall back to an inline NetworkX traversal of `graphify-out/graph.json`. Answer using only what the graph output contains, and quote `source_location` when citing a specific fact. For that vocab-expansion step, the BFS/DFS traversal modes, the `--budget` cap, the NetworkX fallback, `save-result` feedback, and the `/graphify path` and `/graphify explain` flows, see `/home/jasen/.claude/skills/graphify/references/query.md`.
 
 ---
 
 ## For /graphify add and --watch
 
-Neither is part of the default build. When the user runs `/graphify add <url>` to fetch a URL into the corpus, or passes `--watch` to auto-rebuild on file changes, see `C:\Users\Usuario\.claude\skills\graphify\references\add-watch.md`.
+Neither is part of the default build. When the user runs `/graphify add <url>` to fetch a URL into the corpus, or passes `--watch` to auto-rebuild on file changes, see `/home/jasen/.claude/skills/graphify/references/add-watch.md`.
 
 ---
 
 ## For the commit hook and native CLAUDE.md integration
 
-When the user asks to install the post-commit auto-rebuild hook or wire graphify into a project's CLAUDE.md, see `C:\Users\Usuario\.claude\skills\graphify\references\hooks.md`.
+When the user asks to install the post-commit auto-rebuild hook or wire graphify into a project's CLAUDE.md, see `/home/jasen/.claude/skills/graphify/references/hooks.md`.
 
 ---
 

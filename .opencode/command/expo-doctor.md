@@ -10,7 +10,7 @@ Audita las piezas de las que depende cualquier proyecto Expo, en orden de depend
 
 ## Chequeos (en orden de dependencia)
 
-1. **Node**: `node -v`. Cada SDK de Expo fija un mínimo (ver `C:\Users\Usuario\.claude\docs\REACT-NATIVE.md` para la tabla de compatibilidad SDK↔RN↔Node del proyecto actual) — un Node más viejo que el mínimo del SDK instalado es la causa nº1 de fallos raros de instalación/build.
+1. **Node**: `node -v`. Cada SDK de Expo fija un mínimo (ver `/home/jasen/.claude/docs/REACT-NATIVE.md` para la tabla de compatibilidad SDK↔RN↔Node del proyecto actual) — un Node más viejo que el mínimo del SDK instalado es la causa nº1 de fallos raros de instalación/build.
 2. **Dependencias del proyecto**: `npx expo-doctor` — es el chequeo oficial de Expo, valida versiones de paquetes contra el React Native Directory, sincronía entre `app.json`/`package.json` y la config nativa si `android/`/`ios/` ya existen, y detecta paquetes incompatibles con el SDK instalado.
    ```powershell
    npx expo-doctor

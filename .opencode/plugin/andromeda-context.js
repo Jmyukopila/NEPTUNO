@@ -4,13 +4,13 @@
 // la nota de confianza) y `directory` del contexto del plugin en vez de `cwd` por stdin.
 import fs from "node:fs";
 import path from "node:path";
+import os from "node:os";
 
-const VAULT = "C:\\ANDROMEDA\\01-Proyectos";
+const VAULT = process.env.ANDROMEDA_VAULT || path.join(os.homedir(), "ANDROMEDA", "01-Proyectos");
 const MAX_CHARS = 2500; // tope duro: el contexto inyectado debe ser barato
 
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-const normPath = (s) =>
-  s.replace(/\\\\/g, "\\").replace(/\//g, "\\").replace(/\\+$/, "").toLowerCase();
+const normPath = (s) => path.resolve(s).replace(/[\\/]+$/, '').toLowerCase();
 
 export const AndromedaContext = async ({ directory }) => {
   const seen = new Set();
@@ -19,7 +19,7 @@ export const AndromedaContext = async ({ directory }) => {
       if (!input.sessionID || seen.has(input.sessionID)) return;
       seen.add(input.sessionID);
       if (!fs.existsSync(VAULT)) return;
-      if (normPath(directory).startsWith(normPath("C:\\ANDROMEDA"))) return;
+      if (normPath(directory).startsWith(normPath(path.dirname(VAULT)))) return;
 
       const notes = fs
         .readdirSync(VAULT)

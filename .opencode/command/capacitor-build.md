@@ -21,7 +21,7 @@ Compila la capa web, la sincroniza con el proyecto nativo y entrega el artefacto
    - Si falla la resolución de un plugin: sospecha desalineación entre `@capacitor/core`, `@capacitor/cli` y `@capacitor/android` — verifica con `/capacitor-doctor` antes de reintentar.
 4. **Compile nativo Android — delega, no dupliques**: una vez sincronizado, el compile es exactamente el mismo Gradle que cualquier proyecto Android. Usa `/apk-build` sobre `android/` para el `assembleDebug`/`assembleRelease` y su verificación de artefacto.
    - Atajo de un solo comando (`npx cap build android`) existe y hace sync + gradle build + firma en un paso, pero requiere pasar credenciales de keystore por flags de línea de comando — para debug rápido es mejor sync + `/apk-build`; para release, ver `/capacitor-release`.
-5. **iOS**: `cap sync ios` copia los assets a `ios/App`, pero el compile (`xcodebuild`) requiere macOS/Xcode — imposible desde Windows. No lo intentes ni simules el resultado; deriva a la sección CI de `C:\Users\Usuario\.claude\docs\CAPACITOR.md`.
+5. **iOS**: `cap sync ios` copia los assets a `ios/App`, pero el compile (`xcodebuild`) requiere macOS/Xcode — imposible desde Windows. No lo intentes ni simules el resultado; deriva a la sección CI de `/home/jasen/.claude/docs/CAPACITOR.md`.
 
 ## Reporte
 ```
