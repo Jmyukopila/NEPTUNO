@@ -771,6 +771,10 @@ Al acabar un encargo el personaje **se queda ocioso en su escritorio** en vez de
 siguiente encargo lo recoge el mismo. `node tools/pixel-bridge.js poblar` los sienta sin esperar a un
 despacho (el servicio ya lo hace al arrancar) y `retirar` los echa.
 
+Para verla como una aplicación y no como una pestaña —ventana propia, sin barra de URL, con su
+icono en el menú— `bash tools/pixel-app.sh instalar-lanzador` y luego `abrir`, que además resuelve
+el token vivo en cada lanzamiento. No es una PWA: el paquete no sirve manifest ni service worker.
+
 La URL con `?token=` es un secreto. `docs/PIXEL-AGENTS.md` explica el resto: las tres condiciones no
 obvias de su protocolo de hooks, cómo comprobar el resultado por WebSocket, la trampa de
 sincronización que hubo que arreglar para que sus hooks sobrevivan a `sync-global.js`, y la

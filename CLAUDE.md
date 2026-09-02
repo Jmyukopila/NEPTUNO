@@ -215,7 +215,9 @@ eventos de hook por cada agente despachado sin forkear pixel-agents. Requiere un
 `node tools/pixel-bridge.js preparar` **antes** de arrancar el servidor; sin eso responde `200 ok` y
 no aparece nadie. Para dejarlo permanente: `bash tools/pixel-service.sh instalar 3100` (servicio de
 usuario de systemd, con linger y `preparar` como `ExecStartPre`). Al acabar un encargo el personaje
-**se queda ocioso en su escritorio**, no desaparece; `poblar` y `retirar` los sientan y los echan. El token rota en cada arranque y no
+**se queda ocioso en su escritorio**, no desaparece; `poblar` y `retirar` los sientan y los echan.
+`bash tools/pixel-app.sh abrir` la abre como aplicación (ventana propia, sin barra de URL) y
+resuelve el token vivo; `instalar-lanzador` la deja en el menú de aplicaciones. El token rota en cada arranque y no
 se puede fijar: la URL de ahora la da `node tools/pixel-bridge.js url`. Trátala como un secreto.
 Detalle en `docs/PIXEL-AGENTS.md`.
 

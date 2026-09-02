@@ -48,6 +48,26 @@ los hooks. Por defecto escucha en `127.0.0.1`; `--host 0.0.0.0` lo expone a la r
 También existe como extensión de VS Code, y las dos pueden convivir: cada servidor se registra en
 `~/.pixel-agents/servers/` y el hook manda los eventos a todos los registros activos.
 
+## Como aplicación, no como pestaña
+
+```bash
+bash tools/pixel-app.sh instalar-lanzador   # una vez: entrada en el menú, con icono
+bash tools/pixel-app.sh abrir               # ventana propia, sin barra de URL ni pestañas
+```
+
+`abrir` lanza Chrome en modo `--app`, levanta el servicio si estuviera parado y **resuelve el
+token en cada lanzamiento**: es la forma de no volver a toparse con la URL caducada, porque un
+acceso directo con el token escrito dentro se rompe en el siguiente reinicio del servidor.
+
+**No es una PWA**, y conviene no llamarlo así: el paquete no sirve `manifest.webmanifest` ni
+service worker —su `index.html` solo trae el `<link rel="icon">` y la hoja de estilos—, así que
+Chrome no ofrece *Instalar*. Para una PWA de verdad habría que inyectar manifest e iconos en ese
+HTML, y eso significa o parchear `node_modules` (se pierde en cada `npm update -g`) o levantar un
+proxy propio que reescriba el HTML y haga de puente del WebSocket. El resultado en pantalla es el
+mismo; lo que cambia es la deuda de mantenimiento.
+
+Firefox no sirve: no tiene modo `--app`. El script busca Chrome, Chromium, Brave o Edge.
+
 ## La trampa que había que resolver antes de instalarlo
 
 Pixel Agents funciona por **hooks**: copia su script a `~/.claude/pixel-agents-hook.js` y se engancha
