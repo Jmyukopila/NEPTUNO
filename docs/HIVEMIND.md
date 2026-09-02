@@ -463,10 +463,13 @@ Repartir trabajo entre subagentes y flota crea un problema nuevo: **saber quién
 `pixel-agents --port 3100` lo resuelve mostrando cada sesión de Claude Code y cada subagente como un
 personaje en una oficina, con bocadillo cuando alguien está bloqueado esperándote.
 
-Ojo con el alcance: **la flota externa no sale ahí** (solo hay proveedor para Claude Code), así que
-un `hivemind.js run` no aparece — verás al agente `delegate` supervisándolo, que sí es sesión de
-Claude Code. Para el estado real de la flota, `doctor` y `.hivemind/runs/`. Detalle, y la trampa de
-sincronización que hubo que arreglar antes de instalarlo, en `docs/PIXEL-AGENTS.md`.
+**La flota externa también sale**, aunque Pixel Agents solo implemente el proveedor de Claude Code:
+`tools/pixel-bridge.js` emite los mismos eventos de hook por cada agente externo, con su propio
+`session_id`, contra la misma API que usa el hook oficial. Sin forkear nada. Un despacho que falla
+levanta bocadillo (`idle_prompt`) en vez de irse callado, que es justo cuando quieres mirar.
+
+Funciona en los dos transportes, y `doctor` dice si hay servidor escuchando. Detalle, mapeo de
+eventos y las dos trampas que hubo que resolver, en `docs/PIXEL-AGENTS.md`.
 
 ## 5. Interoperabilidad: una doctrina, cuatro lectores
 

@@ -751,7 +751,8 @@ Use, sandboxes), las trampas de operación con su evidencia y el registro de deu
 `pixel-agents --port 3100` ([Pixel Agents](https://github.com/pixel-agents-hq/pixel-agents), MIT)
 muestra cada sesión de Claude Code y cada subagente como un personaje pixel-art en una oficina:
 teclean al editar, leen al buscar, y levantan un bocadillo cuando están **bloqueados esperándote** —
-que es justo lo que cuesta ver cuando repartes trabajo. **La flota externa no aparece** (solo hay
-proveedor para Claude Code), y la URL con `?token=` es un secreto. `docs/PIXEL-AGENTS.md` explica el
+que es justo lo que cuesta ver cuando repartes trabajo. **La flota externa también sale**: aunque
+pixel-agents solo implemente el proveedor de Claude Code, `tools/pixel-bridge.js` emite los mismos
+eventos de hook por cada agente despachado, sin forkear nada. La URL con `?token=` es un secreto. `docs/PIXEL-AGENTS.md` explica el
 resto, incluida la trampa de sincronización que hubo que arreglar para que sus hooks sobrevivan a
 `sync-global.js`.

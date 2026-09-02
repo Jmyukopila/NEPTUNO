@@ -334,11 +334,25 @@ if (require.main === module) {
     const log = (s) => fs.appendFileSync(logPath, s);
     log(`# sesión ${agente} (${transporte}) | cwd ${opt.cwd} | ${new Date().toISOString()}\n${'-'.repeat(72)}\n`);
 
+    // Mismo puente que el despacho por CLI: una sesión también es un personaje en la
+    // oficina. Aquí sí se puede emitir en proceso (no hay spawnSync bloqueando), pero se
+    // reutiliza el hijo síncrono para no duplicar la lógica del ciclo de vida.
+    const sesionUI = `neptuno-${agente}-${stamp}`;
+    const avisar = (fase, datos) => {
+      try {
+        const args = [path.join(__dirname, 'pixel-bridge.js'), fase];
+        for (const [k, v] of Object.entries(datos)) if (v != null) args.push(`--${k}`, String(v));
+        require('child_process').spawnSync(process.execPath, args, { timeout: 5000, stdio: 'ignore' });
+      } catch {}
+    };
+    avisar('inicio', { session: sesionUI, agente, cwd: opt.cwd, encargo: turnos[0] });
+
     const cliente = crearCliente(agente, { cwd: opt.cwd, safe: opt.safe, onEvento: (e) => log(JSON.stringify(e) + '\n') });
     const t0 = Date.now();
     const guardia = setTimeout(() => {
       log(`\n# TIMEOUT a los ${opt.timeout}s\n`);
       console.log(`\nSESION_LOG=${logPath}\nSESION_STATUS=timeout agente=${agente} transporte=${transporte}`);
+      avisar('fin', { session: sesionUI, cwd: opt.cwd, estado: 'timeout' });
       cliente.cerrar();
       process.exit(124);
     }, opt.timeout * 1000);
@@ -360,6 +374,7 @@ if (require.main === module) {
       if (opt.safe && transporte === 'acp' && !cliente.pidioPermiso) {
         console.log(`Aviso: --safe no denegó nada porque el agente no pidió permiso en ningún momento. No lo tomes por aislamiento.`);
       }
+      avisar('fin', { session: sesionUI, cwd: opt.cwd, estado: salidas.some((s) => s) ? 'ok' : 'sin-salida' });
       cliente.cerrar();
       process.exit(salidas.some((s) => s) ? 0 : 1);
     } catch (e) {
@@ -367,6 +382,7 @@ if (require.main === module) {
       log(`\n# ERROR: ${e.message}\n${cliente.stderr.slice(-2000)}\n`);
       console.error(`Error de sesión (${agente}/${transporte}): ${e.message}`);
       console.log(`SESION_LOG=${logPath}\nSESION_STATUS=error agente=${agente} transporte=${transporte}`);
+      avisar('fin', { session: sesionUI, cwd: opt.cwd, estado: 'error' });
       cliente.cerrar();
       process.exit(1);
     }

@@ -31,6 +31,23 @@ const os = require('os');
 
 const ROOT = path.resolve(__dirname, '..');
 
+// Puente opcional a la interfaz visual: si hay un servidor de Pixel Agents vivo, cada
+// despacho aparece como un personaje en la oficina. Es decoración y se comporta como tal —
+// si el módulo falta o falla, el despacho sigue igual. Ver docs/PIXEL-AGENTS.md.
+let puente = null;
+try { puente = require('./pixel-bridge.js'); } catch {}
+// Se emite en un proceso hijo SÍNCRONO a propósito: `spawnSync` bloquea el bucle de eventos,
+// así que un POST asíncrono desde aquí no llegaría a salir nunca. Se salta del todo si no hay
+// servidor, para no pagar un spawn por nada. Nunca lanza: la interfaz es decoración.
+function avisar(fase, datos) {
+  try {
+    if (!puente || !puente.servidores().length) return;
+    const args = [path.join(__dirname, 'pixel-bridge.js'), fase];
+    for (const [k, v] of Object.entries(datos)) if (v != null) args.push(`--${k}`, String(v));
+    spawnSync(process.execPath, args, { timeout: 5000, stdio: 'ignore' });
+  } catch {}
+}
+
 // Un terminal lanzado desde un snap (VS Code, por ejemplo) exporta un XDG_DATA_HOME que
 // apunta DENTRO del sandbox del snap (~/snap/<app>/<rev>/.local/share). Las CLIs de la flota
 // guardan ahí sus credenciales, así que desde esa sesión no ven el login que hiciste en un
@@ -156,6 +173,10 @@ function doctor() {
     }
   }
   console.log(`\n  ${ready}/${Object.keys(AGENTS).length} agentes externos listos. Detalle de enrutado: docs/HIVEMIND.md`);
+  const oficina = puente ? puente.servidores() : [];
+  console.log(oficina.length
+    ? `  Interfaz: ${oficina.length} servidor(es) de Pixel Agents vivos — los despachos se verán en la oficina.`
+    : `  Interfaz: sin servidor de Pixel Agents (opcional). Arranca uno con: pixel-agents --port 3100`);
   return ready > 0 ? 0 : 1;
 }
 
@@ -209,6 +230,9 @@ function run(argv) {
   const logPath = path.resolve(opt.out || path.join(ROOT, '.hivemind', 'runs', `${stamp}-${name}.log`));
   fs.mkdirSync(path.dirname(logPath), { recursive: true });
 
+  // Se guarda el encargo del usuario ANTES del preámbulo: la oficina debe mostrar lo que se
+  // pidió, no la fontanería que le añadimos por debajo.
+  const encargoOriginal = opt.prompt;
   if (agent.preambulo) opt.prompt = agent.preambulo(opt.cwd) + opt.prompt;
   let args = agent.build(opt);
   let cmd = bin;
@@ -239,6 +263,11 @@ function run(argv) {
     `# hivemind run\n# agente : ${name} (${bin})\n# cwd    : ${opt.cwd}\n# modelo : ${opt.model || '(default del agente)'}\n` +
     `# inicio : ${new Date().toISOString()}\n# prompt :\n${opt.prompt.split('\n').map((l) => '#   ' + l).join('\n')}\n${'-'.repeat(72)}\n`;
   fs.writeFileSync(logPath, header);
+
+  // El aviso de inicio va antes del spawn para que el personaje aparezca mientras trabaja,
+  // no al terminar.
+  const sesionUI = `neptuno-${name}-${stamp}`;
+  avisar('inicio', { session: sesionUI, agente: name, cwd: opt.cwd, encargo: encargoOriginal });
 
   const t0 = Date.now();
   const r = spawnSync(cmd, args, {
@@ -276,6 +305,9 @@ function run(argv) {
   // `opencode run` produce la respuesta y NO sale: el tope duro lo mata con el trabajo ya
   // hecho. Un timeout con salida sustancial no es lo mismo que un timeout sin nada, y
   // confundirlos hace descartar trabajo válido.
+  const estadoUI = timedOut ? 'timeout' : denied ? 'permisos' : vacio ? 'sin-salida' : r.status === 0 ? 'ok' : 'error';
+  avisar('fin', { session: sesionUI, cwd: opt.cwd, estado: estadoUI });
+
   const estado = timedOut
     ? (body.trim().length > 40 ? 'timeout-con-salida' : 'timeout')
     : denied ? 'permisos' : vacio ? 'sin-salida' : r.status === 0 ? 'ok' : 'error';

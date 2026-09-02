@@ -44,23 +44,63 @@ pasada no duplica nada.
 Si algún día un hook ajeno desaparece tras un resync, el sospechoso es esa función `esDeNeptuno`:
 está clasificando como propio algo que no lo es.
 
-## Qué se ve y qué no
+## Qué se ve
 
 | | En la oficina |
 |---|---|
-| Sesiones de Claude Code | **sí** — una por terminal, cada una su personaje |
-| Subagentes de NEPTUNO (`scout`, `critic`, `delegate`…) | **sí** — como personajes efímeros aparte |
+| Sesiones de Claude Code | sí — una por terminal, cada una su personaje |
+| Subagentes de NEPTUNO (`scout`, `critic`, `delegate`…) | sí — como personajes efímeros aparte |
 | Teammates persistentes | sí, con su rol y su ciclo de vida |
-| **La flota externa** (`opencode`, `agy`, `devin`) | **no** |
+| **La flota externa** (`opencode`, `agy`, `devin`) | **sí, vía `tools/pixel-bridge.js`** |
 
-La última fila importa: hoy el único proveedor implementado es Claude Code, así que un encargo
-despachado con `hivemind.js run` **no aparece**. Lo que sí verás es al agente `delegate` mientras lo
-supervisa, porque ese sí es una sesión de Claude Code. Para el estado real de la flota sigue siendo
-`node tools/hivemind.js doctor` y los logs de `.hivemind/runs/`.
+## El puente: cómo se ve la flota sin forkear nada
 
-No es un límite permanente: el proyecto define una interfaz `HookProvider` donde añadir una CLI nueva
-es «un subdirectorio, no una reescritura», y lo señalan como el sitio donde más falta ayuda. Portar
-la flota de NEPTUNO ahí es un candidato real, no una fantasía — pero es trabajo, y no está hecho.
+Pixel Agents solo implementa un proveedor, Claude Code, así que un `hivemind.js run` no aparecería
+nunca. La salida obvia era forkear un proyecto de 9.000 estrellas y mantener el fork. No hizo falta.
+
+Su hook no hace nada mágico: descubre los servidores vivos en `~/.pixel-agents/servers/` y les hace
+POST del payload de hook **tal cual**.
+
+```
+POST http://127.0.0.1:<puerto>/api/hooks/claude
+Authorization: Bearer <token del registro>
+body: el evento de hook de Claude Code, verbatim
+```
+
+Así que `tools/pixel-bridge.js` emite esos mismos eventos por cada agente externo, con su propio
+`session_id` — y por tanto su propio personaje. El servidor no distingue quién los originó, ni
+necesita distinguirlo. Cero cambios en pixel-agents, cero fork que mantener.
+
+El mapeo sale de leer `normalizeHookEvent` en su bundle, que exige `hook_event_name` y `session_id`
+como cadenas y de ahí ramifica:
+
+| Evento emitido | Cuándo | Qué se ve |
+|---|---|---|
+| `SessionStart` (`cwd`, `source`) | al despachar | aparece el personaje |
+| `PreToolUse` (`tool_name`, `tool_input`) | acto seguido | teclea, con el encargo real a la vista |
+| `PostToolUse` | al terminar | acaba la herramienta |
+| `Stop` | si salió `ok` | fin de turno, se queda tranquilo |
+| `Notification` (`idle_prompt`) | si salió mal | **bocadillo: te está reclamando** |
+| `SessionEnd` (`reason`) | siempre | se marcha, con el estado como motivo |
+
+Esa penúltima fila es el punto: un despacho que falló por permisos, timeout o error **levanta la mano
+en la oficina** en vez de irse callado. Es exactamente cuando quieres mirar la pantalla.
+
+Funciona en los dos transportes: `hivemind.js run` y `hivemind.js session`. `doctor` dice si hay
+servidor escuchando.
+
+### La trampa que costó encontrar
+
+La primera versión emitía por HTTP asíncrono desde `hivemind.js` y entregaba **cero eventos** con un
+servidor vivo escuchando. Causa: `spawnSync` **bloquea el bucle de eventos de Node**, así que el POST
+lanzado antes del despacho no llega a ejecutarse nunca, y el `process.exit()` del final lo mata antes
+de salir. Por eso el puente se invoca como **proceso hijo síncrono** (`inicio` / `fin`, una fase por
+invocación) en vez de como una promesa suelta. Si alguna vez añades emisiones nuevas, ten esto
+presente: cualquier `await` alrededor de un `spawnSync` es una promesa que no se va a cumplir.
+
+Y una regla dura: **esto es decoración**. Si no hay servidor, si el POST falla o si el registro está
+corrupto, el puente se calla y devuelve. Se salta incluso el spawn cuando no hay ningún servidor
+vivo, para no pagar un proceso por nada. Un fallo de la interfaz nunca puede tumbar un despacho.
 
 ## Notas de operación
 

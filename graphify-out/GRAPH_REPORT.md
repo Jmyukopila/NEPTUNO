@@ -1,16 +1,16 @@
 # Graph Report - NEPTUNO  (2026-09-01)
 
 ## Corpus Check
-- 113 files · ~93,616 words
+- 114 files · ~95,476 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 820 nodes · 996 edges · 66 communities (61 shown, 3 thin omitted)
-- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 140 edges (avg confidence: 0.83)
+- 838 nodes · 1020 edges · 67 communities (62 shown, 3 thin omitted)
+- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 144 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0a2c2edb`
+- Built from commit: `fd85f41f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -64,6 +64,7 @@
 - Pixel Agents — la interfaz visual del hivemind
 - Hivemind — tú decides y verificas; ellos ejecutan
 - sync-agents.js
+- pixel-bridge.js
 - Diagram Mermaid — el diagrama correcto, sintaxis verificada
 - Code Standards — buenas prácticas medibles, no opiniones
 - Translate & Localize — traducir la intención, no las palabras
@@ -121,7 +122,7 @@
 - **Agentes de build que existen para filtrar output en origen** — _claude_agents_android_android, _claude_agents_react_native_react_native, _claude_agents_capacitor_capacitor, _claude_agents_desktop_desktop, _claude_agents_android_output_filtrado_en_origen, _claude_agents_android_evidencia_de_artefacto [INFERRED 0.95]
 - **GitHub PR lifecycle: create, stack, merge, release** — _claude_skills_pr_skill_pr_skill, _claude_skills_pr_stack_skill_pr_stack_skill, _claude_skills_pr_merge_skill_pr_merge_skill, _claude_skills_release_skill_release_skill, _claude_skills_pr_stack_skill_restack_update_refs, _claude_skills_pr_merge_skill_three_green_lights, _claude_skills_release_skill_semver_from_commits [INFERRED 0.95]
 
-## Communities (66 total, 3 thin omitted)
+## Communities (67 total, 3 thin omitted)
 
 ### Community 0 - "Skill /graphify"
 Cohesion: 0.06
@@ -141,7 +142,7 @@ Nodes (7): Continuous Native Generation (CNG), EAS Build y perfiles de `eas.json
 
 ### Community 4 - "Skill debug: depuración sistemática"
 Cohesion: 0.05
-Nodes (42): Skill api-contract: la interfaz antes que la implementación, Diseño contract-first del API, El contrato expone el dominio, no las tablas, Ejemplos rellenos con datos realistas, Evolución sin romper clientes existentes, Shape único de error en toda la API, Barrido adversarial con taxonomía de defectos, Skill bug-hunt: caza proactiva de bugs latentes (+34 more)
+Nodes (44): Verificar cada fix re-ejecutando el chequeo fallido, Skill api-contract: la interfaz antes que la implementación, Diseño contract-first del API, El contrato expone el dominio, no las tablas, Ejemplos rellenos con datos realistas, Evolución sin romper clientes existentes, Shape único de error en toda la API, Barrido adversarial con taxonomía de defectos (+36 more)
 
 ### Community 5 - "Compatibilidad con opencode"
 Cohesion: 0.25
@@ -272,8 +273,8 @@ Cohesion: 0.11
 Nodes (17): 10. Comandos de consulta, 11. El filtro de sensibles y por qué la doc se llama `ECONOMIA-TOKENS.md`, 12. Cómo verificar, 1. Jerarquía de coste, revisada, 2. Instalación en esta máquina (estado real), 3. Backend de LLM: `claude-cli`, 4. Los tres grafos, 5. El hook PreToolUse (Claude Code) (+9 more)
 
 ### Community 37 - "Skill android-doctor: doctor del entorno Android"
-Cohesion: 0.29
-Nodes (7): Skill android-doctor: doctor del entorno Android, ANDROID_HOME / ANDROID_SDK_ROOT, JAVA_HOME apuntando al JBR de Android Studio, Aceptación de licencias del SDK Android, Tríada Gradle-AGP-JDK, Verificar cada fix re-ejecutando el chequeo fallido, Causa raíz demostrada, no síntoma
+Cohesion: 0.40
+Nodes (5): Skill android-doctor: doctor del entorno Android, ANDROID_HOME / ANDROID_SDK_ROOT, JAVA_HOME apuntando al JBR de Android Studio, Aceptación de licencias del SDK Android, Tríada Gradle-AGP-JDK
 
 ### Community 38 - "Logcat filtrado por PID (regla de tokens)"
 Cohesion: 0.40
@@ -293,11 +294,11 @@ Nodes (3): AndromedaContext(), norm(), normPath()
 
 ### Community 46 - "hivemind.js"
 Cohesion: 0.14
-Nodes (13): AGENTS, [cmd, ...argv], commands, doctor(), ENV, fs, os, path (+5 more)
+Nodes (14): AGENTS, avisar(), [cmd, ...argv], commands, doctor(), ENV, fs, os (+6 more)
 
 ### Community 47 - "Pixel Agents — la interfaz visual del hivemind"
-Cohesion: 0.33
-Nodes (5): Arrancar, La trampa que había que resolver antes de instalarlo, Notas de operación, Pixel Agents — la interfaz visual del hivemind, Qué se ve y qué no
+Cohesion: 0.25
+Nodes (7): Arrancar, El puente: cómo se ve la flota sin forkear nada, La trampa que costó encontrar, La trampa que había que resolver antes de instalarlo, Notas de operación, Pixel Agents — la interfaz visual del hivemind, Qué se ve
 
 ### Community 48 - "Hivemind — tú decides y verificas; ellos ejecutan"
 Cohesion: 0.17
@@ -306,6 +307,10 @@ Nodes (11): Dos transportes: disparo o conversación, Hivemind — tú decides y
 ### Community 49 - "sync-agents.js"
 Cohesion: 0.18
 Nodes (8): doctrina, fs, GLOBAL, nAgents, nSkills, os, path, SRC
+
+### Community 50 - "pixel-bridge.js"
+Cohesion: 0.19
+Nodes (14): AGENTE_MODELO, despachoIniciado(), despachoTerminado(), emitir(), fs, http, LEGACY, os (+6 more)
 
 ### Community 51 - "Diagram Mermaid — el diagrama correcto, sintaxis verificada"
 Cohesion: 0.20
@@ -374,8 +379,8 @@ Nodes (3): Proceso, Reglas, Write Tests — tests que fallan cuando deben
   .claude/skills/graphify/references/update.md · relation: semantically_similar_to
 
 ## Knowledge Gaps
-- **196 isolated node(s):** `@modelcontextprotocol/server-sequential-thinking`, `@modelcontextprotocol/server-memory`, `MEMORY_FILE_PATH`, `fs`, `path` (+191 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 386 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **204 isolated node(s):** `@modelcontextprotocol/server-sequential-thinking`, `@modelcontextprotocol/server-memory`, `MEMORY_FILE_PATH`, `fs`, `path` (+199 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 394 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -385,13 +390,13 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **What is the exact relationship between `Selective manifest stamping` and `HANDOFF.md session handoff note`?**
   _Edge tagged AMBIGUOUS (relation: semantically_similar_to) - confidence is low._
-- **Why does `Skill android-doctor: doctor del entorno Android` connect `Skill android-doctor: doctor del entorno Android` to `Skill desktop-doctor: doctor del entorno de escritorio`, `Skill android-run: ejecutar y observar una app Android`, `Skill apk-build: build de APK/AAB sin Android Studio`, `Skill capacitor-build: build web + sync nativo Capacitor`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **Why does `Skill debug: depuración sistemática` connect `Skill debug: depuración sistemática` to `Skill android-doctor: doctor del entorno Android`?**
+- **Why does `Skill android-doctor: doctor del entorno Android` connect `Skill android-doctor: doctor del entorno Android` to `Skill desktop-doctor: doctor del entorno de escritorio`, `Skill debug: depuración sistemática`, `Skill android-run: ejecutar y observar una app Android`, `Skill apk-build: build de APK/AAB sin Android Studio`, `Skill capacitor-build: build web + sync nativo Capacitor`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `Forward-looking token rules` connect `pr skill (create a Pull Request)` to `Constrained query expansion`, `build_merge`, `Agent assignment by task kind`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `main()` (e.g. with `installGraphify()` and `installObsidianApp()`) actually correct?**
   _`main()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `@modelcontextprotocol/server-sequential-thinking`, `@modelcontextprotocol/server-memory`, `MEMORY_FILE_PATH` to the rest of the system?**
-  _196 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _204 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Skill /graphify` be split into smaller, more focused modules?**
+  _Cohesion score 0.0602322206095791 - nodes in this community are weakly interconnected._

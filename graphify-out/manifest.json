@@ -492,9 +492,9 @@
     "semantic_hash": "aac74bf72ce634fb9e55095c37bae445"
   },
   "CLAUDE.md": {
-    "mtime": 1788311369.5375104,
-    "seen": 1788311396.8641596,
-    "ast_hash": "3c3c6d2677d2214542cd5b5cb02822e1",
+    "mtime": 1788311840.2295074,
+    "seen": 1788311878.7441673,
+    "ast_hash": "85953c134a6f4724bcab6059a9eb6644",
     "semantic_hash": ""
   },
   "HANDOFF.md": {
@@ -504,9 +504,9 @@
     "semantic_hash": "8b724b70f528d42547b5d39370316d6d"
   },
   "README.md": {
-    "mtime": 1788311395.7658455,
-    "seen": 1788311396.8641615,
-    "ast_hash": "e410a48186f5f51830f5f7950384c573",
+    "mtime": 1788311840.2299528,
+    "seen": 1788311878.7441692,
+    "ast_hash": "57dfe3d1766afc267459fd03d4825c64",
     "semantic_hash": ""
   },
   "docs/ANDROID.md": {
@@ -606,9 +606,9 @@
     "semantic_hash": ""
   },
   "tools/hivemind.js": {
-    "mtime": 1788310760.2020814,
-    "seen": 1788310982.8767233,
-    "ast_hash": "b4605a6f2274854f7c98a91496e0d5f6",
+    "mtime": 1788311744.359999,
+    "seen": 1788311878.744084,
+    "ast_hash": "f8a3c487d40be2f0046ca8bfa1b2f23f",
     "semantic_hash": ""
   },
   "tools/sync-agents.js": {
@@ -660,21 +660,27 @@
     "semantic_hash": ""
   },
   "docs/HIVEMIND.md": {
-    "mtime": 1788311369.537682,
-    "seen": 1788311396.864172,
-    "ast_hash": "61c8e87ae1506dd37a5921628751bc57",
+    "mtime": 1788311840.2292812,
+    "seen": 1788311878.7441802,
+    "ast_hash": "96b593238471d32fdf82f76b71826d93",
     "semantic_hash": ""
   },
   "tools/session.js": {
-    "mtime": 1788310818.0953107,
-    "seen": 1788310982.8767328,
-    "ast_hash": "c853f377342781b28586cdf468c66700",
+    "mtime": 1788311793.8451345,
+    "seen": 1788311878.7440941,
+    "ast_hash": "ed530b6a57bee61d48f1ffd8d8e9e778",
     "semantic_hash": ""
   },
   "docs/PIXEL-AGENTS.md": {
-    "mtime": 1788311352.0471413,
-    "seen": 1788311396.8641744,
-    "ast_hash": "ac7a6e696fe655864015aefaad596592",
+    "mtime": 1788311840.2289433,
+    "seen": 1788311878.7441819,
+    "ast_hash": "d334834e15464ada9958cc71953be100",
+    "semantic_hash": ""
+  },
+  "tools/pixel-bridge.js": {
+    "mtime": 1788311711.0078034,
+    "seen": 1788311878.7440898,
+    "ast_hash": "e4dc5502c82d87e34ac75963d5cb0b6a",
     "semantic_hash": ""
   }
 }

@@ -212,8 +212,9 @@ Para vigilancia recurrente usa `/loop` (babysitting de CI/PRs), para tareas peri
 ### Interfaz visual
 `pixel-agents --port 3100` levanta una oficina pixel-art donde cada sesión de Claude Code y cada
 subagente es un personaje: teclean al editar, leen al buscar, y levantan un bocadillo cuando están
-**bloqueados esperándote**. La flota externa (`opencode`, `agy`, `devin`) **no** aparece — solo hay
-proveedor para Claude Code. Trata la URL con `?token=` como un secreto. Detalle en `docs/PIXEL-AGENTS.md`.
+**bloqueados esperándote**. La flota externa también sale, vía `tools/pixel-bridge.js`, que emite los
+eventos de hook por cada agente despachado sin forkear pixel-agents. Trata la URL con `?token=` como
+un secreto. Detalle en `docs/PIXEL-AGENTS.md`.
 
 ### MCPs
 | MCP | Cuándo usarlo |

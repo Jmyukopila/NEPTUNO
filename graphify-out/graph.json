@@ -639,7 +639,19 @@
       "file_type": "code",
       "norm_label": "acp()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L296"
+      "source_location": "L328"
+    },
+    {
+      "id": "tools_hivemind_avisar",
+      "label": "avisar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 46,
+      "community_name": "hivemind.js",
+      "file_type": "code",
+      "norm_label": "avisar()",
+      "source_file": "tools/hivemind.js",
+      "source_location": "L42"
     },
     {
       "id": "tools_hivemind_doctor",
@@ -651,7 +663,7 @@
       "file_type": "code",
       "norm_label": "doctor()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L137"
+      "source_location": "L154"
     },
     {
       "id": "tools_hivemind_resolveagent",
@@ -663,7 +675,7 @@
       "file_type": "code",
       "norm_label": "resolveagent()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L124"
+      "source_location": "L141"
     },
     {
       "id": "tools_hivemind_roster",
@@ -675,7 +687,7 @@
       "file_type": "code",
       "norm_label": "roster()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L163"
+      "source_location": "L184"
     },
     {
       "id": "tools_hivemind_run",
@@ -687,7 +699,7 @@
       "file_type": "code",
       "norm_label": "run()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L174"
+      "source_location": "L195"
     },
     {
       "id": "tools_hivemind_sanearentorno",
@@ -699,7 +711,7 @@
       "file_type": "code",
       "norm_label": "sanearentorno()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L39"
+      "source_location": "L56"
     },
     {
       "id": "tools_hivemind_which",
@@ -711,7 +723,7 @@
       "file_type": "code",
       "norm_label": "which()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L131"
+      "source_location": "L148"
     },
     {
       "id": "tools_sync_agents_banner",
@@ -736,6 +748,90 @@
       "norm_label": "copytree()",
       "source_file": "tools/sync-agents.js",
       "source_location": "L30"
+    },
+    {
+      "id": "tools_pixel_bridge_despachoiniciado",
+      "label": "despachoIniciado()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "despachoiniciado()",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L115"
+    },
+    {
+      "id": "tools_pixel_bridge_despachoterminado",
+      "label": "despachoTerminado()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "despachoterminado()",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L128"
+    },
+    {
+      "id": "tools_pixel_bridge_emitir",
+      "label": "emitir()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "emitir()",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L104"
+    },
+    {
+      "id": "tools_pixel_bridge_postear",
+      "label": "postear()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "postear()",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L78"
+    },
+    {
+      "id": "tools_pixel_bridge_servidores",
+      "label": "servidores()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "servidores()",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L59"
+    },
+    {
+      "id": "tools_pixel_bridge_valido",
+      "label": "valido()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "valido()",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L52"
+    },
+    {
+      "id": "tools_pixel_bridge_vivo",
+      "label": "vivo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "vivo()",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L51"
     },
     {
       "id": "installer_install_checkboxprompt",
@@ -1794,7 +1890,7 @@
       "node_kind": "heading",
       "norm_label": "5. interoperabilidad: una doctrina, cuatro lectores",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L471"
+      "source_location": "L474"
     },
     {
       "id": "docs_hivemind_6_l\u00edmites_honestos",
@@ -1806,7 +1902,7 @@
       "node_kind": "heading",
       "norm_label": "6. limites honestos",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L494"
+      "source_location": "L497"
     },
     {
       "id": "docs_hivemind_antigravity_agy",
@@ -2427,7 +2523,7 @@
       "file_type": "code",
       "norm_label": "agents",
       "source_file": "tools/hivemind.js",
-      "source_location": "L55"
+      "source_location": "L72"
     },
     {
       "id": "tools_hivemind_cmd_argv",
@@ -2438,7 +2534,7 @@
       "file_type": "code",
       "norm_label": "[cmd, ...argv]",
       "source_file": "tools/hivemind.js",
-      "source_location": "L293"
+      "source_location": "L325"
     },
     {
       "id": "tools_hivemind_commands",
@@ -2449,7 +2545,7 @@
       "file_type": "code",
       "norm_label": "commands",
       "source_file": "tools/hivemind.js",
-      "source_location": "L302"
+      "source_location": "L334"
     },
     {
       "id": "tools_hivemind_env",
@@ -2460,7 +2556,7 @@
       "file_type": "code",
       "norm_label": "env",
       "source_file": "tools/hivemind.js",
-      "source_location": "L49"
+      "source_location": "L66"
     },
     {
       "id": "tools_hivemind_fs",
@@ -2542,6 +2638,30 @@
       "source_location": "L11"
     },
     {
+      "id": "docs_pixel_agents_el_puente_c\u00f3mo_se_ve_la_flota_sin_forkear_nada",
+      "label": "El puente: c\u00f3mo se ve la flota sin forkear nada",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "Pixel Agents \u2014 la interfaz visual del hivemind",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "el puente: como se ve la flota sin forkear nada",
+      "source_file": "docs/PIXEL-AGENTS.md",
+      "source_location": "L56"
+    },
+    {
+      "id": "docs_pixel_agents_la_trampa_que_cost\u00f3_encontrar",
+      "label": "La trampa que cost\u00f3 encontrar",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "Pixel Agents \u2014 la interfaz visual del hivemind",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "la trampa que costo encontrar",
+      "source_file": "docs/PIXEL-AGENTS.md",
+      "source_location": "L92"
+    },
+    {
       "id": "docs_pixel_agents_la_trampa_que_hab\u00eda_que_resolver_antes_de_instalarlo",
       "label": "La trampa que hab\u00eda que resolver antes de instalarlo",
       "_origin": "ast",
@@ -2563,7 +2683,7 @@
       "node_kind": "heading",
       "norm_label": "notas de operacion",
       "source_file": "docs/PIXEL-AGENTS.md",
-      "source_location": "L65"
+      "source_location": "L105"
     },
     {
       "id": "docs_pixel_agents_pixel_agents_la_interfaz_visual_del_hivemind",
@@ -2578,14 +2698,14 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_pixel_agents_qu\u00e9_se_ve_y_qu\u00e9_no",
-      "label": "Qu\u00e9 se ve y qu\u00e9 no",
+      "id": "docs_pixel_agents_qu\u00e9_se_ve",
+      "label": "Qu\u00e9 se ve",
       "_origin": "ast",
       "community": 47,
       "community_name": "Pixel Agents \u2014 la interfaz visual del hivemind",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "que se ve y que no",
+      "norm_label": "que se ve",
       "source_file": "docs/PIXEL-AGENTS.md",
       "source_location": "L47"
     },
@@ -2836,6 +2956,94 @@
       "norm_label": "src",
       "source_file": "tools/sync-agents.js",
       "source_location": "L23"
+    },
+    {
+      "id": "tools_pixel_bridge",
+      "label": "pixel-bridge.js",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "pixel-bridge.js",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tools_pixel_bridge_agente_modelo",
+      "label": "AGENTE_MODELO",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "agente_modelo",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L113"
+    },
+    {
+      "id": "tools_pixel_bridge_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L41"
+    },
+    {
+      "id": "tools_pixel_bridge_http",
+      "label": "http",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "http",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L42"
+    },
+    {
+      "id": "tools_pixel_bridge_legacy",
+      "label": "LEGACY",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "legacy",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L47"
+    },
+    {
+      "id": "tools_pixel_bridge_os",
+      "label": "os",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "os",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L43"
+    },
+    {
+      "id": "tools_pixel_bridge_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L44"
+    },
+    {
+      "id": "tools_pixel_bridge_registry",
+      "label": "REGISTRY",
+      "_origin": "ast",
+      "community": 50,
+      "community_name": "pixel-bridge.js",
+      "file_type": "code",
+      "norm_label": "registry",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L46"
     },
     {
       "id": "claude_skills_diagram_mermaid_skill",
@@ -9582,36 +9790,6 @@
       "source_url": null
     },
     {
-      "id": "_claude_skills_android_doctor_skill_verificar_fix_reejecutando",
-      "label": "Verificar cada fix re-ejecutando el chequeo fallido",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 37,
-      "community_name": "Skill android-doctor: doctor del entorno Android",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "verificar cada fix re-ejecutando el chequeo fallido",
-      "source_file": ".claude/skills/android-doctor/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_skills_debug_skill_causa_raiz",
-      "label": "Causa ra\u00edz demostrada, no s\u00edntoma",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 37,
-      "community_name": "Skill android-doctor: doctor del entorno Android",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "causa raiz demostrada, no sintoma",
-      "source_file": ".claude/skills/debug/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "_claude_skills_context_prime_skill_context_prime",
       "label": "Skill context-prime: mapa del repo con m\u00ednimo coste",
       "_origin": "semantic",
@@ -9788,6 +9966,21 @@
       "file_type": "document",
       "norm_label": "skill deep-plan: diseno antes de codigo",
       "source_file": ".claude/skills/deep-plan/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_skills_android_doctor_skill_verificar_fix_reejecutando",
+      "label": "Verificar cada fix re-ejecutando el chequeo fallido",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 4,
+      "community_name": "Skill debug: depuraci\u00f3n sistem\u00e1tica",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "verificar cada fix re-ejecutando el chequeo fallido",
+      "source_file": ".claude/skills/android-doctor/SKILL.md",
       "source_location": null,
       "source_url": null
     },
@@ -10177,6 +10370,21 @@
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "biseccion del espacio de busqueda (incluido git bisect)",
+      "source_file": ".claude/skills/debug/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_skills_debug_skill_causa_raiz",
+      "label": "Causa ra\u00edz demostrada, no s\u00edntoma",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 4,
+      "community_name": "Skill debug: depuraci\u00f3n sistem\u00e1tica",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "causa raiz demostrada, no sintoma",
       "source_file": ".claude/skills/debug/SKILL.md",
       "source_location": null,
       "source_url": null
@@ -12146,7 +12354,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/hivemind.js",
-      "source_location": "L142",
+      "source_location": "L159",
       "weight": 1.0
     },
     {
@@ -12158,7 +12366,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/hivemind.js",
-      "source_location": "L175",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -12170,7 +12378,91 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/hivemind.js",
-      "source_location": "L202",
+      "source_location": "L223",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_hivemind_run",
+      "target": "tools_hivemind_avisar",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/hivemind.js",
+      "source_location": "L270",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge_despachoiniciado",
+      "target": "tools_pixel_bridge_emitir",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge_despachoterminado",
+      "target": "tools_pixel_bridge_emitir",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L129",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge_emitir",
+      "target": "tools_pixel_bridge_servidores",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge_emitir",
+      "target": "tools_pixel_bridge_postear",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge_servidores",
+      "target": "tools_pixel_bridge_valido",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge_servidores",
+      "target": "tools_pixel_bridge_vivo",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -13929,7 +14221,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L471",
+      "source_location": "L474",
       "weight": 1.0
     },
     {
@@ -13940,7 +14232,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L494",
+      "source_location": "L497",
       "weight": 1.0
     },
     {
@@ -13952,6 +14244,28 @@
       "confidence_score": 1.0,
       "source_file": "docs/PIXEL-AGENTS.md",
       "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_pixel_agents_el_puente_c\u00f3mo_se_ve_la_flota_sin_forkear_nada",
+      "target": "docs_pixel_agents_la_trampa_que_cost\u00f3_encontrar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/PIXEL-AGENTS.md",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_pixel_agents_pixel_agents_la_interfaz_visual_del_hivemind",
+      "target": "docs_pixel_agents_notas_de_operaci\u00f3n",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/PIXEL-AGENTS.md",
+      "source_location": "L105",
       "weight": 1.0
     },
     {
@@ -13978,7 +14292,7 @@
     },
     {
       "source": "docs_pixel_agents_pixel_agents_la_interfaz_visual_del_hivemind",
-      "target": "docs_pixel_agents_qu\u00e9_se_ve_y_qu\u00e9_no",
+      "target": "docs_pixel_agents_qu\u00e9_se_ve",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -13989,13 +14303,13 @@
     },
     {
       "source": "docs_pixel_agents_pixel_agents_la_interfaz_visual_del_hivemind",
-      "target": "docs_pixel_agents_notas_de_operaci\u00f3n",
+      "target": "docs_pixel_agents_el_puente_c\u00f3mo_se_ve_la_flota_sin_forkear_nada",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/PIXEL-AGENTS.md",
-      "source_location": "L65",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -14292,7 +14606,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L124",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -14303,7 +14617,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L131",
+      "source_location": "L148",
       "weight": 1.0
     },
     {
@@ -14314,7 +14628,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L174",
+      "source_location": "L195",
       "weight": 1.0
     },
     {
@@ -14352,28 +14666,6 @@
     },
     {
       "source": "tools_hivemind",
-      "target": "tools_hivemind_cmd_argv",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/hivemind.js",
-      "source_location": "L293",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_hivemind",
-      "target": "tools_hivemind_acp",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/hivemind.js",
-      "source_location": "L296",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_hivemind",
       "target": "tools_hivemind_os",
       "relation": "contains",
       "_origin": "ast",
@@ -14381,17 +14673,6 @@
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
       "source_location": "L30",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_hivemind",
-      "target": "tools_hivemind_commands",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/hivemind.js",
-      "source_location": "L302",
       "weight": 1.0
     },
     {
@@ -14407,13 +14688,57 @@
     },
     {
       "source": "tools_hivemind",
+      "target": "tools_hivemind_cmd_argv",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/hivemind.js",
+      "source_location": "L325",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_hivemind",
+      "target": "tools_hivemind_acp",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/hivemind.js",
+      "source_location": "L328",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_hivemind",
+      "target": "tools_hivemind_commands",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/hivemind.js",
+      "source_location": "L334",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_hivemind",
+      "target": "tools_hivemind_avisar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/hivemind.js",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_hivemind",
       "target": "tools_hivemind_sanearentorno",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L39",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -14424,7 +14749,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L49",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -14435,7 +14760,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L55",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -14524,6 +14849,116 @@
       "confidence_score": 1.0,
       "source_file": "tools/hooks/protect-secrets.js",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_agente_modelo",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_http",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_os",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_path",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_registry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_legacy",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_vivo",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_valido",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_postear",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -15385,7 +15820,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "tools/hivemind.js",
-      "source_location": "L302",
+      "source_location": "L334",
       "weight": 1.0
     },
     {
@@ -15397,7 +15832,55 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "tools/hivemind.js",
-      "source_location": "L302",
+      "source_location": "L334",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_despachoiniciado",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "collection",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_despachoterminado",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "collection",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_emitir",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "collection",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_pixel_bridge",
+      "target": "tools_pixel_bridge_servidores",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "collection",
+      "source_file": "tools/pixel-bridge.js",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -23140,5 +23623,5 @@
       "source_file": ".claude/skills/pr/SKILL.md"
     }
   ],
-  "built_at_commit": "0a2c2edb95796eca187d4438a138b66548c7d999"
+  "built_at_commit": "fd85f41f6c59a2327b7c00b49aac37be2d186007"
 }
