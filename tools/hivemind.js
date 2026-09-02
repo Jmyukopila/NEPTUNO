@@ -10,7 +10,7 @@
 //   node tools/hivemind.js doctor                       -> quién está instalado y autenticado
 //   node tools/hivemind.js roster                        -> tabla de enrutado (resumen de docs/HIVEMIND.md)
 //   node tools/hivemind.js run <agente> "<prompt>" [opciones]     -> disparo, sin estado
-//   node tools/hivemind.js acp <agente> "<msg>" [--turno "..."]   -> sesión con turnos (devin, opencode)
+//   node tools/hivemind.js session <agente> "<msg>" [--turno "..."]  -> sesión con turnos (los tres)
 //
 // Agentes: opencode | antigravity (alias: agy, gemini) | devin
 // Opciones de run:
@@ -294,10 +294,12 @@ const [cmd, ...argv] = process.argv.slice(2);
 // ACP vive en tools/acp.js (sesión con turnos); aquí solo se enruta para que el hivemind
 // tenga una sola puerta de entrada. Ver docs/HIVEMIND.md §1 para cuándo usar cada transporte.
 function acp(argv) {
-  const r = spawnSync(process.execPath, [path.join(__dirname, 'acp.js'), ...argv], { stdio: 'inherit', env: ENV });
+  const r = spawnSync(process.execPath, [path.join(__dirname, 'session.js'), ...argv], { stdio: 'inherit', env: ENV });
   return r.status === null ? 1 : r.status;
 }
-const commands = { doctor, roster, run: () => run(argv), acp: () => acp(argv) };
+// `acp` se mantiene como alias de `session`: los dos protocolos viven detrás de la misma
+// interfaz, pero llamar "acp" a la sesión de antigravity seria mentir sobre el protocolo.
+const commands = { doctor, roster, run: () => run(argv), session: () => acp(argv), acp: () => acp(argv) };
 if (!cmd || !commands[cmd]) {
   console.log(fs.readFileSync(__filename, 'utf8').split('\n').filter((l) => l.startsWith('//')).map((l) => l.slice(3)).join('\n'));
   process.exit(cmd ? 2 : 0);

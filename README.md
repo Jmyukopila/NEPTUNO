@@ -715,7 +715,7 @@ casos borde, nombres, tests que de verdad fallen) lo pone Claude encima.
 
 | Agente | Fuerte en | Débil en |
 |---|---|---|
-| `antigravity` (`agy`) | Repos desconocidos, contexto grande, volumen mecánico, multimodal. Rápido y barato en Flash; salida validable con `--json-schema` | Menos disciplinado con protocolos largos. Ejecuta los comandos en su propio scratch: sin rutas absolutas devuelve `0` fingiendo éxito |
+| `antigravity` (`agy`) | Repos desconocidos, contexto grande, volumen mecánico, multimodal. Rápido y barato. **57 herramientas nativas con control de navegador completo** y 4 de subagentes | Menos disciplinado con protocolos largos. Ejecuta los comandos en su propio scratch: sin rutas absolutas devuelve `0` fingiendo éxito |
 | `opencode` | Refactors multi-archivo con plan cerrado. Es el único que ya tiene la doctrina NEPTUNO entera y sus 15 agentes | Sin navegador ni visión. Sin `--auto` se queda esperando un permiso que nadie responderá |
 | `devin` | Trabajo autónomo largo. Único con sandbox de proceso real (`bwrap`+`seccomp`) y entornos en la nube. Lee `.claude/skills/` nativamente | Caro y de arranque lento. Responde por inferencia si el criterio de salida no es un comando |
 
@@ -724,10 +724,11 @@ casos borde, nombres, tests que de verdad fallen) lo pone Claude encima.
 | `node tools/hivemind.js doctor` | Quién está instalado **y autenticado** (corrige las rutas XDG si la sesión vive dentro de un snap) |
 | `node tools/hivemind.js roster` | Enrutado resumido por forma de tarea |
 | `node tools/hivemind.js run <agente> "<encargo>"` | Despacha; el log va a `.hivemind/runs/`, no al contexto de la sesión |
-| `node tools/hivemind.js acp <agente> "<msg>" --turno "<otro>"` | Sesión ACP con turnos y memoria (solo `devin` y `opencode`) |
+| `node tools/hivemind.js session <agente> "<msg>" --turno "<otro>"` | Sesión con turnos y memoria en **los tres** (ACP en devin/opencode, stream-json en agy) |
+| `node tools/hivemind.js session capabilities <agente>` | Qué herramientas publica de verdad ese agente |
 
-**No se delega**: las decisiones de arquitectura, la verificación final, nada que necesite navegador
-(ninguna CLI trae Computer Use propio) y la integración entre trozos repartidos en paralelo — que
+**No se delega**: las decisiones de arquitectura, la verificación visual final, y la integración
+entre trozos repartidos en paralelo — que
 suele ser la parte que más piensa. Tampoco lo que se hace en cinco minutos: el arranque en frío de un
 agente externo cuesta más que la tarea.
 

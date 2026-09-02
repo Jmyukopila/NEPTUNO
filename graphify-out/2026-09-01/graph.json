@@ -196,6 +196,19 @@
   },
   "nodes": [
     {
+      "id": "tools_acp_clienteacp",
+      "label": "ClienteACP",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "clienteacp",
+      "source_file": "tools/acp.js",
+      "source_location": "L47"
+    },
+    {
       "id": "tools_sync_opencode_buildagents",
       "label": "buildAgents()",
       "_callable": true,
@@ -400,6 +413,18 @@
       "source_location": "L11"
     },
     {
+      "id": "tools_hivemind_acp",
+      "label": "acp()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 46,
+      "community_name": "hivemind.js",
+      "file_type": "code",
+      "norm_label": "acp()",
+      "source_file": "tools/hivemind.js",
+      "source_location": "L296"
+    },
+    {
       "id": "tools_hivemind_doctor",
       "label": "doctor()",
       "_callable": true,
@@ -409,7 +434,7 @@
       "file_type": "code",
       "norm_label": "doctor()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L136"
+      "source_location": "L137"
     },
     {
       "id": "tools_hivemind_resolveagent",
@@ -421,7 +446,7 @@
       "file_type": "code",
       "norm_label": "resolveagent()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L123"
+      "source_location": "L124"
     },
     {
       "id": "tools_hivemind_roster",
@@ -433,7 +458,7 @@
       "file_type": "code",
       "norm_label": "roster()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L162"
+      "source_location": "L163"
     },
     {
       "id": "tools_hivemind_run",
@@ -445,7 +470,7 @@
       "file_type": "code",
       "norm_label": "run()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L173"
+      "source_location": "L174"
     },
     {
       "id": "tools_hivemind_sanearentorno",
@@ -457,7 +482,7 @@
       "file_type": "code",
       "norm_label": "sanearentorno()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L38"
+      "source_location": "L39"
     },
     {
       "id": "tools_hivemind_which",
@@ -469,7 +494,115 @@
       "file_type": "code",
       "norm_label": "which()",
       "source_file": "tools/hivemind.js",
-      "source_location": "L130"
+      "source_location": "L131"
+    },
+    {
+      "id": "tools_acp_clienteacp_actualizacion",
+      "label": "._actualizacion()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "._actualizacion()",
+      "source_file": "tools/acp.js",
+      "source_location": "L134"
+    },
+    {
+      "id": "tools_acp_clienteacp_cerrar",
+      "label": ".cerrar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": ".cerrar()",
+      "source_file": "tools/acp.js",
+      "source_location": "L168"
+    },
+    {
+      "id": "tools_acp_clienteacp_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "tools/acp.js",
+      "source_location": "L48"
+    },
+    {
+      "id": "tools_acp_clienteacp_entrada",
+      "label": "._entrada()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "._entrada()",
+      "source_file": "tools/acp.js",
+      "source_location": "L69"
+    },
+    {
+      "id": "tools_acp_clienteacp_iniciar",
+      "label": ".iniciar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": ".iniciar()",
+      "source_file": "tools/acp.js",
+      "source_location": "L149"
+    },
+    {
+      "id": "tools_acp_clienteacp_mensaje",
+      "label": "._mensaje()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "._mensaje()",
+      "source_file": "tools/acp.js",
+      "source_location": "L82"
+    },
+    {
+      "id": "tools_acp_clienteacp_peticion",
+      "label": "._peticion()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "._peticion()",
+      "source_file": "tools/acp.js",
+      "source_location": "L98"
+    },
+    {
+      "id": "tools_acp_clienteacp_turno",
+      "label": ".turno()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": ".turno()",
+      "source_file": "tools/acp.js",
+      "source_location": "L159"
+    },
+    {
+      "id": "tools_acp_entorno",
+      "label": "entorno()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "entorno()",
+      "source_file": "tools/acp.js",
+      "source_location": "L37"
     },
     {
       "id": "tools_sync_agents_banner",
@@ -1393,7 +1526,7 @@
       "node_kind": "heading",
       "norm_label": "2. la flota",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L121"
+      "source_location": "L151"
     },
     {
       "id": "docs_hivemind_3_tabla_de_enrutado",
@@ -1405,7 +1538,7 @@
       "node_kind": "heading",
       "norm_label": "3. tabla de enrutado",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L170"
+      "source_location": "L200"
     },
     {
       "id": "docs_hivemind_4_bis_intervenir_el_trabajo_del_jefe_no_acaba_en_el_encargo",
@@ -1417,7 +1550,7 @@
       "node_kind": "heading",
       "norm_label": "4 bis. intervenir: el trabajo del jefe no acaba en el encargo",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L347"
+      "source_location": "L381"
     },
     {
       "id": "docs_hivemind_4_protocolo_de_despacho",
@@ -1429,7 +1562,7 @@
       "node_kind": "heading",
       "norm_label": "4. protocolo de despacho",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L193"
+      "source_location": "L223"
     },
     {
       "id": "docs_hivemind_5_interoperabilidad_una_doctrina_cuatro_lectores",
@@ -1441,7 +1574,7 @@
       "node_kind": "heading",
       "norm_label": "5. interoperabilidad: una doctrina, cuatro lectores",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L398"
+      "source_location": "L432"
     },
     {
       "id": "docs_hivemind_6_l\u00edmites_honestos",
@@ -1453,7 +1586,7 @@
       "node_kind": "heading",
       "norm_label": "6. limites honestos",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L421"
+      "source_location": "L455"
     },
     {
       "id": "docs_hivemind_antigravity_agy",
@@ -1465,7 +1598,7 @@
       "node_kind": "heading",
       "norm_label": "antigravity (`agy`)",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L141"
+      "source_location": "L171"
     },
     {
       "id": "docs_hivemind_capa_1_herramientas_mcp",
@@ -1501,7 +1634,7 @@
       "node_kind": "heading",
       "norm_label": "capa 3 \u2014 control de gui: computer use",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L82"
+      "source_location": "L112"
     },
     {
       "id": "docs_hivemind_capa_4_ejecuci\u00f3n_aislada_harnesses_y_sandboxes",
@@ -1513,7 +1646,19 @@
       "node_kind": "heading",
       "norm_label": "capa 4 \u2014 ejecucion aislada: harnesses y sandboxes",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L95"
+      "source_location": "L125"
+    },
+    {
+      "id": "docs_hivemind_c\u00f3mo_funciona_el_cliente_tools_acp_js",
+      "label": "C\u00f3mo funciona el cliente (`tools/acp.js`)",
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "Hivemind \u2014 Claude como corteza de un ecosistema multi-agente",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "como funciona el cliente (`tools/acp.js`)",
+      "source_file": "docs/HIVEMIND.md",
+      "source_location": "L92"
     },
     {
       "id": "docs_hivemind_c\u00f3mo_intervenir_sin_estropearlo",
@@ -1525,7 +1670,7 @@
       "node_kind": "heading",
       "norm_label": "como intervenir sin estropearlo",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L381"
+      "source_location": "L415"
     },
     {
       "id": "docs_hivemind_c\u00f3mo_se_mide_y_c\u00f3mo_eso_decide_el_enrutado",
@@ -1537,7 +1682,7 @@
       "node_kind": "heading",
       "norm_label": "como se mide \u2014 y como eso decide el enrutado",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L109"
+      "source_location": "L139"
     },
     {
       "id": "docs_hivemind_devin",
@@ -1549,7 +1694,7 @@
       "node_kind": "heading",
       "norm_label": "devin",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L155"
+      "source_location": "L185"
     },
     {
       "id": "docs_hivemind_el_tope_de_tiempo_tiene_que_matar_no_pedir_por_favor",
@@ -1561,7 +1706,7 @@
       "node_kind": "heading",
       "norm_label": "el tope de tiempo tiene que matar, no pedir por favor",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L274"
+      "source_location": "L308"
     },
     {
       "id": "docs_hivemind_hivemind_claude_como_corteza_de_un_ecosistema_multi_agente",
@@ -1585,7 +1730,7 @@
       "node_kind": "heading",
       "norm_label": "invocacion",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L231"
+      "source_location": "L261"
     },
     {
       "id": "docs_hivemind_la_trampa_de_los_permisos_en_modo_headless",
@@ -1597,7 +1742,7 @@
       "node_kind": "heading",
       "norm_label": "la trampa de los permisos en modo headless",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L312"
+      "source_location": "L346"
     },
     {
       "id": "docs_hivemind_la_trampa_del_directorio_el_agente_no_trabaja_donde_crees",
@@ -1609,7 +1754,7 @@
       "node_kind": "heading",
       "norm_label": "la trampa del directorio: el agente no trabaja donde crees",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L244"
+      "source_location": "L278"
     },
     {
       "id": "docs_hivemind_la_trampa_del_proveedor_autenticado_puede_ejecutar",
@@ -1621,7 +1766,7 @@
       "node_kind": "heading",
       "norm_label": "la trampa del proveedor: autenticado = puede ejecutar",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L259"
+      "source_location": "L293"
     },
     {
       "id": "docs_hivemind_la_trampa_del_snap_autenticaci\u00f3n_que_existe_pero_no_se_ve",
@@ -1633,7 +1778,7 @@
       "node_kind": "heading",
       "norm_label": "la trampa del snap: autenticacion que existe pero no se ve",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L301"
+      "source_location": "L335"
     },
     {
       "id": "docs_hivemind_las_cuatro_salidas_en_orden_de_frecuencia_real",
@@ -1645,7 +1790,7 @@
       "node_kind": "heading",
       "norm_label": "las cuatro salidas, en orden de frecuencia real",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L354"
+      "source_location": "L388"
     },
     {
       "id": "docs_hivemind_opencode",
@@ -1657,7 +1802,7 @@
       "node_kind": "heading",
       "norm_label": "opencode",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L125"
+      "source_location": "L155"
     },
     {
       "id": "docs_hivemind_qu\u00e9_falla_en_el_trabajo_delegado_y_por_tanto_qu\u00e9_revisar",
@@ -1669,7 +1814,7 @@
       "node_kind": "heading",
       "norm_label": "que falla en el trabajo delegado (y por tanto que revisar)",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L367"
+      "source_location": "L401"
     },
     {
       "id": "docs_hivemind_y_a_veces_la_intervenci\u00f3n_es_la_parte_dif\u00edcil",
@@ -1681,7 +1826,7 @@
       "node_kind": "heading",
       "norm_label": "y a veces la intervencion es la parte dificil",
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L392"
+      "source_location": "L426"
     },
     {
       "id": "docs_graphify",
@@ -2062,7 +2207,7 @@
       "file_type": "code",
       "norm_label": "agents",
       "source_file": "tools/hivemind.js",
-      "source_location": "L54"
+      "source_location": "L55"
     },
     {
       "id": "tools_hivemind_cmd_argv",
@@ -2073,7 +2218,7 @@
       "file_type": "code",
       "norm_label": "[cmd, ...argv]",
       "source_file": "tools/hivemind.js",
-      "source_location": "L292"
+      "source_location": "L293"
     },
     {
       "id": "tools_hivemind_commands",
@@ -2084,7 +2229,7 @@
       "file_type": "code",
       "norm_label": "commands",
       "source_file": "tools/hivemind.js",
-      "source_location": "L293"
+      "source_location": "L300"
     },
     {
       "id": "tools_hivemind_env",
@@ -2095,7 +2240,7 @@
       "file_type": "code",
       "norm_label": "env",
       "source_file": "tools/hivemind.js",
-      "source_location": "L48"
+      "source_location": "L49"
     },
     {
       "id": "tools_hivemind_fs",
@@ -2106,7 +2251,7 @@
       "file_type": "code",
       "norm_label": "fs",
       "source_file": "tools/hivemind.js",
-      "source_location": "L27"
+      "source_location": "L28"
     },
     {
       "id": "tools_hivemind_os",
@@ -2117,7 +2262,7 @@
       "file_type": "code",
       "norm_label": "os",
       "source_file": "tools/hivemind.js",
-      "source_location": "L29"
+      "source_location": "L30"
     },
     {
       "id": "tools_hivemind_path",
@@ -2128,7 +2273,7 @@
       "file_type": "code",
       "norm_label": "path",
       "source_file": "tools/hivemind.js",
-      "source_location": "L28"
+      "source_location": "L29"
     },
     {
       "id": "tools_hivemind_root",
@@ -2139,7 +2284,7 @@
       "file_type": "code",
       "norm_label": "root",
       "source_file": "tools/hivemind.js",
-      "source_location": "L31"
+      "source_location": "L32"
     },
     {
       "id": "tools_hivemind_spawnsync",
@@ -2150,7 +2295,84 @@
       "file_type": "code",
       "norm_label": "{ spawnsync }",
       "source_file": "tools/hivemind.js",
+      "source_location": "L27"
+    },
+    {
+      "id": "tools_acp",
+      "label": "acp.js",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "acp.js",
+      "source_file": "tools/acp.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tools_acp_agentes",
+      "label": "AGENTES",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "agentes",
+      "source_file": "tools/acp.js",
+      "source_location": "L30"
+    },
+    {
+      "id": "tools_acp_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tools/acp.js",
+      "source_location": "L25"
+    },
+    {
+      "id": "tools_acp_os",
+      "label": "os",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "os",
+      "source_file": "tools/acp.js",
+      "source_location": "L27"
+    },
+    {
+      "id": "tools_acp_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tools/acp.js",
       "source_location": "L26"
+    },
+    {
+      "id": "tools_acp_root",
+      "label": "ROOT",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "root",
+      "source_file": "tools/acp.js",
+      "source_location": "L29"
+    },
+    {
+      "id": "tools_acp_spawn",
+      "label": "{ spawn }",
+      "_origin": "ast",
+      "community": 47,
+      "community_name": "ClienteACP",
+      "file_type": "code",
+      "norm_label": "{ spawn }",
+      "source_file": "tools/acp.js",
+      "source_location": "L24"
     },
     {
       "id": "claude_skills_hivemind_skill",
@@ -2168,6 +2390,18 @@
       "norm_label": "hivemind/skill.md",
       "source_file": ".claude/skills/hivemind/SKILL.md",
       "source_location": "L1"
+    },
+    {
+      "id": "claude_skills_hivemind_skill_dos_transportes_disparo_o_conversaci\u00f3n",
+      "label": "Dos transportes: disparo o conversaci\u00f3n",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "Hivemind \u2014 t\u00fa decides y verificas; ellos ejecutan",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "dos transportes: disparo o conversacion",
+      "source_file": ".claude/skills/hivemind/SKILL.md",
+      "source_location": "L95"
     },
     {
       "id": "claude_skills_hivemind_skill_hivemind_t\u00fa_decides_y_verificas_ellos_ejecutan",
@@ -2191,7 +2425,7 @@
       "node_kind": "heading",
       "norm_label": "paralelizar",
       "source_file": ".claude/skills/hivemind/SKILL.md",
-      "source_location": "L139"
+      "source_location": "L156"
     },
     {
       "id": "claude_skills_hivemind_skill_paso_0_esto_se_delega",
@@ -2263,7 +2497,7 @@
       "node_kind": "heading",
       "norm_label": "paso 5 \u2014 verificar (no es opcional)",
       "source_file": ".claude/skills/hivemind/SKILL.md",
-      "source_location": "L102"
+      "source_location": "L119"
     },
     {
       "id": "claude_skills_hivemind_skill_paso_6_intervenir_el_paso_que_la_gente_se_salta",
@@ -2275,7 +2509,7 @@
       "node_kind": "heading",
       "norm_label": "paso 6 \u2014 intervenir (el paso que la gente se salta)",
       "source_file": ".claude/skills/hivemind/SKILL.md",
-      "source_location": "L110"
+      "source_location": "L127"
     },
     {
       "id": "claude_skills_hivemind_skill_reglas",
@@ -2287,7 +2521,7 @@
       "node_kind": "heading",
       "norm_label": "reglas",
       "source_file": ".claude/skills/hivemind/SKILL.md",
-      "source_location": "L146"
+      "source_location": "L163"
     },
     {
       "id": "tools_sync_agents",
@@ -5143,6 +5377,54 @@
       "source_url": null
     },
     {
+      "id": "readme_modelo_orquestador_y_subagentes",
+      "label": "Modelo orquestador y subagentes",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "community_name": "tools/sync-opencode.js",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "modelo orquestador y subagentes",
+      "rationale": "El subagente arranca con ventana de contexto vacia, corre con el modelo definido en su archivo (no el de la sesion), corre en segundo plano y devuelve solo su reporte final: una busqueda de 5.000 lineas vuelve como 20 lineas de conclusion.",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "readme_skills_como_protocolo_de_trabajo",
+      "label": "Skill como protocolo de trabajo, no script",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "community_name": "tools/sync-opencode.js",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "skill como protocolo de trabajo, no script",
+      "rationale": "Cada SKILL.md fuerza al modelo a seguir un metodo probado en vez de improvisar; se invoca por el usuario como slash-command o por el propio modelo cuando la description del frontmatter encaja.",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "readme_ecosistema_neptuno",
+      "label": "Ecosistema NEPTUNO",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "community_name": "tools/sync-opencode.js",
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "ecosistema neptuno",
+      "rationale": "Cuatro piezas con mecanismos de activacion distintos: CLAUDE.md (doctrina siempre activa), skills (comandos invocables), agentes (especialistas con modelo propio) e infraestructura (.mcp.json + settings.json con hooks).",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "readme_sync_global_js",
       "label": "tools/sync-global.js",
       "_origin": "semantic",
@@ -5287,6 +5569,22 @@
       "source_url": null
     },
     {
+      "id": "handoff_precedencia_modelo_de_subagente",
+      "label": "El model: del subagente gana sobre el --model de la sesion",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "community_name": "tools/sync-opencode.js",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "el model: del subagente gana sobre el --model de la sesion",
+      "rationale": "Verificado con evidencia en opencode: cambiar de proveedor para toda la flota exige regenerar con --provider, no basta con invocar opencode run --model otro/proveedor.",
+      "source_file": "HANDOFF.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "handoff_renombrado_economia_tokens",
       "label": "Renombrado docs/TOKENS.md -> docs/ECONOMIA-TOKENS.md",
       "_origin": "semantic",
@@ -5314,6 +5612,22 @@
       "file_type": "rationale",
       "norm_label": ".claude/ como unica fuente de verdad",
       "rationale": ".opencode/ y ~/.claude/ son SIEMPRE artefactos generados y nunca se editan a mano; los sincronizadores borran y reescriben esas carpetas en cada ejecucion, asi que cualquier edicion manual alli se pierde en silencio.",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "readme_economia_de_modelos",
+      "label": "Economia de modelos por rol",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "community_name": "tools/sync-opencode.js",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "economia de modelos por rol",
+      "rationale": "El modelo caro en las decisiones (architect, critic en Opus), el barato en el volumen (scout en Haiku), el equilibrado en la ejecucion (Sonnet): una sesion de Sonnet obtiene diseno y revision de nivel Opus pagandolo solo donde importa.",
       "source_file": "README.md",
       "source_location": null,
       "source_url": null
@@ -5668,6 +5982,22 @@
       "source_url": null
     },
     {
+      "id": "_claude_agents_data_scientist_anti_leakage",
+      "label": "Anti-leakage como reflejo",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 14,
+      "community_name": "Honestidad de resultados: verificado / inferido / asumido",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "anti-leakage como reflejo",
+      "rationale": "El test set se aparta ANTES de explorar, split temporal para datos temporales y por grupo para entidades repetidas, todo fit de preprocesado solo sobre train. Una metrica demasiado buena es un bug hasta demostrar lo contrario.",
+      "source_file": ".claude/agents/data-scientist.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "_claude_agents_desktop_firma_de_codigo_opcional",
       "label": "Firma de codigo como paso opcional y explicito",
       "_origin": "semantic",
@@ -5700,22 +6030,6 @@
       "source_url": null
     },
     {
-      "id": "claude_ciclo_entender_planificar_ejecutar_verificar",
-      "label": "Ciclo ENTENDER -> PLANIFICAR -> EJECUTAR -> VERIFICAR",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 14,
-      "community_name": "Honestidad de resultados: verificado / inferido / asumido",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "ciclo entender -> planificar -> ejecutar -> verificar",
-      "rationale": "Prohibe saltar directamente a escribir codigo. Cada fase existe para matar un modo de fallo concreto: ambiguedad no resuelta, edicion sin plan, supuestos contra memoria en vez de codigo real, y exito declarado sin evidencia observada.",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "claude_honestidad_de_resultados",
       "label": "Honestidad de resultados: verificado / inferido / asumido",
       "_origin": "semantic",
@@ -5727,6 +6041,22 @@
       "file_type": "rationale",
       "norm_label": "honestidad de resultados: verificado / inferido / asumido",
       "rationale": "Obliga a etiquetar cada afirmacion segun su respaldo real (lo ejecute y lo vi / lo deduzco del codigo / no lo comprobe) y prohibe la formula 'deberia funcionar'.",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "claude_subagentes_como_cortafuegos_de_contexto",
+      "label": "Subagentes como cortafuegos de contexto",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 14,
+      "community_name": "Honestidad de resultados: verificado / inferido / asumido",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "subagentes como cortafuegos de contexto",
+      "rationale": "Delegar busquedas amplias a scout y exploraciones a Explore evita quemar el contexto principal con dumps de archivos; el subagente devuelve solo su reporte final.",
       "source_file": "CLAUDE.md",
       "source_location": null,
       "source_url": null
@@ -5860,6 +6190,54 @@
       "source_url": null
     },
     {
+      "id": "_claude_agents_scout_scout",
+      "label": "Agente scout (Haiku)",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 15,
+      "community_name": "graphify como capa 0 de recuperacion",
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "agente scout (haiku)",
+      "rationale": "Explorador barato y de solo lectura: encuentra y reporta, nunca modifica ni opina sobre diseno. Existe para absorber busquedas amplias que quemarian el contexto principal.",
+      "source_file": ".claude/agents/scout.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_agents_debugger_radio_de_explosion",
+      "label": "Medir el radio de explosion del patron defectuoso",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 15,
+      "community_name": "graphify como capa 0 de recuperacion",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "medir el radio de explosion del patron defectuoso",
+      "rationale": "Grep por el patron defectuoso: si el mismo bug existe en otros sitios, se reportan todos en vez de parchear solo la instancia observada.",
+      "source_file": ".claude/agents/debugger.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_agents_scout_grafo_antes_que_grep",
+      "label": "Paso 0 de scout: el grafo antes que el grep",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 15,
+      "community_name": "graphify como capa 0 de recuperacion",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "paso 0 de scout: el grafo antes que el grep",
+      "rationale": "Un scout que grepea a ciegas gasta exactamente lo que graphify existe para evitar; el subgrafo acotado dice que archivos merecen un Grep de verdad. Solo si el grafo no existe o no responde se pasa a Grep.",
+      "source_file": ".claude/agents/scout.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "claude_grafo_orienta_no_autoriza",
       "label": "El grafo orienta, no autoriza",
       "_origin": "semantic",
@@ -5871,6 +6249,22 @@
       "file_type": "rationale",
       "norm_label": "el grafo orienta, no autoriza",
       "rationale": "Un subgrafo nunca es evidencia suficiente para escribir un Edit: el grafo localiza, pero el fragmento real debe leerse antes de editarlo. Evita que la compresion del grafo se convierta en fuente de alucinaciones.",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "claude_jerarquia_de_coste",
+      "label": "Jerarquia de coste de recuperacion",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 15,
+      "community_name": "graphify como capa 0 de recuperacion",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "jerarquia de coste de recuperacion",
+      "rationale": "Escalera de coste creciente: (0) el dato ya esta en la conversacion, (0.5) graphify query, (1) Grep/Glob, (2) Read con offset/limit, (3) Read completo. Nunca pagar el nivel N si el N-1 responde.",
       "source_file": "CLAUDE.md",
       "source_location": null,
       "source_url": null
@@ -5903,6 +6297,22 @@
       "file_type": "rationale",
       "norm_label": "hook de graphify en modo nudge (no --strict)",
       "rationale": "Eleccion explicita del usuario: el hook PreToolUse inyecta contexto recordando consultar el grafo, nunca bloquea y falla abierto ante cualquier error. Verificado por stdin en los cuatro casos (con grafo / sin grafo / dentro / fuera del proyecto).",
+      "source_file": "HANDOFF.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "handoff_mcp_graphify_no_registrado",
+      "label": "MCP graphify-mcp deliberadamente no registrado",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 15,
+      "community_name": "graphify como capa 0 de recuperacion",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "mcp graphify-mcp deliberadamente no registrado",
+      "rationale": "Registrarlo meter\u00eda 10 herramientas en el contexto de cada sesion para hacer lo que el CLI ya hace gratis desde Bash. El coste permanente de contexto no compensa la comodidad.",
       "source_file": "HANDOFF.md",
       "source_location": null,
       "source_url": null
@@ -6095,43 +6505,11 @@
       "author": null,
       "captured_at": null,
       "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
+      "community_name": "Ajuste de doctrina por modelo",
       "contributor": null,
       "file_type": "concept",
       "norm_label": "mcp sequential-thinking",
       "rationale": "Compensa la menor profundidad de razonamiento de los modelos pequenos: descomposicion en pensamientos numerados, revision y ramificacion. Marca diferencia real con Haiku/Sonnet en algoritmos, concurrencia y diagnostico de leakage.",
-      "source_file": "README.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "readme_modelo_orquestador_y_subagentes",
-      "label": "Modelo orquestador y subagentes",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "modelo orquestador y subagentes",
-      "rationale": "El subagente arranca con ventana de contexto vacia, corre con el modelo definido en su archivo (no el de la sesion), corre en segundo plano y devuelve solo su reporte final: una busqueda de 5.000 lineas vuelve como 20 lineas de conclusion.",
-      "source_file": "README.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "readme_skills_como_protocolo_de_trabajo",
-      "label": "Skill como protocolo de trabajo, no script",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "skill como protocolo de trabajo, no script",
-      "rationale": "Cada SKILL.md fuerza al modelo a seguir un metodo probado en vez de improvisar; se invoca por el usuario como slash-command o por el propio modelo cuando la description del frontmatter encaja.",
       "source_file": "README.md",
       "source_location": null,
       "source_url": null
@@ -6143,28 +6521,12 @@
       "author": null,
       "captured_at": null,
       "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
+      "community_name": "Ajuste de doctrina por modelo",
       "contributor": null,
       "file_type": "document",
       "norm_label": "agente architect (opus)",
       "rationale": "Entregable es un plan o decision de diseno fundamentada, nunca codigo de produccion. Explora el codigo real antes de opinar porque un plan que ignora el terreno no vale.",
       "source_file": ".claude/agents/architect.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "readme_ecosistema_neptuno",
-      "label": "Ecosistema NEPTUNO",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
-      "contributor": null,
-      "file_type": "document",
-      "norm_label": "ecosistema neptuno",
-      "rationale": "Cuatro piezas con mecanismos de activacion distintos: CLAUDE.md (doctrina siempre activa), skills (comandos invocables), agentes (especialistas con modelo propio) e infraestructura (.mcp.json + settings.json con hooks).",
-      "source_file": "README.md",
       "source_location": null,
       "source_url": null
     },
@@ -6175,7 +6537,7 @@
       "author": null,
       "captured_at": null,
       "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
+      "community_name": "Ajuste de doctrina por modelo",
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "caza activa de la sobre-ingenieria",
@@ -6191,11 +6553,27 @@
       "author": null,
       "captured_at": null,
       "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
+      "community_name": "Ajuste de doctrina por modelo",
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "ajuste de doctrina por modelo",
       "rationale": "Cada modelo tiene un modo de fallo dominante distinto: Haiku se salta pasos, Sonnet sobreconfia en APIs de memoria y declara exito sin verificar, Opus sobre-ingenieria y respuestas largas. La doctrina se calibra a cada uno en vez de ser uniforme.",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "claude_ciclo_entender_planificar_ejecutar_verificar",
+      "label": "Ciclo ENTENDER -> PLANIFICAR -> EJECUTAR -> VERIFICAR",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 17,
+      "community_name": "Ajuste de doctrina por modelo",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "ciclo entender -> planificar -> ejecutar -> verificar",
+      "rationale": "Prohibe saltar directamente a escribir codigo. Cada fase existe para matar un modo de fallo concreto: ambiguedad no resuelta, edicion sin plan, supuestos contra memoria en vez de codigo real, y exito declarado sin evidencia observada.",
       "source_file": "CLAUDE.md",
       "source_location": null,
       "source_url": null
@@ -6207,44 +6585,12 @@
       "author": null,
       "captured_at": null,
       "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
+      "community_name": "Ajuste de doctrina por modelo",
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "protocolo neptuno de alto rendimiento",
       "rationale": "Contrato de calidad no opcional del workspace: hace que Haiku, Sonnet y Opus trabajen con la misma disciplina de razonamiento y ejecucion, independientemente del modelo elegido.",
       "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "handoff_precedencia_modelo_de_subagente",
-      "label": "El model: del subagente gana sobre el --model de la sesion",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "el model: del subagente gana sobre el --model de la sesion",
-      "rationale": "Verificado con evidencia en opencode: cambiar de proveedor para toda la flota exige regenerar con --provider, no basta con invocar opencode run --model otro/proveedor.",
-      "source_file": "HANDOFF.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "readme_economia_de_modelos",
-      "label": "Economia de modelos por rol",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 17,
-      "community_name": "Modelo orquestador y subagentes",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "economia de modelos por rol",
-      "rationale": "El modelo caro en las decisiones (architect, critic en Opus), el barato en el volumen (scout en Haiku), el equilibrado en la ejecucion (Sonnet): una sesion de Sonnet obtiene diseno y revision de nivel Opus pagandolo solo donde importa.",
-      "source_file": "README.md",
       "source_location": null,
       "source_url": null
     },
@@ -6390,21 +6736,6 @@
       "source_url": null
     },
     {
-      "id": "_claude_skills_self_review_skill_duplication_check",
-      "label": "Duplication check before accepting new helpers",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 18,
-      "community_name": "pr skill (create a Pull Request)",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "duplication check before accepting new helpers",
-      "source_file": ".claude/skills/self-review/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "_claude_agents_data_engineer_data_engineer",
       "label": "Agente data-engineer (Sonnet)",
       "_origin": "semantic",
@@ -6497,22 +6828,6 @@
       "norm_label": "mirar los datos reales antes de escribir codigo",
       "rationale": "Muestrear la fuente (10-20 filas, conteos y nulos de las columnas clave): el codigo escrito contra el schema imaginado falla contra el dato real.",
       "source_file": ".claude/agents/data-engineer.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_agents_data_scientist_anti_leakage",
-      "label": "Anti-leakage como reflejo",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 19,
-      "community_name": "Agente data-scientist (Sonnet)",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "anti-leakage como reflejo",
-      "rationale": "El test set se aparta ANTES de explorar, split temporal para datos temporales y por grupo para entidades repetidas, todo fit de preprocesado solo sobre train. Una metrica demasiado buena es un bug hasta demostrar lo contrario.",
-      "source_file": ".claude/agents/data-scientist.md",
       "source_location": null,
       "source_url": null
     },
@@ -7223,22 +7538,6 @@
       "source_url": null
     },
     {
-      "id": "_claude_skills_optimize_tokens_skill_model_cost_tiering",
-      "label": "Model tiering by task cost",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 2,
-      "community_name": "build_merge",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "model tiering by task cost",
-      "rationale": "Mechanical and search work goes to Haiku, design to Opus only when the problem demands it, everything else to Sonnet.",
-      "source_file": ".claude/skills/optimize-tokens/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "_claude_skills_optimize_tokens_skill_notes_md_survival",
       "label": "NOTES.md state summary before compaction",
       "_origin": "semantic",
@@ -7707,58 +8006,10 @@
       "author": null,
       "captured_at": null,
       "community": 23,
-      "community_name": "Agent assignment by task kind",
+      "community_name": "One move at a time, green between steps",
       "contributor": null,
       "file_type": "document",
       "norm_label": "parallel-split skill",
-      "source_file": ".claude/skills/parallel-split/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_skills_optimize_tokens_skill_delegate_to_subagent",
-      "label": "Delegate broad searches to a subagent",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 23,
-      "community_name": "Agent assignment by task kind",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "delegate broad searches to a subagent",
-      "rationale": "The subagent burns its own context rather than the main one and returns only the conclusion.",
-      "source_file": ".claude/skills/optimize-tokens/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_skills_parallel_split_skill_agent_assignment",
-      "label": "Agent assignment by task kind",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 23,
-      "community_name": "Agent assignment by task kind",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "agent assignment by task kind",
-      "rationale": "Search to scout (cheap Haiku), design to architect (Opus), implementation to implementer, verification to verifier.",
-      "source_file": ".claude/skills/parallel-split/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_skills_parallel_split_skill_cold_start_prompt",
-      "label": "Cold-start subagent prompt",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 23,
-      "community_name": "Agent assignment by task kind",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "cold-start subagent prompt",
-      "rationale": "The subagent begins without this conversation, so each brief must carry project context, exact files, success criteria, forbidden files and the report format.",
       "source_file": ".claude/skills/parallel-split/SKILL.md",
       "source_location": null,
       "source_url": null
@@ -7770,7 +8021,7 @@
       "author": null,
       "captured_at": null,
       "community": 23,
-      "community_name": "Agent assignment by task kind",
+      "community_name": "One move at a time, green between steps",
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "coordination cost rule",
@@ -7786,7 +8037,7 @@
       "author": null,
       "captured_at": null,
       "community": 23,
-      "community_name": "Agent assignment by task kind",
+      "community_name": "One move at a time, green between steps",
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "critical integration of results",
@@ -7802,7 +8053,7 @@
       "author": null,
       "captured_at": null,
       "community": 23,
-      "community_name": "Agent assignment by task kind",
+      "community_name": "One move at a time, green between steps",
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "independent, non-overlapping decomposition",
@@ -7818,7 +8069,7 @@
       "author": null,
       "captured_at": null,
       "community": 23,
-      "community_name": "Agent assignment by task kind",
+      "community_name": "One move at a time, green between steps",
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "no functional changes smuggled in",
@@ -7834,7 +8085,7 @@
       "author": null,
       "captured_at": null,
       "community": 23,
-      "community_name": "Agent assignment by task kind",
+      "community_name": "One move at a time, green between steps",
       "contributor": null,
       "file_type": "rationale",
       "norm_label": "one move at a time, green between steps",
@@ -8226,22 +8477,6 @@
       "source_url": null
     },
     {
-      "id": "_claude_skills_optimize_prompt_skill_prompt_techniques",
-      "label": "Prompt techniques by failure mode",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 26,
-      "community_name": "Constrained query expansion",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "prompt techniques by failure mode",
-      "rationale": "Ambiguity becomes binary criteria, hallucination risk gets an explicit 'say if you do not know', long data goes above the instructions to improve model attention, and mixed content gets XML tags.",
-      "source_file": ".claude/skills/optimize-prompt/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "_claude_agents_debugger_debugger",
       "label": "Agente debugger (Opus)",
       "_origin": "semantic",
@@ -8317,22 +8552,6 @@
       "file_type": "rationale",
       "norm_label": "biseccion con hipotesis falsables",
       "rationale": "Cada hipotesis se formula como 'X hace Y cuando Z' y se disena la observacion mas barata que la confirme o la mate; una variable por experimento, con registro de cada hipotesis descartada y su evidencia. Incluye debugging diferencial entre un caso que funciona y otro que falla, y reproduccion estadistica para heisenbugs.",
-      "source_file": ".claude/agents/debugger.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_agents_debugger_radio_de_explosion",
-      "label": "Medir el radio de explosion del patron defectuoso",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 27,
-      "community_name": "Agente debugger (Opus)",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "medir el radio de explosion del patron defectuoso",
-      "rationale": "Grep por el patron defectuoso: si el mismo bug existe en otros sitios, se reportan todos en vez de parchear solo la instancia observada.",
       "source_file": ".claude/agents/debugger.md",
       "source_location": null,
       "source_url": null
@@ -8707,6 +8926,21 @@
       "source_url": null
     },
     {
+      "id": "_claude_skills_self_review_skill_duplication_check",
+      "label": "Duplication check before accepting new helpers",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 33,
+      "community_name": "self-review skill",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "duplication check before accepting new helpers",
+      "source_file": ".claude/skills/self-review/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "_claude_skills_self_review_skill_edge_case_checklist",
       "label": "Logic and data edge-case checklist",
       "_origin": "semantic",
@@ -8718,22 +8952,6 @@
       "file_type": "rationale",
       "norm_label": "logic and data edge-case checklist",
       "rationale": "Every new conditional's opposite branch, empty/one/last loop iterations, off-by-one slices, null, empty string, 0, negative, unicode, very long, duplicates.",
-      "source_file": ".claude/skills/self-review/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_skills_self_review_skill_fidelity_to_request",
-      "label": "Fidelity to the original request",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 33,
-      "community_name": "self-review skill",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "fidelity to the original request",
-      "rationale": "Re-read the user's original words: the diff often solves a convenient version of what was asked.",
       "source_file": ".claude/skills/self-review/SKILL.md",
       "source_location": null,
       "source_url": null
@@ -9053,36 +9271,6 @@
       "source_url": null
     },
     {
-      "id": "_claude_skills_android_doctor_skill_verificar_fix_reejecutando",
-      "label": "Verificar cada fix re-ejecutando el chequeo fallido",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 37,
-      "community_name": "Skill android-doctor: doctor del entorno Android",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "verificar cada fix re-ejecutando el chequeo fallido",
-      "source_file": ".claude/skills/android-doctor/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_skills_debug_skill_causa_raiz",
-      "label": "Causa ra\u00edz demostrada, no s\u00edntoma",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 37,
-      "community_name": "Skill android-doctor: doctor del entorno Android",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "causa raiz demostrada, no sintoma",
-      "source_file": ".claude/skills/debug/SKILL.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "_claude_skills_context_prime_skill_context_prime",
       "label": "Skill context-prime: mapa del repo con m\u00ednimo coste",
       "_origin": "semantic",
@@ -9259,6 +9447,21 @@
       "file_type": "document",
       "norm_label": "skill deep-plan: diseno antes de codigo",
       "source_file": ".claude/skills/deep-plan/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_skills_android_doctor_skill_verificar_fix_reejecutando",
+      "label": "Verificar cada fix re-ejecutando el chequeo fallido",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 4,
+      "community_name": "Skill debug: depuraci\u00f3n sistem\u00e1tica",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "verificar cada fix re-ejecutando el chequeo fallido",
+      "source_file": ".claude/skills/android-doctor/SKILL.md",
       "source_location": null,
       "source_url": null
     },
@@ -9653,6 +9856,21 @@
       "source_url": null
     },
     {
+      "id": "_claude_skills_debug_skill_causa_raiz",
+      "label": "Causa ra\u00edz demostrada, no s\u00edntoma",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 4,
+      "community_name": "Skill debug: depuraci\u00f3n sistem\u00e1tica",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "causa raiz demostrada, no sintoma",
+      "source_file": ".claude/skills/debug/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "_claude_skills_debug_skill_heisenbugs",
       "label": "Heisenbugs: reproducci\u00f3n estad\u00edstica y m\u00ednima perturbaci\u00f3n",
       "_origin": "semantic",
@@ -9834,6 +10052,22 @@
       "source_url": null
     },
     {
+      "id": "_claude_skills_optimize_prompt_skill_prompt_techniques",
+      "label": "Prompt techniques by failure mode",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 40,
+      "community_name": "Optimized prompt structure",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "prompt techniques by failure mode",
+      "rationale": "Ambiguity becomes binary criteria, hallucination risk gets an explicit 'say if you do not know', long data goes above the instructions to improve model attention, and mixed content gets XML tags.",
+      "source_file": ".claude/skills/optimize-prompt/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "_claude_skills_optimize_prompt_skill_self_sufficient_prompt",
       "label": "Self-sufficient prompt rule",
       "_origin": "semantic",
@@ -9850,82 +10084,18 @@
       "source_url": null
     },
     {
-      "id": "_claude_agents_scout_scout",
-      "label": "Agente scout (Haiku)",
+      "id": "_claude_skills_self_review_skill_fidelity_to_request",
+      "label": "Fidelity to the original request",
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 47,
-      "community_name": "Jerarquia de coste de recuperacion",
-      "contributor": null,
-      "file_type": "document",
-      "norm_label": "agente scout (haiku)",
-      "rationale": "Explorador barato y de solo lectura: encuentra y reporta, nunca modifica ni opina sobre diseno. Existe para absorber busquedas amplias que quemarian el contexto principal.",
-      "source_file": ".claude/agents/scout.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "_claude_agents_scout_grafo_antes_que_grep",
-      "label": "Paso 0 de scout: el grafo antes que el grep",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 47,
-      "community_name": "Jerarquia de coste de recuperacion",
+      "community": 40,
+      "community_name": "Optimized prompt structure",
       "contributor": null,
       "file_type": "rationale",
-      "norm_label": "paso 0 de scout: el grafo antes que el grep",
-      "rationale": "Un scout que grepea a ciegas gasta exactamente lo que graphify existe para evitar; el subgrafo acotado dice que archivos merecen un Grep de verdad. Solo si el grafo no existe o no responde se pasa a Grep.",
-      "source_file": ".claude/agents/scout.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "claude_jerarquia_de_coste",
-      "label": "Jerarquia de coste de recuperacion",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 47,
-      "community_name": "Jerarquia de coste de recuperacion",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "jerarquia de coste de recuperacion",
-      "rationale": "Escalera de coste creciente: (0) el dato ya esta en la conversacion, (0.5) graphify query, (1) Grep/Glob, (2) Read con offset/limit, (3) Read completo. Nunca pagar el nivel N si el N-1 responde.",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "claude_subagentes_como_cortafuegos_de_contexto",
-      "label": "Subagentes como cortafuegos de contexto",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 47,
-      "community_name": "Jerarquia de coste de recuperacion",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "subagentes como cortafuegos de contexto",
-      "rationale": "Delegar busquedas amplias a scout y exploraciones a Explore evita quemar el contexto principal con dumps de archivos; el subagente devuelve solo su reporte final.",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "handoff_mcp_graphify_no_registrado",
-      "label": "MCP graphify-mcp deliberadamente no registrado",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 47,
-      "community_name": "Jerarquia de coste de recuperacion",
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "mcp graphify-mcp deliberadamente no registrado",
-      "rationale": "Registrarlo meter\u00eda 10 herramientas en el contexto de cada sesion para hacer lo que el CLI ya hace gratis desde Bash. El coste permanente de contexto no compensa la comodidad.",
-      "source_file": "HANDOFF.md",
+      "norm_label": "fidelity to the original request",
+      "rationale": "Re-read the user's original words: the diff often solves a convenient version of what was asked.",
+      "source_file": ".claude/skills/self-review/SKILL.md",
       "source_location": null,
       "source_url": null
     },
@@ -10054,6 +10224,70 @@
       "norm_label": "heuristica tools \u2192 permission",
       "rationale": "opencode controla permisos por categor\u00eda, no por herramienta: la traducci\u00f3n preserva la intenci\u00f3n (un agente de solo lectura sigue si\u00e9ndolo), no replica la lista 1:1.",
       "source_file": "docs/OPENCODE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_skills_optimize_tokens_skill_delegate_to_subagent",
+      "label": "Delegate broad searches to a subagent",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 50,
+      "community_name": "Agent assignment by task kind",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "delegate broad searches to a subagent",
+      "rationale": "The subagent burns its own context rather than the main one and returns only the conclusion.",
+      "source_file": ".claude/skills/optimize-tokens/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_skills_optimize_tokens_skill_model_cost_tiering",
+      "label": "Model tiering by task cost",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 50,
+      "community_name": "Agent assignment by task kind",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "model tiering by task cost",
+      "rationale": "Mechanical and search work goes to Haiku, design to Opus only when the problem demands it, everything else to Sonnet.",
+      "source_file": ".claude/skills/optimize-tokens/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_skills_parallel_split_skill_agent_assignment",
+      "label": "Agent assignment by task kind",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 50,
+      "community_name": "Agent assignment by task kind",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "agent assignment by task kind",
+      "rationale": "Search to scout (cheap Haiku), design to architect (Opus), implementation to implementer, verification to verifier.",
+      "source_file": ".claude/skills/parallel-split/SKILL.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_claude_skills_parallel_split_skill_cold_start_prompt",
+      "label": "Cold-start subagent prompt",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 50,
+      "community_name": "Agent assignment by task kind",
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "cold-start subagent prompt",
+      "rationale": "The subagent begins without this conversation, so each brief must carry project context, exact files, success criteria, forbidden files and the report format.",
+      "source_file": ".claude/skills/parallel-split/SKILL.md",
       "source_location": null,
       "source_url": null
     },
@@ -11689,6 +11923,66 @@
       "weight": 1.0
     },
     {
+      "source": "tools_acp_clienteacp_constructor",
+      "target": "tools_acp_entorno",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/acp.js",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp_constructor",
+      "target": "tools_acp_clienteacp_entrada",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/acp.js",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp_entrada",
+      "target": "tools_acp_clienteacp_mensaje",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/acp.js",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp_mensaje",
+      "target": "tools_acp_clienteacp_peticion",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/acp.js",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp_mensaje",
+      "target": "tools_acp_clienteacp_actualizacion",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/acp.js",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
       "source": "tools_hivemind_doctor",
       "target": "tools_hivemind_which",
       "relation": "calls",
@@ -11697,7 +11991,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/hivemind.js",
-      "source_location": "L141",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -11709,7 +12003,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/hivemind.js",
-      "source_location": "L174",
+      "source_location": "L175",
       "weight": 1.0
     },
     {
@@ -11721,7 +12015,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/hivemind.js",
-      "source_location": "L201",
+      "source_location": "L202",
       "weight": 1.0
     },
     {
@@ -12117,18 +12411,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".claude/skills/hivemind/SKILL.md",
-      "source_location": "L102",
-      "weight": 1.0
-    },
-    {
-      "source": "claude_skills_hivemind_skill_hivemind_t\u00fa_decides_y_verificas_ellos_ejecutan",
-      "target": "claude_skills_hivemind_skill_paso_6_intervenir_el_paso_que_la_gente_se_salta",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".claude/skills/hivemind/SKILL.md",
-      "source_location": "L110",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -12144,13 +12427,24 @@
     },
     {
       "source": "claude_skills_hivemind_skill_hivemind_t\u00fa_decides_y_verificas_ellos_ejecutan",
+      "target": "claude_skills_hivemind_skill_paso_6_intervenir_el_paso_que_la_gente_se_salta",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/hivemind/SKILL.md",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_hivemind_skill_hivemind_t\u00fa_decides_y_verificas_ellos_ejecutan",
       "target": "claude_skills_hivemind_skill_paralelizar",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".claude/skills/hivemind/SKILL.md",
-      "source_location": "L139",
+      "source_location": "L156",
       "weight": 1.0
     },
     {
@@ -12161,7 +12455,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".claude/skills/hivemind/SKILL.md",
-      "source_location": "L146",
+      "source_location": "L163",
       "weight": 1.0
     },
     {
@@ -12206,6 +12500,17 @@
       "confidence_score": 1.0,
       "source_file": ".claude/skills/hivemind/SKILL.md",
       "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_hivemind_skill_paso_4_despachar_sin_quemar_contexto",
+      "target": "claude_skills_hivemind_skill_dos_transportes_disparo_o_conversaci\u00f3n",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/hivemind/SKILL.md",
+      "source_location": "L95",
       "weight": 1.0
     },
     {
@@ -13068,13 +13373,35 @@
     },
     {
       "source": "docs_hivemind_1_las_cuatro_capas_del_ecosistema_ag\u00e9ntico",
+      "target": "docs_hivemind_capa_3_control_de_gui_computer_use",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HIVEMIND.md",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_hivemind_1_las_cuatro_capas_del_ecosistema_ag\u00e9ntico",
+      "target": "docs_hivemind_capa_4_ejecuci\u00f3n_aislada_harnesses_y_sandboxes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HIVEMIND.md",
+      "source_location": "L125",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_hivemind_1_las_cuatro_capas_del_ecosistema_ag\u00e9ntico",
       "target": "docs_hivemind_c\u00f3mo_se_mide_y_c\u00f3mo_eso_decide_el_enrutado",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L109",
+      "source_location": "L139",
       "weight": 1.0
     },
     {
@@ -13101,24 +13428,13 @@
     },
     {
       "source": "docs_hivemind_1_las_cuatro_capas_del_ecosistema_ag\u00e9ntico",
-      "target": "docs_hivemind_capa_3_control_de_gui_computer_use",
+      "target": "docs_hivemind_c\u00f3mo_funciona_el_cliente_tools_acp_js",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L82",
-      "weight": 1.0
-    },
-    {
-      "source": "docs_hivemind_1_las_cuatro_capas_del_ecosistema_ag\u00e9ntico",
-      "target": "docs_hivemind_capa_4_ejecuci\u00f3n_aislada_harnesses_y_sandboxes",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/HIVEMIND.md",
-      "source_location": "L95",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -13129,7 +13445,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L125",
+      "source_location": "L155",
       "weight": 1.0
     },
     {
@@ -13140,7 +13456,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L141",
+      "source_location": "L171",
       "weight": 1.0
     },
     {
@@ -13151,7 +13467,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L155",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -13162,7 +13478,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L354",
+      "source_location": "L388",
       "weight": 1.0
     },
     {
@@ -13173,7 +13489,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L367",
+      "source_location": "L401",
       "weight": 1.0
     },
     {
@@ -13184,7 +13500,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L381",
+      "source_location": "L415",
       "weight": 1.0
     },
     {
@@ -13195,7 +13511,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L392",
+      "source_location": "L426",
       "weight": 1.0
     },
     {
@@ -13206,7 +13522,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L231",
+      "source_location": "L261",
       "weight": 1.0
     },
     {
@@ -13217,7 +13533,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L244",
+      "source_location": "L278",
       "weight": 1.0
     },
     {
@@ -13228,7 +13544,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L259",
+      "source_location": "L293",
       "weight": 1.0
     },
     {
@@ -13239,7 +13555,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L274",
+      "source_location": "L308",
       "weight": 1.0
     },
     {
@@ -13250,7 +13566,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L301",
+      "source_location": "L335",
       "weight": 1.0
     },
     {
@@ -13261,18 +13577,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L312",
-      "weight": 1.0
-    },
-    {
-      "source": "docs_hivemind_hivemind_claude_como_corteza_de_un_ecosistema_multi_agente",
-      "target": "docs_hivemind_2_la_flota",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/HIVEMIND.md",
-      "source_location": "L121",
+      "source_location": "L346",
       "weight": 1.0
     },
     {
@@ -13288,13 +13593,24 @@
     },
     {
       "source": "docs_hivemind_hivemind_claude_como_corteza_de_un_ecosistema_multi_agente",
+      "target": "docs_hivemind_2_la_flota",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HIVEMIND.md",
+      "source_location": "L151",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_hivemind_hivemind_claude_como_corteza_de_un_ecosistema_multi_agente",
       "target": "docs_hivemind_3_tabla_de_enrutado",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L170",
+      "source_location": "L200",
       "weight": 1.0
     },
     {
@@ -13305,7 +13621,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L193",
+      "source_location": "L223",
       "weight": 1.0
     },
     {
@@ -13316,7 +13632,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L347",
+      "source_location": "L381",
       "weight": 1.0
     },
     {
@@ -13327,7 +13643,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L398",
+      "source_location": "L432",
       "weight": 1.0
     },
     {
@@ -13338,7 +13654,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HIVEMIND.md",
-      "source_location": "L421",
+      "source_location": "L455",
       "weight": 1.0
     },
     {
@@ -13628,6 +13944,94 @@
       "weight": 1.0
     },
     {
+      "source": "tools_acp",
+      "target": "tools_acp_spawn",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp",
+      "target": "tools_acp_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp",
+      "target": "tools_acp_path",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp",
+      "target": "tools_acp_os",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp",
+      "target": "tools_acp_root",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp",
+      "target": "tools_acp_agentes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp",
+      "target": "tools_acp_entorno",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp",
+      "target": "tools_acp_clienteacp",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
       "source": "tools_hivemind",
       "target": "tools_hivemind_resolveagent",
       "relation": "contains",
@@ -13635,7 +14039,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L123",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -13646,7 +14050,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L130",
+      "source_location": "L131",
       "weight": 1.0
     },
     {
@@ -13657,7 +14061,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L173",
+      "source_location": "L174",
       "weight": 1.0
     },
     {
@@ -13668,7 +14072,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -13679,23 +14083,12 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L27",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_hivemind",
-      "target": "tools_hivemind_path",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/hivemind.js",
       "source_location": "L28",
       "weight": 1.0
     },
     {
       "source": "tools_hivemind",
-      "target": "tools_hivemind_os",
+      "target": "tools_hivemind_path",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -13712,7 +14105,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L292",
+      "source_location": "L293",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_hivemind",
+      "target": "tools_hivemind_acp",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/hivemind.js",
+      "source_location": "L296",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_hivemind",
+      "target": "tools_hivemind_os",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/hivemind.js",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -13723,7 +14138,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L293",
+      "source_location": "L300",
       "weight": 1.0
     },
     {
@@ -13734,7 +14149,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -13745,7 +14160,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L38",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -13756,7 +14171,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -13767,7 +14182,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/hivemind.js",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -14387,6 +14802,94 @@
       "weight": 1.0
     },
     {
+      "source": "tools_acp_clienteacp",
+      "target": "tools_acp_clienteacp_actualizacion",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L134",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp",
+      "target": "tools_acp_clienteacp_peticion",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp",
+      "target": "tools_acp_clienteacp_iniciar",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L149",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp",
+      "target": "tools_acp_clienteacp_turno",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp",
+      "target": "tools_acp_clienteacp_cerrar",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp",
+      "target": "tools_acp_clienteacp_constructor",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp",
+      "target": "tools_acp_clienteacp_entrada",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_acp_clienteacp",
+      "target": "tools_acp_clienteacp_mensaje",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/acp.js",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
       "source": "mcp_mcp_server_memory",
       "target": "env_var_memory_file_path",
       "relation": "requires_env",
@@ -14442,7 +14945,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "tools/hivemind.js",
-      "source_location": "L293",
+      "source_location": "L300",
       "weight": 1.0
     },
     {
@@ -14454,7 +14957,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "tools/hivemind.js",
-      "source_location": "L293",
+      "source_location": "L300",
       "weight": 1.0
     },
     {
@@ -22173,5 +22676,5 @@
       "source_file": ".claude/skills/pr/SKILL.md"
     }
   ],
-  "built_at_commit": "51588651ed27eb97a2aedd237e7f47edb5eca61f"
+  "built_at_commit": "629652ec2603e8f0f1cab5705db7154217d19975"
 }

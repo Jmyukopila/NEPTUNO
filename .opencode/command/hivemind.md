@@ -94,20 +94,25 @@ significa que hubo trabajo — y aun así lo verificas.
 
 ### Dos transportes: disparo o conversación
 
-`run` es un disparo sin estado: cada encargo arranca en frío. **`acp` abre una sesión con turnos**
-en la que el agente recuerda lo anterior — solo `devin` y `opencode` lo soportan.
+`run` es un disparo sin estado: cada encargo arranca en frío. **`session` abre una sesión con turnos**
+en la que el agente recuerda lo anterior. **Los tres la soportan**, por dos protocolos distintos que
+el comando unifica (ACP en devin y opencode, stream-json propio en antigravity):
 
 ```bash
-node tools/hivemind.js acp opencode "<mensaje>" --turno "<seguimiento>" --turno "<otro>"
+node tools/hivemind.js session <agente> "<mensaje>" --turno "<seguimiento>" --turno "<otro>"
+node tools/hivemind.js session capabilities antigravity   # qué herramientas tiene de verdad
 ```
 
-Usa `acp` cuando el trabajo sea iterativo de verdad: revisar y pedir corrección sobre lo mismo,
+Usa `session` cuando el trabajo sea iterativo de verdad: revisar y pedir corrección sobre lo mismo,
 encadenar preguntas sobre un análisis caro, o cuando quieras que las lecturas y escrituras del agente
-pasen por tu cliente. Para todo lo demás, `run` con un contrato bien escrito es más simple y funciona
-con los tres.
+pasen por tu cliente. Para todo lo demás, `run` con un contrato bien escrito es más simple.
 
 `--safe` **no es un sandbox**: solo gobierna lo que responde tu cliente cuando el agente pide permiso,
 y opencode ejecuta sus herramientas sin pedirlo nunca. Para aislamiento real, `devin --sandbox`.
+
+**Comprueba las capacidades antes de descartar a un agente.** `capabilities` lista lo que publica de
+verdad: antigravity trae 57 herramientas con control de navegador completo y 4 de subagentes, así que
+una tarea de navegador sí se le puede delegar — al más barato de los tres.
 
 El log completo va a `.hivemind/runs/`; el comando solo devuelve la cola y `HIVEMIND_LOG=<ruta>`.
 **No leas el log entero**: si necesitas detalle, `grep`/`sed -n` sobre el tramo que importa. Volcar

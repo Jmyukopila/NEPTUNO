@@ -504,9 +504,9 @@
     "semantic_hash": "8b724b70f528d42547b5d39370316d6d"
   },
   "README.md": {
-    "mtime": 1788309489.6263478,
-    "seen": 1788309574.4570243,
-    "ast_hash": "7a25a9aae42ae90b7bc99a23a1749a62",
+    "mtime": 1788310932.3168693,
+    "seen": 1788310982.8768134,
+    "ast_hash": "6c71b4b03b78873bd17224b20b518e60",
     "semantic_hash": ""
   },
   "docs/ANDROID.md": {
@@ -606,9 +606,9 @@
     "semantic_hash": ""
   },
   "tools/hivemind.js": {
-    "mtime": 1788309438.4442868,
-    "seen": 1788309574.4568734,
-    "ast_hash": "58939ed4380f32a507260868cfab7941",
+    "mtime": 1788310760.2020814,
+    "seen": 1788310982.8767233,
+    "ast_hash": "b4605a6f2274854f7c98a91496e0d5f6",
     "semantic_hash": ""
   },
   "tools/sync-agents.js": {
@@ -642,9 +642,9 @@
     "semantic_hash": ""
   },
   ".claude/skills/hivemind/SKILL.md": {
-    "mtime": 1788309489.6258578,
-    "seen": 1788309574.456991,
-    "ast_hash": "208ac08f9eae34fd1cc09b56529a9bd8",
+    "mtime": 1788310932.3164735,
+    "seen": 1788310982.8767936,
+    "ast_hash": "9a5dd5da0b54e82b07b3b03ce981fc09",
     "semantic_hash": ""
   },
   ".claude/skills/translate-localize/SKILL.md": {
@@ -660,15 +660,15 @@
     "semantic_hash": ""
   },
   "docs/HIVEMIND.md": {
-    "mtime": 1788309474.6480036,
-    "seen": 1788309574.4570441,
-    "ast_hash": "5ba53cb336bbb565e1e0c0989e180c08",
+    "mtime": 1788310910.408253,
+    "seen": 1788310982.876824,
+    "ast_hash": "ee73a4b3d348728f3c5e38c8b4489cb1",
     "semantic_hash": ""
   },
-  "tools/acp.js": {
-    "mtime": 1788309387.8690252,
-    "seen": 1788309574.4568717,
-    "ast_hash": "d15156a946839b46ca571d8da2094ceb",
+  "tools/session.js": {
+    "mtime": 1788310818.0953107,
+    "seen": 1788310982.8767328,
+    "ast_hash": "c853f377342781b28586cdf468c66700",
     "semantic_hash": ""
   }
 }

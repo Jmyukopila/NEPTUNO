@@ -1,16 +1,16 @@
 # Graph Report - NEPTUNO  (2026-09-01)
 
 ## Corpus Check
-- 112 files · ~91,449 words
+- 112 files · ~92,561 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 802 nodes · 974 edges · 67 communities (62 shown, 3 thin omitted)
-- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 138 edges (avg confidence: 0.83)
+- 810 nodes · 987 edges · 64 communities (59 shown, 3 thin omitted)
+- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 140 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `629652ec`
+- Built from commit: `b67b6aa7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -24,23 +24,22 @@
 - Skill /expo-build
 - Skill /editorial-layout
 - install.js
-- Test safety net before touching anything
+- motion-design skill
 - sync-opencode.js
 - Skill /fable-mode — protocolo estricto
 - tools/sync-opencode.js
-- motion-design skill
+- session.js
 - Honestidad de resultados: verificado / inferido / asumido
 - graphify como capa 0 de recuperacion
 - Skill android-run: ejecutar y observar una app Android
-- Ajuste de doctrina por modelo
+- Modelo orquestador y subagentes
 - pr skill (create a Pull Request)
 - Agente data-scientist (Sonnet)
-- Skill a11y-review
+- Agente frontend (Sonnet)
 - Skill apk-build: build de APK/AAB sin Android Studio
 - Skill capacitor-build: build web + sync nativo Capacitor
-- One move at a time, green between steps
+- Agent assignment by task kind
 - pr-merge skill
-- Agente frontend (Sonnet)
 - Constrained query expansion
 - Agente debugger (Opus)
 - memory
@@ -61,10 +60,8 @@
 - plugins/protect-secrets.js
 - hooks/protect-secrets.js
 - hivemind.js
-- ClienteACP
 - Hivemind — tú decides y verificas; ellos ejecutan
 - sync-agents.js
-- Agent assignment by task kind
 - Diagram Mermaid — el diagrama correcto, sintaxis verificada
 - Code Standards — buenas prácticas medibles, no opiniones
 - Translate & Localize — traducir la intención, no las palabras
@@ -86,9 +83,9 @@
 2. `graphify — grafo de conocimiento como capa 0 de recuperación` - 13 edges
 3. `Especificación del prompt de extracción` - 12 edges
 4. `main()` - 10 edges
-5. `Hivemind — tú decides y verificas; ellos ejecutan` - 10 edges
-6. `Skill /expo-build` - 10 edges
-7. `ClienteACP` - 9 edges
+5. `ClienteACP` - 10 edges
+6. `Hivemind — tú decides y verificas; ellos ejecutan` - 10 edges
+7. `Skill /expo-build` - 10 edges
 8. `Diagram Mermaid — el diagrama correcto, sintaxis verificada` - 9 edges
 9. `Skill android-run: ejecutar y observar una app Android` - 9 edges
 10. `Skill apk-build: build de APK/AAB sin Android Studio` - 9 edges
@@ -96,12 +93,12 @@
 ## Surprising Connections (you probably didn't know these)
 - `MCP memory (grafo de conocimiento persistente)` --semantically_similar_to--> `graphify como capa 0 de recuperacion`  [INFERRED] [semantically similar]
   README.md → CLAUDE.md
-- `Mirar los datos reales antes de escribir codigo` --semantically_similar_to--> `Nunca inventes APIs`  [INFERRED] [semantically similar]
-  .claude/agents/data-engineer.md → CLAUDE.md
 - `Detectar el framework antes de asumir comandos` --semantically_similar_to--> `Nunca inventes APIs`  [INFERRED] [semantically similar]
   .claude/agents/desktop.md → CLAUDE.md
 - `Sync antes que nada (npx cap sync)` --semantically_similar_to--> `.claude/ como unica fuente de verdad`  [INFERRED] [semantically similar]
   .claude/agents/capacitor.md → README.md
+- `Anti-leakage como reflejo` --conceptually_related_to--> `Honestidad de resultados: verificado / inferido / asumido`  [INFERRED]
+  .claude/agents/data-scientist.md → CLAUDE.md
 - `Agente data-scientist (Sonnet)` --references--> `MCP sequential-thinking`  [INFERRED]
   .claude/agents/data-scientist.md → README.md
 
@@ -122,7 +119,7 @@
 - **Agentes de build que existen para filtrar output en origen** — _claude_agents_android_android, _claude_agents_react_native_react_native, _claude_agents_capacitor_capacitor, _claude_agents_desktop_desktop, _claude_agents_android_output_filtrado_en_origen, _claude_agents_android_evidencia_de_artefacto [INFERRED 0.95]
 - **GitHub PR lifecycle: create, stack, merge, release** — _claude_skills_pr_skill_pr_skill, _claude_skills_pr_stack_skill_pr_stack_skill, _claude_skills_pr_merge_skill_pr_merge_skill, _claude_skills_release_skill_release_skill, _claude_skills_pr_stack_skill_restack_update_refs, _claude_skills_pr_merge_skill_three_green_lights, _claude_skills_release_skill_semver_from_commits [INFERRED 0.95]
 
-## Communities (67 total, 3 thin omitted)
+## Communities (64 total, 3 thin omitted)
 
 ### Community 0 - "Skill /graphify"
 Cohesion: 0.06
@@ -134,7 +131,7 @@ Nodes (37): Supervivencia a la compactación, Jerarquía de coste de las operaci
 
 ### Community 2 - "build_merge"
 Cohesion: 0.06
-Nodes (46): graphify Commit Hook and CLAUDE.md Integration Reference, Doc and image changes ignored by the hook, Changed-file detection via git diff HEAD~1, graphify claude install, graphify hook install, Append to an existing post-commit hook, Native CLAUDE.md integration, graphify post-commit hook (+38 more)
+Nodes (47): graphify Commit Hook and CLAUDE.md Integration Reference, Doc and image changes ignored by the hook, Changed-file detection via git diff HEAD~1, graphify claude install, graphify hook install, Append to an existing post-commit hook, Native CLAUDE.md integration, graphify post-commit hook (+39 more)
 
 ### Community 3 - "Doctrina Expo/React Native por terminal"
 Cohesion: 0.29
@@ -160,9 +157,9 @@ Nodes (29): Anti-patrón de la tarjeta por costumbre, Paleta contenida, Skill /e
 Cohesion: 0.15
 Nodes (23): checkboxPrompt(), CLAUDE_DIR, commandExists(), copyCore(), createVault(), DEFAULT_VAULT, fs, HOME (+15 more)
 
-### Community 9 - "Test safety net before touching anything"
-Cohesion: 0.15
-Nodes (20): Baseline first, Data leakage, Mandatory error analysis, Leak-free feature construction, ml-experiment skill, Single primary metric chosen by error cost, Split before looking at the data, Animate only transform and opacity (+12 more)
+### Community 9 - "motion-design skill"
+Cohesion: 0.09
+Nodes (33): Baseline first, Data leakage, Mandatory error analysis, Leak-free feature construction, ml-experiment skill, Single primary metric chosen by error cost, Split before looking at the data, Declared duration scale (+25 more)
 
 ### Community 10 - "sync-opencode.js"
 Cohesion: 0.10
@@ -173,40 +170,40 @@ Cohesion: 0.23
 Nodes (16): Skill /fable-mode — protocolo estricto, Prohibiciones del modo, Fase 4 — Verificación adversarial, Fase 0 — Contrato, Fase 5 — Entrega, Fase 3 — Ejecución, Fase 2 — Plan, Fase 1 — Reconocimiento (+8 more)
 
 ### Community 12 - "tools/sync-opencode.js"
-Cohesion: 0.15
-Nodes (18): Sync antes que nada (npx cap sync), Compatibilidad opencode, CLAUDE_CONFIG_DIR en la instalacion de graphify, Filtro de archivos sensibles de graphify, _generic_keyword_hit, Gotcha: opencode exige command como un solo array, _is_prose_note (detect.py:207), Carpetas de opencode en singular (+10 more)
+Cohesion: 0.23
+Nodes (13): Sync antes que nada (npx cap sync), Compatibilidad opencode, CLAUDE_CONFIG_DIR en la instalacion de graphify, Filtro de archivos sensibles de graphify, _generic_keyword_hit, Gotcha: opencode exige command como un solo array, _is_prose_note (detect.py:207), Carpetas de opencode en singular (+5 more)
 
-### Community 13 - "motion-design skill"
-Cohesion: 0.22
-Nodes (13): Declared duration scale, Easing curve set (entry, exit, loop), motion-design skill, Motion with semantic intent, prefers-reduced-motion fallback, Proportional stagger delay, Breakpoints reserved for structural change, clamp() for fluid typography and spacing (+5 more)
+### Community 13 - "session.js"
+Cohesion: 0.11
+Nodes (11): AGENTES, ClienteACP, ClienteStream, crearCliente(), entorno(), fs, os, path (+3 more)
 
 ### Community 14 - "Honestidad de resultados: verificado / inferido / asumido"
 Cohesion: 0.22
-Nodes (13): Agente android (Sonnet), Fallo de entorno vs fallo de codigo, Evidencia de artefacto (android), Output filtrado en origen (android), Agente capacitor (Sonnet), iOS fuera de alcance en Windows (Capacitor), Anti-leakage como reflejo, Agente desktop (Sonnet) (+5 more)
+Nodes (13): Agente android (Sonnet), Fallo de entorno vs fallo de codigo, Evidencia de artefacto (android), Output filtrado en origen (android), Agente capacitor (Sonnet), iOS fuera de alcance en Windows (Capacitor), Agente desktop (Sonnet), Firma de codigo como paso opcional y explicito (+5 more)
 
 ### Community 15 - "graphify como capa 0 de recuperacion"
-Cohesion: 0.14
-Nodes (17): Medir el radio de explosion del patron defectuoso, Paso 0 de scout: el grafo antes que el grep, Agente scout (Haiku), El grafo orienta, no autoriza, graphify como capa 0 de recuperacion, Hooks de automatizacion a coste cero de tokens, Jerarquia de coste de recuperacion, Backend claude-cli de graphify (+9 more)
+Cohesion: 0.20
+Nodes (12): El grafo orienta, no autoriza, graphify como capa 0 de recuperacion, Hooks de automatizacion a coste cero de tokens, Backend claude-cli de graphify, Hook de graphify en modo nudge (no --strict), El paquete pip se llama graphifyy (dos ies), Boveda ANDROMEDA, Hook andromeda-context (+4 more)
 
 ### Community 16 - "Skill android-run: ejecutar y observar una app Android"
 Cohesion: 0.20
 Nodes (11): Skill android-run: ejecutar y observar una app Android, Arranque con monkey -p sin conocer la MainActivity, Captura de pantalla vía adb exec-out screencap, Sin logs observados no hay verificación, Ionic Appflow en wind-down: no recomendarlo, Bump de versión en package.json y build.gradle, Skill capacitor-release: release Capacitor firmado, iOS solo vía CI en la nube (Actions macOS, Codemagic) (+3 more)
 
-### Community 17 - "Ajuste de doctrina por modelo"
-Cohesion: 0.33
-Nodes (6): Agente architect (Opus), Caza activa de la sobre-ingenieria, Ajuste de doctrina por modelo, Ciclo ENTENDER -> PLANIFICAR -> EJECUTAR -> VERIFICAR, Protocolo NEPTUNO de alto rendimiento, MCP sequential-thinking
+### Community 17 - "Modelo orquestador y subagentes"
+Cohesion: 0.20
+Nodes (10): Agente architect (Opus), Caza activa de la sobre-ingenieria, Ajuste de doctrina por modelo, Protocolo NEPTUNO de alto rendimiento, El model: del subagente gana sobre el --model de la sesion, Economia de modelos por rol, Ecosistema NEPTUNO, MCP sequential-thinking (+2 more)
 
 ### Community 18 - "pr skill (create a Pull Request)"
-Cohesion: 0.25
-Nodes (9): Forward-looking token rules, Atomic commits, files added by name, gh --json/-q token rule, gh CLI under the user session, Never open a PR from the default branch, pr skill (create a Pull Request), Each layer leaves the repo working, pr-stack skill (stacked PRs) (+1 more)
+Cohesion: 0.22
+Nodes (10): Forward-looking token rules, Atomic commits, files added by name, gh --json/-q token rule, gh CLI under the user session, Never open a PR from the default branch, pr skill (create a Pull Request), Each layer leaves the repo working, pr-stack skill (stacked PRs) (+2 more)
 
 ### Community 19 - "Agente data-scientist (Sonnet)"
-Cohesion: 0.29
-Nodes (8): Validar en el borde y autorizar en el handler, Agente data-engineer (Sonnet), Grano explicito y cardinalidad de los JOIN, Idempotencia por diseno, Mirar los datos reales antes de escribir codigo, Baseline primero, Agente data-scientist (Sonnet), Reproducibilidad de extremo a extremo
-
-### Community 20 - "Skill a11y-review"
 Cohesion: 0.33
-Nodes (9): Agente critic (Opus), Ejercita el flujo real (un typecheck verde no es verificacion), Agente verifier (Sonnet), Skill a11y-review, Contraste de color WCAG, Navegacion por teclado y gestion del foco, Proceso de auditoria de accesibilidad, Autocritica antes de entregar (+1 more)
+Nodes (7): Agente data-engineer (Sonnet), Grano explicito y cardinalidad de los JOIN, Idempotencia por diseno, Anti-leakage como reflejo, Baseline primero, Agente data-scientist (Sonnet), Reproducibilidad de extremo a extremo
+
+### Community 20 - "Agente frontend (Sonnet)"
+Cohesion: 0.17
+Nodes (17): Agente backend (Sonnet), El contrato manda (backend), Agente critic (Opus), Accesibilidad minima no negociable (frontend), El contrato manda (frontend), Agente frontend (Sonnet), Los 4 estados: loading, vacio, error, exito, Ejercita el flujo real (un typecheck verde no es verificacion) (+9 more)
 
 ### Community 21 - "Skill apk-build: build de APK/AAB sin Android Studio"
 Cohesion: 0.28
@@ -216,25 +213,21 @@ Nodes (9): Skill apk-build: build de APK/AAB sin Android Studio, Diagnóstico po
 Cohesion: 0.25
 Nodes (9): npx cap sync: copy de assets + update de plugins nativos, Skill capacitor-build: build web + sync nativo Capacitor, Delegar el compile nativo en vez de duplicar Gradle, iOS no compilable desde Windows, webDir del config vs carpeta real del build web, npx cap doctor como chequeo oficial, Skill capacitor-doctor: doctor del entorno Capacitor, Desalineación de versiones @capacitor/cli, core y android (+1 more)
 
-### Community 23 - "One move at a time, green between steps"
-Cohesion: 0.33
-Nodes (6): Coordination cost rule, Critical integration of results, Independent, non-overlapping decomposition, parallel-split skill, No functional changes smuggled in, One move at a time, green between steps
+### Community 23 - "Agent assignment by task kind"
+Cohesion: 0.25
+Nodes (9): Delegate broad searches to a subagent, Agent assignment by task kind, Cold-start subagent prompt, Coordination cost rule, Critical integration of results, Independent, non-overlapping decomposition, parallel-split skill, No functional changes smuggled in (+1 more)
 
 ### Community 24 - "pr-merge skill"
 Cohesion: 0.25
 Nodes (9): Conflict resolution by rebase onto base, Merge strategy taken from the repo, Never use --admin on your own initiative, Post-merge stack warning, pr-merge skill, Three green lights before merge, Land the stack bottom-up with retargeting, restack with git rebase --update-refs (+1 more)
 
-### Community 25 - "Agente frontend (Sonnet)"
-Cohesion: 0.29
-Nodes (8): Agente backend (Sonnet), El contrato manda (backend), Accesibilidad minima no negociable (frontend), El contrato manda (frontend), Agente frontend (Sonnet), Los 4 estados: loading, vacio, error, exito, HTML semantico primero, ARIA como ultimo recurso, Reglas del paralelismo de agentes
-
 ### Community 26 - "Constrained query expansion"
-Cohesion: 0.38
-Nodes (7): Answer only from what the graph contains, Auditable printed token expansion, BFS traversal mode, Constrained query expansion, DFS traversal mode, Token-budget aware ranked output, Node-label vocabulary extraction (.vocab.txt)
+Cohesion: 0.32
+Nodes (8): Answer only from what the graph contains, Auditable printed token expansion, BFS traversal mode, Constrained query expansion, DFS traversal mode, Token-budget aware ranked output, Node-label vocabulary extraction (.vocab.txt), Prompt techniques by failure mode
 
 ### Community 27 - "Agente debugger (Opus)"
-Cohesion: 0.33
-Nodes (6): Filtro del escenario de fallo concreto, Escepticismo estadistico, La causa debe explicar el 100% del sintoma, Agente debugger (Opus), Biseccion con hipotesis falsables, Reproduce primero
+Cohesion: 0.18
+Nodes (11): Filtro del escenario de fallo concreto, Escepticismo estadistico, La causa debe explicar el 100% del sintoma, Agente debugger (Opus), Biseccion con hipotesis falsables, Medir el radio de explosion del patron defectuoso, Reproduce primero, Paso 0 de scout: el grafo antes que el grep (+3 more)
 
 ### Community 28 - "memory"
 Cohesion: 0.32
@@ -258,15 +251,15 @@ Nodes (7): electron-rebuild ante mismatch de NODE_MODULE_VERSION, ABI de módulo
 
 ### Community 33 - "self-review skill"
 Cohesion: 0.29
-Nodes (7): Leakage alarm signals, Consistency grep after renames, Duplication check before accepting new helpers, Logic and data edge-case checklist, Golden rule: suspect the review, not the code, Hostile review stance, self-review skill
+Nodes (7): Leakage alarm signals, Consistency grep after renames, Logic and data edge-case checklist, Fidelity to the original request, Golden rule: suspect the review, not the code, Hostile review stance, self-review skill
 
 ### Community 34 - "release skill"
 Cohesion: 0.33
 Nodes (7): Description written from the real diff, Honest "how it was tested" section, Changelog traceable to commits and PRs, release skill, Semver deduced from commits, Signed release artifacts, Version synchronized in the code
 
 ### Community 35 - "Nunca inventes APIs"
-Cohesion: 0.40
-Nodes (6): Detectar el framework antes de asumir comandos, Patrones del repo primero, Agente implementer (Sonnet), Verificar algo tras cada edicion sustancial, Lee antes de editar, Nunca inventes APIs
+Cohesion: 0.29
+Nodes (8): Validar en el borde y autorizar en el handler, Mirar los datos reales antes de escribir codigo, Detectar el framework antes de asumir comandos, Patrones del repo primero, Agente implementer (Sonnet), Verificar algo tras cada edicion sustancial, Lee antes de editar, Nunca inventes APIs
 
 ### Community 36 - "graphify — grafo de conocimiento como capa 0 de recuperación"
 Cohesion: 0.11
@@ -285,8 +278,8 @@ Cohesion: 0.33
 Nodes (3): fs, os, path
 
 ### Community 40 - "Optimized prompt structure"
-Cohesion: 0.40
-Nodes (6): optimize-prompt skill, Prompt diagnosis (what is missing, what is filler), Optimized prompt structure, Prompt techniques by failure mode, Self-sufficient prompt rule, Fidelity to the original request
+Cohesion: 0.67
+Nodes (4): optimize-prompt skill, Prompt diagnosis (what is missing, what is filler), Optimized prompt structure, Self-sufficient prompt rule
 
 ### Community 41 - "plugins/andromeda-context.js"
 Cohesion: 0.83
@@ -296,10 +289,6 @@ Nodes (3): AndromedaContext(), norm(), normPath()
 Cohesion: 0.14
 Nodes (13): AGENTS, [cmd, ...argv], commands, doctor(), ENV, fs, os, path (+5 more)
 
-### Community 47 - "ClienteACP"
-Cohesion: 0.15
-Nodes (8): AGENTES, ClienteACP, entorno(), fs, os, path, ROOT, { spawn }
-
 ### Community 48 - "Hivemind — tú decides y verificas; ellos ejecutan"
 Cohesion: 0.17
 Nodes (11): Dos transportes: disparo o conversación, Hivemind — tú decides y verificas; ellos ejecutan, Paralelizar, Paso 0 — ¿esto se delega?, Paso 1 — estado de la flota, Paso 2 — enrutado por forma de tarea, Paso 3 — redactar el encargo, Paso 4 — despachar sin quemar contexto (+3 more)
@@ -307,10 +296,6 @@ Nodes (11): Dos transportes: disparo o conversación, Hivemind — tú decides y
 ### Community 49 - "sync-agents.js"
 Cohesion: 0.18
 Nodes (8): doctrina, fs, GLOBAL, nAgents, nSkills, os, path, SRC
-
-### Community 50 - "Agent assignment by task kind"
-Cohesion: 0.67
-Nodes (4): Delegate broad searches to a subagent, Model tiering by task cost, Agent assignment by task kind, Cold-start subagent prompt
 
 ### Community 51 - "Diagram Mermaid — el diagrama correcto, sintaxis verificada"
 Cohesion: 0.20
@@ -380,7 +365,7 @@ Nodes (3): Proceso, Reglas, Write Tests — tests que fallan cuando deben
 
 ## Knowledge Gaps
 - **189 isolated node(s):** `@modelcontextprotocol/server-sequential-thinking`, `@modelcontextprotocol/server-memory`, `MEMORY_FILE_PATH`, `fs`, `path` (+184 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 374 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 377 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -391,8 +376,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **What is the exact relationship between `Selective manifest stamping` and `HANDOFF.md session handoff note`?**
   _Edge tagged AMBIGUOUS (relation: semantically_similar_to) - confidence is low._
 - **Why does `Skill android-doctor: doctor del entorno Android` connect `Skill android-doctor: doctor del entorno Android` to `Skill desktop-doctor: doctor del entorno de escritorio`, `Skill debug: depuración sistemática`, `Skill android-run: ejecutar y observar una app Android`, `Skill apk-build: build de APK/AAB sin Android Studio`, `Skill capacitor-build: build web + sync nativo Capacitor`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `Forward-looking token rules` connect `pr skill (create a Pull Request)` to `self-review skill`, `Constrained query expansion`, `build_merge`, `Agent assignment by task kind`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `Forward-looking token rules` connect `pr skill (create a Pull Request)` to `Constrained query expansion`, `build_merge`, `Agent assignment by task kind`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `main()` (e.g. with `installGraphify()` and `installObsidianApp()`) actually correct?**
   _`main()` has 2 INFERRED edges - model-reasoned connections that need verification._

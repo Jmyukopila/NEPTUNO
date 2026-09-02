@@ -71,23 +71,40 @@ Aquí es donde hay que ser preciso, porque el mercado usa dos nombres para dos c
 Consecuencia operativa: el hivemind de NEPTUNO **no habla A2A**, habla **CLI + ACP**. Los dos
 transportes están montados y verificados:
 
-| | **CLI** (`hivemind.js run`) | **ACP** (`hivemind.js acp` / `tools/acp.js`) |
+| | **CLI** (`hivemind.js run`) | **Sesión** (`hivemind.js session` / `tools/session.js`) |
 |---|---|---|
-| Agentes | los tres | solo `devin` y `opencode` |
+| Agentes | los tres | **los tres**, por dos protocolos distintos |
 | Estado | ninguno: cada encargo arranca en frío | **sesión con turnos**, el agente recuerda |
 | Forma | un disparo, un contrato autocontenido | conversación: preguntar, corregir, seguir |
 | Permisos | flags de la CLI (`--yolo`, listas blancas) | el cliente responde `session/request_permission` |
 | Acceso a disco | el del propio agente | además `fs/read_text_file` / `fs/write_text_file` **a través de nosotros** |
 | Coste de arranque | uno por encargo | uno por sesión, se amortiza en varios turnos |
 
+**Antigravity no habla ACP, pero sí tiene sesión.** Su vía es `--input-format stream-json`: NDJSON,
+un turno por línea, con la forma `{"event":"user","message":{"role":"user","content":"..."}}`, y
+responde con un evento `result` que trae el `conversation_id`. `tools/session.js` unifica los dos
+protocolos tras una sola interfaz, pero **no los confunde**: llamar «ACP» a la sesión de antigravity
+sería mentir sobre el protocolo, así que el estado de salida dice cuál se usó
+(`transporte=acp` / `transporte=stream-json`).
+
+Dos trampas de la CLI de agy, encontradas a base de errores: `--print` **se come siempre el argumento
+siguiente**, así que en modo stream hay que pasarlo como `--print=` (valor vacío) y al final; y el
+campo del mensaje es `event`, no `type` — con `type` el agente responde `status: ERROR`.
+
 **Cuándo cada uno.** Por defecto, CLI: es universal y un contrato bien escrito no necesita
-conversación. ACP cuando el trabajo sea **iterativo de verdad** — revisar y pedir corrección sobre lo
+conversación. Sesión cuando el trabajo sea **iterativo de verdad** — revisar y pedir corrección sobre lo
 mismo, encadenar preguntas sobre un análisis caro, o cuando quieras que las lecturas y escrituras
 pasen por tu cliente en vez de por el agente.
 
-Medido: dos turnos sobre la misma sesión (`ls | wc -l` → `56`, y después «multiplica por 2 sin
-volver a ejecutar» → `112`) en **7,7 s** con los dos agentes. Por CLI eso son dos arranques en frío y
-el segundo no recuerda el primero.
+Medido, dos turnos sobre la misma sesión (`ls | wc -l` → `56`, y después «multiplica por 2 sin volver
+a ejecutar» → `112`): devin 10,0 s, antigravity 10,5 s, opencode 23,7 s. Por CLI eso son dos arranques
+en frío y el segundo no recuerda el primero.
+
+**Trampa del canal de respuesta**: en un turno de puro razonamiento, sin herramientas, Devin deja el
+resultado en `agent_thought_chunk` y cierra el turno sin emitir `agent_message_chunk`. Un cliente que
+solo escuche el canal de mensaje **tira la respuesta y reporta vacío** — pasó, y el `112` estaba en el
+log. `session.js` guarda el razonamiento aparte y lo usa de respaldo solo si el canal de mensaje quedó
+vacío; mezclarlos siempre metería el razonamiento entero en la respuesta.
 
 ### Cómo funciona el cliente (`tools/acp.js`)
 
@@ -113,13 +130,21 @@ prueba inversa: sin `--safe` el archivo se crea, con `--safe` no). Para aislamie
 Cuando no hay API y solo hay pantalla. En NEPTUNO lo cubre el MCP `chrome-devtools` (navegar,
 click, rellenar, captura, consola, red) y la skill `claude-in-chrome`.
 
-Ninguna de las tres CLIs trae control de navegador *propio*, pero **eso no significa que no puedan
-verificar una UI**: `devin` tiene `chrome-devtools` configurado como MCP y por tanto sí puede.
-La capacidad no la da la CLI, la da el MCP que le hayas instalado — y eso se comprueba, no se supone
-(`devin mcp list`, `agy mcp list`).
+Aquí hay que corregir una creencia cómoda: **la flota sí controla navegadores**. Verificado leyendo el
+catálogo que el propio agente publica (`node tools/session.js capabilities antigravity`):
 
-Aun así, **la verificación visual final no se delega**: si el criterio es "el login funciona de
-verdad en el navegador", lo miras tú. Delegar la comprobación a quien hizo el trabajo es el
+- **antigravity expone 57 herramientas nativas**, entre ellas `browser_click_element`,
+  `browser_get_dom`, `browser_input`, `browser_press_key`, `capture_browser_screenshot`,
+  `execute_browser_javascript`, `browser_list_network_requests` y un `browser_subagent` dedicado.
+  Es control de GUI de primera clase, no un MCP añadido.
+- **devin** llega al navegador por el MCP `chrome-devtools` que tiene configurado.
+
+La capacidad no la da la CLI en abstracto, la da su catálogo real — y eso **se comprueba, no se
+supone** (`session.js capabilities <agente>`, `devin mcp list`, `agy mcp list`).
+
+Consecuencia para el enrutado: **una tarea de navegador ya se puede delegar a antigravity**, que
+además es el más barato. Lo que no cambia es quién firma: **la verificación visual final no se
+delega**. Si el criterio es "el login funciona de verdad en el navegador", lo miras tú. Delegar la comprobación a quien hizo el trabajo es el
 antipatrón que este documento entero existe para evitar.
 
 ### Capa 4 — Ejecución aislada: harnesses y sandboxes
@@ -173,7 +198,10 @@ Estado en vivo: `node tools/hivemind.js doctor`. Enrutado resumido: `node tools/
   Claude Sonnet 4.6 y Opus 4.6, GPT-OSS 120B.
 - **Contexto que lee**: `AGENTS.md` y el árbol `.agents/` (`skills/`, `agents/`, `rules/`,
   `workflows/`, `hooks/`, `plugins/`).
-- **Subagentes propios**: sí, vía `--agent` y `.agents/agents/`.
+- **Subagentes propios**: sí, y de los más completos de la flota: `define_subagent`,
+  `invoke_subagent`, `manage_subagents` y un `browser_subagent` especializado, además de `--agent`
+  y `.agents/agents/`. Puede **definir subagentes nuevos en caliente**, no solo invocar los que ya
+  tiene.
 - **Fuerte en**: exploración de repos desconocidos y contexto muy grande; multimodal; **barato y
   rápido** en Flash — es el agente al que mandas el trabajo de volumen. Tiene `--effort` para subir
   el razonamiento solo cuando hace falta, y `--output-format stream-json` + `--json-schema` para
@@ -456,9 +484,13 @@ node tools/sync-global.js && node tools/sync-opencode.js && node tools/sync-agen
 
 Lo que **está verificado ejecutándolo** en esta máquina:
 
-- **ACP montado y funcionando** (`tools/acp.js`): handshake, sesión, multi-turno con memoria,
-  permisos y `fs/*` servidos por el cliente. `opencode` PONG en 4,3 s; dos turnos encadenados en
-  7,7 s en `devin` y en `opencode`. Errores cubiertos: agente desconocido sale con 2 en vez de
+- **Sesión con memoria en los TRES agentes** (`tools/session.js`), por dos protocolos: ACP en devin
+  y opencode, stream-json en antigravity. Mismo encargo de dos turnos (`56` → `112`) correcto en los
+  tres: devin 10,0 s, antigravity 10,5 s, opencode 23,7 s.
+- **antigravity publica 57 herramientas nativas con control de navegador completo y 4 herramientas
+  de subagentes**, comprobado con `session.js capabilities`.
+- **ACP montado y funcionando**: handshake, sesión, multi-turno con memoria,
+  permisos y `fs/*` servidos por el cliente. `opencode` PONG en 4,3 s. Errores cubiertos: agente desconocido sale con 2 en vez de
   volcar una traza, y el tope de tiempo mata (13 s con tope 12).
 - **Los tres reciben órdenes de Claude y las ejecutan correctamente.** Misma orden, misma verdad
   (`56`): opencode `ok` en 10 s, antigravity `ok` en 6 s, devin `ok` en 5 s. Antes de los arreglos de
