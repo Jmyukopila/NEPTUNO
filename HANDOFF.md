@@ -1,4 +1,171 @@
-# Handoff — 2026-08-25 (actualizado)
+# Handoff — 2026-09-01 22:30 (15ª pasada — ecosistema multi-agente)
+
+## Objetivo en curso
+
+Convertir NEPTUNO en un entorno multi-agente donde **Claude es el hivemind**: entiende la
+petición, decide quién la ejecuta mejor entre las CLIs externas instaladas (`opencode`,
+`antigravity`/`agy`, `devin`), redacta el encargo, **verifica** e **interviene** para acabar el
+trabajo. Más 5 skills nuevas de calidad/documentación/lenguaje y una interfaz visual.
+
+## Estado
+
+### HECHO Y VERIFICADO
+
+- **Puerto completo de Windows a Linux.** Los dos `sync-*.js`, los hooks, `.mcp.json`,
+  `opencode.json`, `settings.json` e `installer/install.js` derivaban rutas de `C:\NEPTUNO` y
+  `C:\Users\Usuario`. Ahora salen de `__dirname` y `os.homedir()`. **`sync-global.js` era una
+  bomba**: `~/.claude/` ya estaba porteado a mano, así que ejecutarlo habría machacado la copia
+  buena con rutas de Windows.
+- **5 skills nuevas**: `code-standards`, `document-code`, `diagram-mermaid`, `write-natural`,
+  `translate-localize`. Total 56 skills, 15 agentes (nuevo: `delegate`), 17 docs.
+- **Hivemind operativo.** `tools/hivemind.js` (`doctor`, `roster`, `run`, `session`). Los tres
+  agentes ejecutan órdenes correctamente: misma orden → misma verdad (`56`) en 5–10 s.
+- **Sesión con memoria en los TRES**, por dos protocolos (`tools/session.js`): ACP en devin y
+  opencode, stream-json propio en antigravity. Encargo de dos turnos (`56` → `112`): devin 10,0 s,
+  antigravity 10,5 s, opencode 23,7 s.
+- **Puente de conocimiento** (`tools/sync-agents.js`): `.agents/` + `AGENTS.md` +
+  `.windsurf/rules/` desde `.claude/`. Devin lista las 56 skills y `devin rules list` muestra
+  `neptuno [Windsurf] always-on`.
+- **Interfaz visual**: `pixel-agents` instalado global, y `tools/pixel-bridge.js` hace que **la
+  flota externa aparezca en la oficina sin forkear pixel-agents**. Verificado con un doble del
+  servidor que implementa su contrato (auth incluida): los dos caminos (`ok`→`Stop`,
+  fallo→`idle_prompt`) y los dos transportes entregan la secuencia completa.
+- **Global**: `~/.claude/` (56 skills, 15 agentes), `~/.config/opencode/` (56 comandos, 15
+  agentes) y `~/.agents/` (56 skills). Verificado desde un directorio ajeno al repo.
+- **Auditoría de fuga de datos** (a petición del usuario): puente solo a `127.0.0.1`; cero
+  dominios externos y cero telemetría en el bundle de pixel-agents; `.hivemind/runs/` ignorado
+  (0 archivos rastreados); sin tokens en los commits; repo privado; `graphify-out` no lleva
+  cuerpos de funciones.
+- 6 commits en `origin/main`, árbol limpio, `main` sincronizado.
+
+### PENDIENTE
+
+1. **Arrancar la interfaz** — lo único que bloquea el harness (abre puerto y sirve UI). El
+   usuario debe ejecutar `pixel-agents --port 3100`, abrir la URL **con su `?token=`** y activar
+   el hook en Settings. Después, un `hivemind.js run` para ver aparecer a la flota.
+2. **Saldo de OpenCode Zen.** Los modelos de pago devuelven `Insufficient balance`, así que los
+   15 agentes de opencode van con `--provider=zen-free`. Cuando haya saldo:
+   `node tools/sync-opencode.js --provider=zen`.
+3. **Sandboxes sin ejercitar** (`devin --sandbox`, `agy --sandbox`). Única deuda que queda en
+   `docs/HIVEMIND.md` §6.
+4. **Pasada semántica del grafo**: los 5 skills nuevos y `docs/HIVEMIND.md` / `docs/PIXEL-AGENTS.md`
+   son markdown, y `graphify update` no los lee semánticamente. Falta
+   `graphify extract . --backend claude-cli --max-concurrency 2` (no se lanzó por coste).
+5. **La skill `graphify` del master está desfasada**: es de graphify **0.9.50** y el paquete
+   instalado es **0.9.53** (lo avisa `graphify check-update`). Como vive en `.claude/skills/`,
+   la versión vieja se propaga a las cuatro capas en cada sync. Actualizar con
+   `graphify install --platform claude` **sobre el master** (no sobre `~/.claude/`, que
+   `sync-global.js` sobrescribe) y luego resincronizar.
+
+## Decisiones tomadas (y por qué)
+
+- **No forkear pixel-agents.** Su hook solo hace POST a servidores locales registrados; emitir
+  esos mismos eventos desde NEPTUNO da el mismo resultado sin un fork de 9k estrellas que mantener.
+- **`tools/session.js` unifica dos protocolos pero NO los confunde.** El estado de salida dice
+  `transporte=acp` o `transporte=stream-json`: llamar «ACP» a la sesión de agy sería mentir.
+- **`--safe` no se vende como sandbox.** Solo gobierna lo que responde nuestro cliente; el propio
+  cliente avisa cuando termina sin haber denegado nada.
+- **La doctrina de delegación tiene cuatro salidas, y la habitual es INTERVENIR**, no aceptar ni
+  rechazar. Reencargar tira el 80% aprovechable y repite el fallo. Corregido tras señalarlo el
+  usuario: la versión anterior decía «reportas, no parcheas».
+- **`sync-global.js` fusiona hooks en vez de reemplazarlos**, para cualquier tercero. Antes
+  borraba silenciosamente los hooks ajenos del settings global.
+- **`--provider=zen-free` es el default de opencode**: el gratuito «más potente»
+  (`nemotron-3-ultra-free`) está encolado y es inutilizable.
+
+## Hechos aprendidos con esfuerzo
+
+1. **El snap rompe la autenticación de toda la flota.** Un terminal dentro de un snap (VS Code)
+   exporta `XDG_DATA_HOME=~/snap/code/<rev>/.local/share`; las CLIs buscan credenciales ahí y
+   reportan «not logged in» con el `auth.json` intacto en `~/.local/share`. Afecta también a
+   `pipx` (pierde venvs instalados). `hivemind.js` y `session.js` reescriben las `XDG_*`.
+2. **`spawnSync` bloquea el bucle de eventos de Node.** Un POST asíncrono lanzado antes del
+   despacho **no llega a salir nunca**, y el `process.exit()` final lo mata: entregaba cero
+   eventos con un servidor vivo escuchando. Por eso `pixel-bridge` se invoca como proceso hijo
+   síncrono. Cualquier `await` alrededor de un `spawnSync` es una promesa que no se cumple.
+3. **`agy` ejecuta sus comandos en su propio scratch** (`~/.gemini/antigravity-cli/brain/<uuid>`),
+   no en el cwd. Una ruta relativa no falla ruidosamente: `wc -l` devuelve **`0`** y el agente lo
+   entrega como respuesta. Se descubrió pidiéndole su `pwd`. El despachador antepone el
+   directorio absoluto y pasa `--add-dir`.
+4. **El criterio de salida debe ser un COMANDO, no prosa.** Medido: el mismo encargo en prosa dio
+   una respuesta incorrecta que devin reportó como éxito (contó el directorio hermano); reescrito
+   como «ejecuta este comando y reporta su salida», acertó en un tercio del tiempo.
+5. **`agy` ignoraba `SIGTERM`**: corrió 2.889 s con `--timeout 260`. Ahora `killSignal: 'SIGKILL'`.
+6. **Modo headless auto-deniega permisos y SALE CON 0** — un encargo fallido con pinta de éxito.
+   `HIVEMIND_STATUS` distingue `ok`/`permisos`/`sin-salida`/`timeout`/`error`.
+   Los permisos MCP se aprueban con `mcp(<servidor>)`, no con `command(...)`.
+7. **`opencode run` se colgaba por tres causas a la vez**: falta de `--auto` (pedía un permiso que
+   nadie iba a responder), stdout sin TTY (buffer bloqueado; se lanza bajo `script`) y el modelo
+   encolado. Con `nemotron-3.5-lightning-free` responde en 10 s.
+8. **Devin deja la respuesta en `agent_thought_chunk`** en turnos de puro razonamiento, sin emitir
+   `agent_message_chunk`. Un cliente que solo escuche el canal de mensaje **tira la respuesta**.
+9. **ACP**: JSON delimitado por saltos de línea (sin `Content-Length`), y el `initialize` hay que
+   mandarlo **de inmediato** — `devin acp` no responde si llega mientras arranca sus MCPs.
+10. **`--print` de agy se come siempre el argumento siguiente**: en modo stream va como `--print=`
+    (valor vacío) y al final. El campo del mensaje es `event`, no `type`.
+11. **`graphify-mcp` estaba roto**: su venv de pipx no tenía el paquete `mcp` y moría en silencio.
+    Arreglado con `pipx inject graphifyy mcp` (con `XDG_DATA_HOME` corregido).
+12. **`.agents/` envenenaba el grafo**: 674 → 1.214 nodos por skills duplicadas. Añadido a
+    `.graphifyignore` junto con `AGENTS.md` y `.windsurf/`.
+13. **`git push` fallaba sin helper de credenciales** aunque `gh` estuviera autenticado.
+    `gh auth setup-git` lo arregla para todos los repos de la máquina.
+14. **Antigravity publica 57 herramientas nativas con control de navegador completo**
+    (`browser_click_element`, `execute_browser_javascript`, `capture_browser_screenshot`) y 4 de
+    subagentes, incluido `define_subagent` (crea subagentes en caliente). Corrige la afirmación
+    anterior de que ninguna CLI de la flota tenía Computer Use.
+
+## Callejones sin salida (no repetir)
+
+- **No probar `opencode acp` con retraso en el `initialize`**: parece que no soporta ACP. Sí lo
+  soporta; el problema es el retraso.
+- **No usar `--input-format stream-json` con `--print` antes de otros flags**: se come el
+  siguiente argumento y el error es engañoso («took X as its prompt»).
+- **No fiarse de `opencode models` para saber si hay login**: responde 0 sin credenciales. La
+  sonda correcta es `opencode providers list` (busca `0 credentials`).
+- **No dejar un hook apuntando a `~/.claude/pixel-agents-hook.js` a mano**: ese archivo no existe
+  hasta que se aprueba la instalación desde la UI, y rompería cada sesión.
+
+## Archivos calientes
+
+| Archivo | Qué hay |
+|---|---|
+| `tools/hivemind.js` | Despachador: `doctor`, `roster`, `run`, `session`. Saneado XDG, timeout duro, clasificación de estado, aviso al puente visual |
+| `tools/session.js` | Clientes de sesión: `ClienteACP` (devin/opencode) y `ClienteStream` (agy), unificados por `crearCliente` |
+| `tools/pixel-bridge.js` | Emite eventos de hook de Claude por cada agente externo a los servidores locales de Pixel Agents |
+| `tools/sync-agents.js` | Genera `.agents/`, `AGENTS.md`, `.windsurf/rules/`. `--global` espeja a `~/.agents/` |
+| `tools/sync-global.js` | Ahora **fusiona** hooks en vez de reemplazarlos (preserva los de terceros) |
+| `tools/sync-opencode.js` | Tabla de proveedores con `zen` y `zen-free` |
+| `docs/HIVEMIND.md` | Doctrina completa: 4 capas, fichas, enrutado, protocolo, §4bis intervención, §6 deuda |
+| `docs/PIXEL-AGENTS.md` | Interfaz, contrato del puente, las dos trampas |
+| `.claude/skills/hivemind/SKILL.md` | Skill de enrutado, con el paso 6 de intervención |
+| `.claude/agents/delegate.md` | Subagente que absorbe los logs de la flota |
+
+## Cómo verificar
+
+```bash
+node tools/hivemind.js doctor                 # espera: 3/3 agentes listos
+for f in tools/*.js; do node --check "$f"; done
+
+# CLI (los tres) — espera 56 en los tres
+node tools/hivemind.js run antigravity "CRITERIO DE SALIDA: ejecuta 'ls .agents/skills | wc -l' y responde SOLO el numero." --yolo --timeout 120
+
+# Sesión con memoria (los tres) — espera 56 y luego 112
+node tools/hivemind.js session devin "Ejecuta 'ls .agents/skills | wc -l' y responde SOLO el numero." \
+  --turno "Sin ejecutar nada mas: multiplica por 2 ese numero. Responde SOLO el resultado."
+
+node tools/hivemind.js session capabilities antigravity   # espera 57 herramientas, navegador true
+node tools/pixel-bridge.js servers                        # sin servidor: exit 1 y mensaje, no error
+```
+
+Resincronizar las tres capas tras tocar `.claude/`:
+
+```bash
+node tools/sync-global.js && node tools/sync-opencode.js --provider=zen-free && node tools/sync-agents.js --global
+```
+
+---
+
+# Historial de pasadas anteriores (narrativa fechada, no estado actual)
 
 > 2026-08-25 (14ª pasada — cierre del hueco de TOKENS.md): el usuario pidió renombrar `docs/TOKENS.md` para que entrara en el grafo (el hueco que la 13ª pasada dejó documentado y sin arreglar en el punto **(i)**, que queda así SUPERADO).
 >
