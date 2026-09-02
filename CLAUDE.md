@@ -213,7 +213,10 @@ subagente es un personaje: teclean al editar, leen al buscar, y levantan un boca
 **bloqueados esperándote**. La flota externa también sale, vía `tools/pixel-bridge.js`, que emite los
 eventos de hook por cada agente despachado sin forkear pixel-agents. Requiere una vez
 `node tools/pixel-bridge.js preparar` **antes** de arrancar el servidor; sin eso responde `200 ok` y
-no aparece nadie. Trata la URL con `?token=` como un secreto. Detalle en `docs/PIXEL-AGENTS.md`.
+no aparece nadie. Para dejarlo permanente: `bash tools/pixel-service.sh instalar 3100` (servicio de
+usuario de systemd, con linger y `preparar` como `ExecStartPre`). El token rota en cada arranque y no
+se puede fijar: la URL de ahora la da `node tools/pixel-bridge.js url`. Trátala como un secreto.
+Detalle en `docs/PIXEL-AGENTS.md`.
 
 ### MCPs
 | MCP | Cuándo usarlo |

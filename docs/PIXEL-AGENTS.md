@@ -17,6 +17,25 @@ node tools/pixel-bridge.js preparar   # una vez: enciende "Watch All Sessions" (
 pixel-agents --port 3100              # instalado global con: npm install --global pixel-agents
 ```
 
+Así arrancado **no sobrevive a que cierres la sesión**. Para que esté siempre levantado, como
+servicio de usuario de systemd:
+
+```bash
+bash tools/pixel-service.sh instalar 3100     # deja el servicio activo, con arranque en el boot
+node tools/pixel-bridge.js url                # la URL de ahora (el token rota; ver abajo)
+```
+
+Luego se maneja con `systemctl --user {status,restart,stop} pixel-agents`, y se quita con
+`bash tools/pixel-service.sh desinstalar`. El instalador hace tres cosas que no son opcionales:
+mete `preparar` como `ExecStartPre` (para que un rearranque automático no se salte el ajuste),
+pone `Restart=always`, y activa `loginctl enable-linger` — sin *linger* el gestor de usuario muere
+al cerrar la última sesión y se lleva el servicio por delante.
+
+**El token rota en cada arranque y no se puede fijar**: `pixel-agents` solo acepta `--port` y
+`--host`, y su bundle no lee ninguna variable de entorno de token (solo `PIXEL_AGENTS_DEBUG` y
+`PIXEL_AGENTS_DEBUG_LOG`). Así que después de cada reinicio del servicio la URL cambia y hay que
+releerla con `node tools/pixel-bridge.js url`. No marques la URL como favorito: marca el comando.
+
 `preparar` es obligatorio la primera vez y hay que hacerlo **antes** de arrancar el servidor: el
 ajuste se lee al arrancar. Sin él la flota externa no aparece nunca, por la razón que explica la
 sección del puente. Es idempotente y es el mismo interruptor que `Settings → Watch All Sessions`.
@@ -168,6 +187,17 @@ vivo, para no pagar un proceso por nada. Un fallo de la interfaz nunca puede tum
 - No modifica Claude Code. Sus datos viven en `~/.pixel-agents/` y su hook en `~/.claude/`.
 
 ## Privacidad: qué se comprobó y cómo repetirlo
+
+**systemd no añade aquí ninguna garantía de red.** La unidad se escribió al principio con
+`IPAddressAllow=localhost` + `IPAddressDeny=any`, que sería un cortafuegos de kernel perfecto para
+este caso. En una unidad de **usuario** systemd los acepta y `systemctl show` los lista, pero no
+los aplica: el cortafuegos por cgroup lo instala el gestor del sistema. Comprobado lanzando una
+unidad transitoria con esas mismas propiedades y una conexión saliente — se estableció igual. Por
+eso no están en la unidad: un cortafuegos decorativo es peor que ninguno, porque se cree.
+
+Lo que sí queda en la unidad, y sí se aplica sin privilegios, es `NoNewPrivileges=yes` y
+`RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6`. La garantía real de privacidad sigue siendo la
+de siempre: la auditoría del bundle más la comprobación en ejecución de aquí abajo.
 
 La interfaz ve los transcripts de Claude Code, así que la pregunta "¿esto manda mi código a algún
 sitio?" hay que responderla con evidencia, no con confianza. Lo comprobado, en el paquete instalado

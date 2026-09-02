@@ -760,6 +760,13 @@ mientras dura el encargo. Pide un paso previo, una sola vez y antes de arrancar 
 node tools/pixel-bridge.js preparar
 ```
 
+Arrancado a mano no sobrevive a que cierres la sesión. Para dejarlo siempre levantado:
+
+```bash
+bash tools/pixel-service.sh instalar 3100   # servicio de usuario de systemd, con linger
+node tools/pixel-bridge.js url              # la URL de ahora: el token rota en cada arranque
+```
+
 La URL con `?token=` es un secreto. `docs/PIXEL-AGENTS.md` explica el resto: las tres condiciones no
 obvias de su protocolo de hooks, cómo comprobar el resultado por WebSocket, la trampa de
 sincronización que hubo que arreglar para que sus hooks sobrevivan a `sync-global.js`, y la

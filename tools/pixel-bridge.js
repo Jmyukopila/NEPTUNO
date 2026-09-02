@@ -33,6 +33,8 @@
 // hijo síncrono, así que estas dos entradas hacen cada fase completa en una sola invocación.
 //
 // Uso (CLI):
+//   node tools/pixel-bridge.js preparar          (obligatorio ANTES de arrancar el servidor)
+//   node tools/pixel-bridge.js url               (la URL con su token; rota en cada arranque)
 //   node tools/pixel-bridge.js servers
 //   node tools/pixel-bridge.js inicio --session <id> --agente <n> --cwd <d> --encargo "..."
 //   node tools/pixel-bridge.js fin    --session <id> --cwd <d> --estado ok
@@ -229,6 +231,12 @@ if (require.main === module) {
       const s = servidores();
       if (!s.length) { console.log('Sin servidores de Pixel Agents vivos. Arranca uno con: pixel-agents --port 3100'); process.exit(1); }
       for (const e of s) console.log(`  puerto ${e.port}  pid ${e.pid}  token ${String(e.token).slice(0, 8)}…`);
+      process.exit(0);
+    }
+    if (cmd === 'url') {
+      const s = servidores();
+      if (!s.length) { console.log('Sin servidores vivos. Arrancalo con: systemctl --user start pixel-agents'); process.exit(1); }
+      for (const e of s) console.log(`http://127.0.0.1:${e.port}/?token=${e.token}`);
       process.exit(0);
     }
     if (cmd === 'inicio' || cmd === 'fin' || cmd === 'latido') {
