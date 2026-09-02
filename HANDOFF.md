@@ -51,11 +51,8 @@ trabajo. Más 5 skills nuevas de calidad/documentación/lenguaje y una interfaz 
 4. **Pasada semántica del grafo**: los 5 skills nuevos y `docs/HIVEMIND.md` / `docs/PIXEL-AGENTS.md`
    son markdown, y `graphify update` no los lee semánticamente. Falta
    `graphify extract . --backend claude-cli --max-concurrency 2` (no se lanzó por coste).
-5. **La skill `graphify` del master está desfasada**: es de graphify **0.9.50** y el paquete
-   instalado es **0.9.53** (lo avisa `graphify check-update`). Como vive en `.claude/skills/`,
-   la versión vieja se propaga a las cuatro capas en cada sync. Actualizar con
-   `graphify install --platform claude` **sobre el master** (no sobre `~/.claude/`, que
-   `sync-global.js` sobrescribe) y luego resincronizar.
+5. ~~Skill `graphify` desfasada~~ — **HECHO**: master en 0.9.53 y propagado a las cuatro capas;
+   `graphify check-update` ya no avisa. Ver «Hechos aprendidos» nº15 para la trampa del installer.
 
 ## Decisiones tomadas (y por qué)
 
@@ -109,6 +106,13 @@ trabajo. Más 5 skills nuevas de calidad/documentación/lenguaje y una interfaz 
     `.graphifyignore` junto con `AGENTS.md` y `.windsurf/`.
 13. **`git push` fallaba sin helper de credenciales** aunque `gh` estuviera autenticado.
     `gh auth setup-git` lo arregla para todos los repos de la máquina.
+15. **`graphify install` escribe un `CLAUDE.md` en el directorio de config**, así que apuntarle
+    `CLAUDE_CONFIG_DIR` al master habría creado un `.claude/CLAUDE.md` intruso (la doctrina de
+    NEPTUNO vive en el `CLAUDE.md` de la raíz). La vía correcta es instalar en un directorio
+    de usar y tirar y **copiar solo `SKILL.md` y `.graphify_version`** al master.
+    Bonus: la skill de 0.9.50 era la variante **Windows** (PowerShell, `Out-File`, `Join-Path`,
+    rutas con `\`) y la 0.9.53 instaló la POSIX. Era el último resto de Windows del repo, y el
+    barrido de la 15ª pasada no lo cazó porque no contenía la cadena `C:\`.
 14. **Antigravity publica 57 herramientas nativas con control de navegador completo**
     (`browser_click_element`, `execute_browser_javascript`, `capture_browser_screenshot`) y 4 de
     subagentes, incluido `define_subagent` (crea subagentes en caliente). Corrige la afirmación
