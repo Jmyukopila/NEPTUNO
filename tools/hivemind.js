@@ -268,6 +268,14 @@ function run(argv) {
   // no al terminar.
   const sesionUI = `neptuno-${name}-${stamp}`;
   avisar('inicio', { session: sesionUI, agente: name, cwd: opt.cwd, encargo: encargoOriginal });
+  // Sin latido el personaje se marca ocioso a los 5 s y pasa el resto del encargo aparentando
+  // que no hace nada. El hijo se mata solo si este proceso muere de golpe (SIGKILL del tope).
+  let latido = null;
+  try {
+    if (puente && puente.arrancarLatido) {
+      latido = puente.arrancarLatido({ sesion: sesionUI, agente: name, cwd: opt.cwd, encargo: encargoOriginal });
+    }
+  } catch {}
 
   const t0 = Date.now();
   const r = spawnSync(cmd, args, {
@@ -306,7 +314,8 @@ function run(argv) {
   // hecho. Un timeout con salida sustancial no es lo mismo que un timeout sin nada, y
   // confundirlos hace descartar trabajo válido.
   const estadoUI = timedOut ? 'timeout' : denied ? 'permisos' : vacio ? 'sin-salida' : r.status === 0 ? 'ok' : 'error';
-  avisar('fin', { session: sesionUI, cwd: opt.cwd, estado: estadoUI });
+  try { if (puente && puente.pararLatido) puente.pararLatido(latido); } catch {}
+  avisar('fin', { session: sesionUI, agente: name, cwd: opt.cwd, estado: estadoUI });
 
   const estado = timedOut
     ? (body.trim().length > 40 ? 'timeout-con-salida' : 'timeout')

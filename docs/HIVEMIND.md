@@ -465,11 +465,25 @@ personaje en una oficina, con bocadillo cuando alguien está bloqueado esperánd
 
 **La flota externa también sale**, aunque Pixel Agents solo implemente el proveedor de Claude Code:
 `tools/pixel-bridge.js` emite los mismos eventos de hook por cada agente externo, con su propio
-`session_id`, contra la misma API que usa el hook oficial. Sin forkear nada. Un despacho que falla
-levanta bocadillo (`idle_prompt`) en vez de irse callado, que es justo cuando quieres mirar.
+`session_id`, contra la misma API que usa el hook oficial. Sin forkear nada. Cada uno sale con su
+nombre (`opencode`, `antigravity`, `devin`) y sigue tecleando mientras dura el encargo, gracias a un
+latido que evita que el servidor lo marque ocioso a los 5 s. Un despacho que falla levanta bocadillo
+(`idle_prompt`) en vez de irse callado, que es justo cuando quieres mirar.
+
+**Requiere un paso previo, una sola vez**, y antes de arrancar el servidor:
+
+```bash
+node tools/pixel-bridge.js preparar    # enciende "Watch All Sessions"
+```
+
+Sin él el servidor responde `200 ok` a cada evento y **no aparece nadie**: descarta toda sesión
+externa cuyo proyecto no tenga ya un personaje, que es siempre el caso de un agente que arranca en
+frío. Ese `200` es lo que hace que el fallo parezca un éxito, y es exactamente el tipo de trampa
+contra la que sirve la regla de verificar contra el sistema real y no contra un doble propio.
 
 Funciona en los dos transportes, y `doctor` dice si hay servidor escuchando. Detalle, mapeo de
-eventos y las dos trampas que hubo que resolver, en `docs/PIXEL-AGENTS.md`.
+eventos, las tres condiciones no obvias del protocolo y cómo comprobarlo por WebSocket, en
+`docs/PIXEL-AGENTS.md`.
 
 ## 5. Interoperabilidad: una doctrina, cuatro lectores
 
@@ -513,6 +527,14 @@ Lo que **está verificado ejecutándolo** en esta máquina:
   `tools/hivemind.js run`, leyendo el repo por el puente `.agents/`: antigravity 56 correcto en
   19,8 s; opencode 56 correcto en 54,6 s (lo verificó con su propio `find`); devin 56 correcto en
   4,2 s **al segundo intento**, con criterio de salida ejecutable.
+- **La flota aparece en la oficina de Pixel Agents, cada uno con su nombre y trabajando.** Despacho
+  simultáneo de los tres, estado leído por WebSocket contra el servidor real (no contra un doble):
+  `#7 antigravity`, `#8 opencode`, `#9 devin`, los tres `active` a la vez y con el encargo a la
+  vista, cada uno desapareciendo al terminar (antigravity 15,8 s, devin 12,5 s, opencode 42,9 s).
+  El servidor lo confirma en claro: `Hook: Agent N - detected hooks-only external session`.
+- **Pixel Agents no manda nada fuera de la máquina.** Con el servidor arriba y tras despachar:
+  escucha solo en `127.0.0.1:3100`, cero conexiones remotas, cero transcripts abiertos en ese
+  instante. Método y comando para repetirlo en `docs/PIXEL-AGENTS.md`.
 - **El entorno de un terminal dentro de un snap rompe la autenticación de la flota.** VS Code exporta
   `XDG_DATA_HOME=~/snap/code/<rev>/.local/share`, así que las CLIs buscan sus credenciales dentro del
   sandbox y reportan «not logged in» aunque el `auth.json` exista en `~/.local/share`. `hivemind.js`

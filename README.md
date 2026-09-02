@@ -753,6 +753,14 @@ muestra cada sesión de Claude Code y cada subagente como un personaje pixel-art
 teclean al editar, leen al buscar, y levantan un bocadillo cuando están **bloqueados esperándote** —
 que es justo lo que cuesta ver cuando repartes trabajo. **La flota externa también sale**: aunque
 pixel-agents solo implemente el proveedor de Claude Code, `tools/pixel-bridge.js` emite los mismos
-eventos de hook por cada agente despachado, sin forkear nada. La URL con `?token=` es un secreto. `docs/PIXEL-AGENTS.md` explica el
-resto, incluida la trampa de sincronización que hubo que arreglar para que sus hooks sobrevivan a
-`sync-global.js`.
+eventos de hook por cada agente despachado, sin forkear nada — cada uno con su nombre y tecleando
+mientras dura el encargo. Pide un paso previo, una sola vez y antes de arrancar el servidor:
+
+```bash
+node tools/pixel-bridge.js preparar
+```
+
+La URL con `?token=` es un secreto. `docs/PIXEL-AGENTS.md` explica el resto: las tres condiciones no
+obvias de su protocolo de hooks, cómo comprobar el resultado por WebSocket, la trampa de
+sincronización que hubo que arreglar para que sus hooks sobrevivan a `sync-global.js`, y la
+auditoría de privacidad — no manda nada fuera de la máquina, con el comando para reverificarlo.

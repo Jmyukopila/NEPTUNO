@@ -41,6 +41,7 @@
 const fs = require('fs');
 const http = require('http');
 const os = require('os');
+const { spawn } = require('child_process');
 const path = require('path');
 
 const REGISTRY = path.join(os.homedir(), '.pixel-agents', 'servers');
@@ -112,7 +113,18 @@ async function emitir(evento, campos = {}) {
 // Ciclo de vida de un encargo a un agente externo, tal como lo ve la oficina.
 const AGENTE_MODELO = { opencode: 'opencode', antigravity: 'antigravity (agy)', devin: 'devin' };
 
+// La oficina rotula al personaje con `basename(cwd)`. Si los tres agentes reportan el directorio
+// real del repo, los tres salen llamandose igual; por eso cada uno reporta un escritorio propio
+// bajo `.hivemind/oficina/<agente>`. Es una etiqueta, no una ruta que se lea: en la rama
+// "hooks-only" del servidor `projectDir` no se toca el disco.
+function escritorio(agente, cwd) {
+  const raiz = path.resolve(cwd || process.cwd());
+  const nombre = String(agente || 'externo').replace(/[^\w.-]+/g, '-');
+  return path.join(raiz, '.hivemind', 'oficina', nombre);
+}
+
 async function despachoIniciado({ sesion, agente, cwd, encargo }) {
+  cwd = escritorio(agente, cwd);
   await emitir('SessionStart', { session_id: sesion, cwd, source: `neptuno-hivemind:${agente}` });
   // La herramienta se llama como el agente para que el nombre salga en la oficina, y el
   // "comando" es el encargo recortado: es lo que hace que el personaje teclee.
@@ -125,7 +137,55 @@ async function despachoIniciado({ sesion, agente, cwd, encargo }) {
   return true;
 }
 
-async function despachoTerminado({ sesion, cwd, estado }) {
+// El servidor marca al personaje como "esperando" tras 5 s sin eventos (constante Pt del
+// bundle). Un encargo a la flota dura minutos sin producir hooks, asi que sin latido el agente
+// sale ocioso justo mientras trabaja. Cada latido cierra la herramienta anterior y abre otra:
+// el servidor genera su propio toolId e ignora el que le mandes, asi que el PostToolUse previo
+// es lo unico que evita que se acumulen filas de herramientas abiertas en la oficina.
+const LATIDO_MS = 3000;
+const LATIDO_TOPE_MS = 2 * 60 * 60 * 1000;
+
+async function latir({ sesion, agente, cwd, encargo, padre }) {
+  cwd = escritorio(agente, cwd);
+  const etiqueta = AGENTE_MODELO[agente] || agente || 'externo';
+  const resumen = String(encargo || '').replace(/\s+/g, ' ').slice(0, 90);
+  const t0 = Date.now();
+  while (Date.now() - t0 < LATIDO_TOPE_MS) {
+    await new Promise((r) => setTimeout(r, LATIDO_MS));
+    if (padre) { try { process.kill(padre, 0); } catch { return; } }
+    if (!servidores().length) return;
+    const segundos = Math.round((Date.now() - t0) / 1000);
+    await emitir('PostToolUse', { session_id: sesion, cwd });
+    await emitir('PreToolUse', {
+      session_id: sesion,
+      cwd,
+      tool_name: 'Bash',
+      tool_input: { command: `${etiqueta}: ${resumen} (${segundos}s)` },
+    });
+  }
+}
+
+// Arranca el latido en un proceso aparte y devuelve su pid. Va desacoplado porque el despacho
+// bloquea el bucle de eventos con spawnSync: un temporizador en este proceso no correria.
+function arrancarLatido({ sesion, agente, cwd, encargo }) {
+  try {
+    if (!servidores().length) return null;
+    const args = [__filename, 'latido', '--session', sesion, '--agente', String(agente || ''),
+      '--cwd', String(cwd || process.cwd()), '--encargo', String(encargo || ''),
+      '--padre', String(process.pid)];
+    const h = spawn(process.execPath, args, { detached: true, stdio: 'ignore' });
+    h.unref();
+    return h.pid;
+  } catch { return null; }
+}
+
+function pararLatido(pid) {
+  if (!pid) return;
+  try { process.kill(pid, 'SIGTERM'); } catch {}
+}
+
+async function despachoTerminado({ sesion, agente, cwd, estado }) {
+  cwd = escritorio(agente, cwd);
   await emitir('PostToolUse', { session_id: sesion, cwd });
   // Un despacho que acabó mal deja al personaje reclamando atención en vez de irse callado:
   // es justo el caso en el que quieres mirar la pantalla.
@@ -138,23 +198,48 @@ async function despachoTerminado({ sesion, cwd, estado }) {
   return true;
 }
 
-module.exports = { emitir, servidores, despachoIniciado, despachoTerminado };
+// Sin "Watch All Sessions" el servidor descarta toda sesion externa: adopta una sesion solo si
+// ya hay un personaje con ese mismo projectDir. La flota nunca lo cumple (arranca en frio), asi
+// que sin este interruptor los POST devuelven 200 y no aparece nadie. Es el mismo ajuste que el
+// toggle de la interfaz, escrito en el fichero para que sobreviva a reinicios del servidor.
+const CONFIG = path.join(os.homedir(), '.pixel-agents', 'config.json');
+
+function preparar() {
+  const c = JSON.parse(fs.readFileSync(CONFIG, 'utf8'));
+  const antes = c.standalone?.watchAllSessions;
+  if (c.standalone) c.standalone.watchAllSessions = true;
+  if (c.vscode) c.vscode.watchAllSessions = true;
+  fs.writeFileSync(CONFIG, JSON.stringify(c, null, 2));
+  return { antes, ahora: true, reinicioNecesario: antes !== true && servidores().length > 0 };
+}
+
+module.exports = { emitir, servidores, escritorio, preparar, despachoIniciado, despachoTerminado, arrancarLatido, pararLatido };
 
 // --- CLI ---------------------------------------------------------------------
 if (require.main === module) {
   (async () => {
     const [cmd, ...argv] = process.argv.slice(2);
+    if (cmd === 'preparar') {
+      const r = preparar();
+      console.log(`watchAllSessions: ${r.antes} -> ${r.ahora} (${CONFIG})`);
+      if (r.reinicioNecesario) console.log('Hay un servidor vivo que arranco con el ajuste antiguo: reinicialo para que adopte a la flota.');
+      process.exit(0);
+    }
     if (cmd === 'servers') {
       const s = servidores();
       if (!s.length) { console.log('Sin servidores de Pixel Agents vivos. Arranca uno con: pixel-agents --port 3100'); process.exit(1); }
       for (const e of s) console.log(`  puerto ${e.port}  pid ${e.pid}  token ${String(e.token).slice(0, 8)}…`);
       process.exit(0);
     }
-    if (cmd === 'inicio' || cmd === 'fin') {
+    if (cmd === 'inicio' || cmd === 'fin' || cmd === 'latido') {
       const o = {};
       for (let i = 0; i < argv.length; i += 2) o[argv[i].replace(/^--/, '')] = argv[i + 1];
+      if (cmd === 'latido') {
+        await latir({ sesion: o.session, agente: o.agente, cwd: o.cwd, encargo: o.encargo, padre: Number(o.padre) || 0 });
+        process.exit(0);
+      }
       if (cmd === 'inicio') await despachoIniciado({ sesion: o.session, agente: o.agente, cwd: o.cwd, encargo: o.encargo || '' });
-      else await despachoTerminado({ sesion: o.session, cwd: o.cwd, estado: o.estado });
+      else await despachoTerminado({ sesion: o.session, agente: o.agente, cwd: o.cwd, estado: o.estado });
       process.exit(0);
     }
     if (cmd === 'emit') {
