@@ -724,6 +724,7 @@ casos borde, nombres, tests que de verdad fallen) lo pone Claude encima.
 | `node tools/hivemind.js doctor` | Quién está instalado **y autenticado** (corrige las rutas XDG si la sesión vive dentro de un snap) |
 | `node tools/hivemind.js roster` | Enrutado resumido por forma de tarea |
 | `node tools/hivemind.js run <agente> "<encargo>"` | Despacha; el log va a `.hivemind/runs/`, no al contexto de la sesión |
+| `node tools/hivemind.js acp <agente> "<msg>" --turno "<otro>"` | Sesión ACP con turnos y memoria (solo `devin` y `opencode`) |
 
 **No se delega**: las decisiones de arquitectura, la verificación final, nada que necesite navegador
 (ninguna CLI trae Computer Use propio) y la integración entre trozos repartidos en paralelo — que

@@ -9,7 +9,8 @@
 // Uso:
 //   node tools/hivemind.js doctor                       -> quién está instalado y autenticado
 //   node tools/hivemind.js roster                        -> tabla de enrutado (resumen de docs/HIVEMIND.md)
-//   node tools/hivemind.js run <agente> "<prompt>" [opciones]
+//   node tools/hivemind.js run <agente> "<prompt>" [opciones]     -> disparo, sin estado
+//   node tools/hivemind.js acp <agente> "<msg>" [--turno "..."]   -> sesión con turnos (devin, opencode)
 //
 // Agentes: opencode | antigravity (alias: agy, gemini) | devin
 // Opciones de run:
@@ -290,7 +291,13 @@ function run(argv) {
 
 // --- main -------------------------------------------------------------------
 const [cmd, ...argv] = process.argv.slice(2);
-const commands = { doctor, roster, run: () => run(argv) };
+// ACP vive en tools/acp.js (sesión con turnos); aquí solo se enruta para que el hivemind
+// tenga una sola puerta de entrada. Ver docs/HIVEMIND.md §1 para cuándo usar cada transporte.
+function acp(argv) {
+  const r = spawnSync(process.execPath, [path.join(__dirname, 'acp.js'), ...argv], { stdio: 'inherit', env: ENV });
+  return r.status === null ? 1 : r.status;
+}
+const commands = { doctor, roster, run: () => run(argv), acp: () => acp(argv) };
 if (!cmd || !commands[cmd]) {
   console.log(fs.readFileSync(__filename, 'utf8').split('\n').filter((l) => l.startsWith('//')).map((l) => l.slice(3)).join('\n'));
   process.exit(cmd ? 2 : 0);

@@ -68,16 +68,46 @@ Aquí es donde hay que ser preciso, porque el mercado usa dos nombres para dos c
 | Gobernanza | Donado a la Linux Foundation (Google, Microsoft, AWS y otros) | Impulsado desde el ecosistema de editores/agentes (Zed, y adoptado por varias CLIs) |
 | **En esta máquina** | **no implementado por ninguna de las tres CLIs** | **`devin acp` y `opencode acp` lo exponen hoy** (verificado); `agy` no |
 
-Consecuencia operativa: el hivemind de NEPTUNO **no habla A2A**, habla **CLI + ACP**.
+Consecuencia operativa: el hivemind de NEPTUNO **no habla A2A**, habla **CLI + ACP**. Los dos
+transportes están montados y verificados:
 
-- **Vía CLI** (`tools/hivemind.js`) — universal, funciona con los tres, sin estado, un encargo
-  por invocación. Es el camino por defecto.
-- **Vía ACP** — solo `devin` y `opencode`. Da sesión conversacional con turnos y aprobaciones
-  granulares, pero exige un cliente ACP que lleve el protocolo; **no está montado aún en NEPTUNO**.
-  Es el camino natural de crecimiento cuando un encargo necesite ida y vuelta, no un disparo.
+| | **CLI** (`hivemind.js run`) | **ACP** (`hivemind.js acp` / `tools/acp.js`) |
+|---|---|---|
+| Agentes | los tres | solo `devin` y `opencode` |
+| Estado | ninguno: cada encargo arranca en frío | **sesión con turnos**, el agente recuerda |
+| Forma | un disparo, un contrato autocontenido | conversación: preguntar, corregir, seguir |
+| Permisos | flags de la CLI (`--yolo`, listas blancas) | el cliente responde `session/request_permission` |
+| Acceso a disco | el del propio agente | además `fs/read_text_file` / `fs/write_text_file` **a través de nosotros** |
+| Coste de arranque | uno por encargo | uno por sesión, se amortiza en varios turnos |
 
-Diseña los encargos como **contratos autocontenidos**, no como conversaciones: es lo que el
-transporte real de hoy soporta.
+**Cuándo cada uno.** Por defecto, CLI: es universal y un contrato bien escrito no necesita
+conversación. ACP cuando el trabajo sea **iterativo de verdad** — revisar y pedir corrección sobre lo
+mismo, encadenar preguntas sobre un análisis caro, o cuando quieras que las lecturas y escrituras
+pasen por tu cliente en vez de por el agente.
+
+Medido: dos turnos sobre la misma sesión (`ls | wc -l` → `56`, y después «multiplica por 2 sin
+volver a ejecutar» → `112`) en **7,7 s** con los dos agentes. Por CLI eso son dos arranques en frío y
+el segundo no recuerda el primero.
+
+### Cómo funciona el cliente (`tools/acp.js`)
+
+JSON-RPC 2.0 **delimitado por saltos de línea** sobre stdio — no lleva framing `Content-Length`, y el
+`initialize` debe enviarse **de inmediato**: verificado, `devin acp` deja de responder si se envía con
+retraso, mientras arranca sus servidores MCP. Handshake: `initialize` (`protocolVersion: 1`) →
+`session/new` → `session/prompt`, y las respuestas llegan como notificaciones `session/update` con
+trozos `agent_message_chunk`.
+
+Lo que se suele olvidar: **en ACP el cliente también sirve peticiones**. El agente nos llama a
+`session/request_permission`, `fs/read_text_file` y `fs/write_text_file`, y si no contestamos se queda
+esperando para siempre. Sin humano en el bucle no se puede «preguntar»: el cliente elige una opción
+real de las que ofrece el agente (`allow_always`, o `reject_*` con `--safe`).
+
+**`--safe` no es un sandbox, y hay que decirlo claro.** Solo gobierna lo que responde *nuestro*
+cliente. Verificado: `opencode` ejecuta sus herramientas emitiendo `tool_call` **sin pedir permiso
+jamás**, así que `--safe` no le impide nada — el cliente lo avisa explícitamente cuando termina sin
+haber denegado nada. Sí bloquea las escrituras que pasen por `fs/write_text_file` (comprobado con la
+prueba inversa: sin `--safe` el archivo se crea, con `--safe` no). Para aislamiento real sigue siendo
+`devin --sandbox` por la vía CLI.
 
 ### Capa 3 — Control de GUI: Computer Use
 Cuando no hay API y solo hay pantalla. En NEPTUNO lo cubre el MCP `chrome-devtools` (navegar,
@@ -235,7 +265,11 @@ node tools/hivemind.js doctor                       # quién está vivo y autent
 node tools/hivemind.js roster                       # enrutado resumido
 node tools/hivemind.js run antigravity "<encargo>" --timeout 600
 node tools/hivemind.js run devin --prompt-file encargo.md --yolo --timeout 1800
-node tools/hivemind.js run opencode "<encargo>" --model anthropic/claude-sonnet-5
+node tools/hivemind.js run opencode "<encargo>" --model opencode/nemotron-3.5-lightning-free
+
+# Sesión con turnos (solo devin y opencode)
+node tools/hivemind.js acp opencode "<mensaje>" --turno "<seguimiento>" --turno "<otro>"
+node tools/hivemind.js acp capabilities devin
 ```
 
 Para no quemar contexto con el log, despacha desde el agente `delegate` (Sonnet), igual que
@@ -422,6 +456,10 @@ node tools/sync-global.js && node tools/sync-opencode.js && node tools/sync-agen
 
 Lo que **está verificado ejecutándolo** en esta máquina:
 
+- **ACP montado y funcionando** (`tools/acp.js`): handshake, sesión, multi-turno con memoria,
+  permisos y `fs/*` servidos por el cliente. `opencode` PONG en 4,3 s; dos turnos encadenados en
+  7,7 s en `devin` y en `opencode`. Errores cubiertos: agente desconocido sale con 2 en vez de
+  volcar una traza, y el tope de tiempo mata (13 s con tope 12).
 - **Los tres reciben órdenes de Claude y las ejecutan correctamente.** Misma orden, misma verdad
   (`56`): opencode `ok` en 10 s, antigravity `ok` en 6 s, devin `ok` en 5 s. Antes de los arreglos de
   esta tabla, opencode se colgaba indefinidamente y antigravity contestaba `0` sin error visible.
@@ -445,8 +483,6 @@ Lo que **está verificado ejecutándolo** en esta máquina:
 
 Lo que **no está verificado**:
 
-- El transporte ACP no está montado: nada en NEPTUNO habla ACP todavía. Es el camino de
-  crecimiento cuando un encargo necesite ida y vuelta en vez de un disparo.
 - Los sandboxes (`--sandbox` de devin y agy) no se han ejercitado.
 - **Devin acierta por inferencia solo a veces** (ver la tabla del §4): trátalo como un ejecutor al
   que hay que pinchar con comandos, no como un oráculo. Una sola muestra por agente no es una

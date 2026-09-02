@@ -92,6 +92,23 @@ dependencias, va a Devin con sandbox.
 Lee siempre `HIVEMIND_STATUS`: `ok` · `permisos` · `sin-salida` · `timeout` · `error`. Solo `ok`
 significa que hubo trabajo — y aun así lo verificas.
 
+### Dos transportes: disparo o conversación
+
+`run` es un disparo sin estado: cada encargo arranca en frío. **`acp` abre una sesión con turnos**
+en la que el agente recuerda lo anterior — solo `devin` y `opencode` lo soportan.
+
+```bash
+node tools/hivemind.js acp opencode "<mensaje>" --turno "<seguimiento>" --turno "<otro>"
+```
+
+Usa `acp` cuando el trabajo sea iterativo de verdad: revisar y pedir corrección sobre lo mismo,
+encadenar preguntas sobre un análisis caro, o cuando quieras que las lecturas y escrituras del agente
+pasen por tu cliente. Para todo lo demás, `run` con un contrato bien escrito es más simple y funciona
+con los tres.
+
+`--safe` **no es un sandbox**: solo gobierna lo que responde tu cliente cuando el agente pide permiso,
+y opencode ejecuta sus herramientas sin pedirlo nunca. Para aislamiento real, `devin --sandbox`.
+
 El log completo va a `.hivemind/runs/`; el comando solo devuelve la cola y `HIVEMIND_LOG=<ruta>`.
 **No leas el log entero**: si necesitas detalle, `grep`/`sed -n` sobre el tramo que importa. Volcar
 5.000 líneas al contexto anula la razón de haber delegado.

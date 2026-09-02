@@ -1,12 +1,12 @@
 # Graph Report - NEPTUNO  (2026-09-01)
 
 ## Corpus Check
-- 193 files · ~139,314 words
+- 111 files · ~89,514 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1214 nodes · 1300 edges · 147 communities (122 shown, 8 thin omitted)
-- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 138 edges (avg confidence: 0.83)
+- 782 nodes · 950 edges · 66 communities (61 shown, 3 thin omitted)
+- Extraction: 85% EXTRACTED · 15% INFERRED · 0% AMBIGUOUS · INFERRED: 138 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
@@ -24,25 +24,25 @@
 - Skill /expo-build
 - Skill /editorial-layout
 - install.js
-- motion-design skill
+- Test safety net before touching anything
 - sync-opencode.js
 - Skill /fable-mode — protocolo estricto
 - tools/sync-opencode.js
-- 8. Herramientas del ecosistema
-- Agente android (Sonnet)
+- motion-design skill
+- Honestidad de resultados: verificado / inferido / asumido
 - graphify como capa 0 de recuperacion
 - Skill android-run: ejecutar y observar una app Android
 - Modelo orquestador y subagentes
 - pr skill (create a Pull Request)
 - Agente data-scientist (Sonnet)
-- Agente frontend (Sonnet)
+- Skill a11y-review
 - Skill apk-build: build de APK/AAB sin Android Studio
 - Skill capacitor-build: build web + sync nativo Capacitor
 - Agent assignment by task kind
 - pr-merge skill
-- Agente backend (Sonnet)
+- Agente frontend (Sonnet)
 - Constrained query expansion
-- What You Must Do When Invoked
+- Agente debugger (Opus)
 - memory
 - sync-global.js
 - Hivemind — Claude como corteza de un ecosistema multi-agente
@@ -50,7 +50,7 @@
 - Skill desktop-doctor: doctor del entorno de escritorio
 - self-review skill
 - release skill
-- Honestidad de resultados: verificado / inferido / asumido
+- Nunca inventes APIs
 - graphify — grafo de conocimiento como capa 0 de recuperación
 - Skill android-doctor: doctor del entorno Android
 - Logcat filtrado por PID (regla de tokens)
@@ -61,102 +61,36 @@
 - plugins/protect-secrets.js
 - hooks/protect-secrets.js
 - hivemind.js
-- Hivemind — tú decides y verificas; ellos ejecutan
+- Jerarquia de coste de recuperacion
 - Hivemind — tú decides y verificas; ellos ejecutan
 - sync-agents.js
 - Diagram Mermaid — el diagrama correcto, sintaxis verificada
-- Diagram Mermaid — el diagrama correcto, sintaxis verificada
-- HANDOFF.md session handoff note
-- Build de una app Expo/React Native
-- Release de producción: EAS Build + EAS Submit
-- Fable Mode — protocolo estricto
-- graphify reference: extra exports and benchmark
-- ML Experiment — ciencia, no alquimia
-- Code Standards — buenas prácticas medibles, no opiniones
-- Depuración sistemática
-- Ejecutar y observar una app Expo/React Native
-- Full-Stack Feature — contract-first, capa por capa
-- Subcomandos
-- Translate & Localize — traducir la intención, no las palabras
-- Write Natural — prosa que no delata al modelo
 - Code Standards — buenas prácticas medibles, no opiniones
 - Translate & Localize — traducir la intención, no las palabras
 - Write Natural — prosa que no delata al modelo
 - ANDROID.md — Doctrina Android por terminal
 - Doctrina de Datos — análisis, ciencia e ingeniería
-- save-result feedback loop
-- Semantic Web & Accessibility — originalidad que no excluye
-- Bug Hunt — encontrar los bugs antes que los usuarios
-- Document Code — documentación derivada del código, no del deseo
 - Document Code — documentación derivada del código, no del deseo
 - AUTOMATION.md — Automatizaciones del ecosistema
 - CAPACITOR.md — Doctrina Capacitor/Ionic por terminal
-- Release Capacitor firmado
-- Data Pipeline — ingeniería de datos que no despierta a nadie a las 3am
-- Frontend Design — dirección de arte antes que código
-- graphify reference: query, path, explain
-- Handoff — traspaso de sesión sin pérdida
-- Motion Design — movimiento con intención, no decoración
-- Refactor — cambiar la forma sin cambiar el fondo
-- Systemic Responsive Grid — escala continua, no solo breakpoints
 - DEBUGGING.md — Arsenal de depuración
 - Doctrina de Diseño y Frontend — originalidad con sistema
 - Doctrina de apps de escritorio (Electron / Tauri)
-- Doctor del entorno Android
-- Ejecutar y observar una app Android
-- Build de APK/AAB sin Android Studio
-- Release Android firmado
-- Build de app Capacitor (web + nativo)
-- Doctor del entorno Capacitor
-- Ejecutar y observar una app Capacitor (Android)
-- Context Prime — mapa del terreno con mínimo coste
-- Data Quality — auditoría con checks ejecutables
-- Build de app de escritorio (Electron / Tauri) sin asumir el framework
-- Doctor del entorno de escritorio (Electron / Tauri)
-- Release de escritorio (Electron / Tauri)
-- Ejecutar y observar una app de escritorio en desarrollo
-- Editorial Layout — retícula y tipografía como estructura
-- Doctor del entorno Expo/React Native
-- Algorithmic Art & Canvas Shaders — visuales de código, no de stock
-- Optimizador de tokens
-- Self-review — revisión adversarial del propio trabajo
-- SQL Optimize — medir, no adivinar
 - Theme Factory — temas curados, no hex al azar
-- Theme Factory — temas curados, no hex al azar
-- API Contract — la interfaz antes que la implementación
-- DB Migration — cambios de esquema sin romper nada
-- Deep Plan — diseño antes de código
-- EDA — análisis exploratorio con rigor
-- Figma-to-Agent Alignment — del diseño al código sin perder el sistema
-- graphify reference: add a URL and watch a folder
-- graphify reference: commit hook and native CLAUDE.md integration
-- graphify reference: incremental update and cluster-only
-- Optimizador de prompts
-- Parallel Split — divide, delega, integra
-- Merge seguro de un PR
-- Crear un Pull Request
-- Release en GitHub
 - Verificación end-to-end
 - Write Tests — tests que fallan cuando deben
-- Verificación end-to-end
-- Write Tests — tests que fallan cuando deben
-- graphify reference: GitHub clone and cross-repo merge
-- graphify reference: transcribe video and audio
-- .agents/rules/neptuno.md
-- extraction-spec.md
-- .windsurf/rules/neptuno.md
 
 ## God Nodes (most connected - your core abstractions)
 1. `Skill /graphify` - 21 edges
-2. `8. Herramientas del ecosistema` - 15 edges
-3. `graphify — grafo de conocimiento como capa 0 de recuperación` - 13 edges
-4. `What You Must Do When Invoked` - 12 edges
-5. `NEPTUNO — Protocolo de ejecución de alto rendimiento` - 12 edges
-6. `Especificación del prompt de extracción` - 12 edges
-7. `/graphify` - 11 edges
-8. `main()` - 10 edges
-9. `Hivemind — tú decides y verificas; ellos ejecutan` - 10 edges
-10. `Hivemind — tú decides y verificas; ellos ejecutan` - 10 edges
+2. `graphify — grafo de conocimiento como capa 0 de recuperación` - 13 edges
+3. `Especificación del prompt de extracción` - 12 edges
+4. `main()` - 10 edges
+5. `Hivemind — tú decides y verificas; ellos ejecutan` - 10 edges
+6. `Skill /expo-build` - 10 edges
+7. `Diagram Mermaid — el diagrama correcto, sintaxis verificada` - 9 edges
+8. `Skill android-run: ejecutar y observar una app Android` - 9 edges
+9. `Skill apk-build: build de APK/AAB sin Android Studio` - 9 edges
+10. `Skill android-doctor: doctor del entorno Android` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `MCP memory (grafo de conocimiento persistente)` --semantically_similar_to--> `graphify como capa 0 de recuperacion`  [INFERRED] [semantically similar]
@@ -187,7 +121,7 @@
 - **Agentes de build que existen para filtrar output en origen** — _claude_agents_android_android, _claude_agents_react_native_react_native, _claude_agents_capacitor_capacitor, _claude_agents_desktop_desktop, _claude_agents_android_output_filtrado_en_origen, _claude_agents_android_evidencia_de_artefacto [INFERRED 0.95]
 - **GitHub PR lifecycle: create, stack, merge, release** — _claude_skills_pr_skill_pr_skill, _claude_skills_pr_stack_skill_pr_stack_skill, _claude_skills_pr_merge_skill_pr_merge_skill, _claude_skills_release_skill_release_skill, _claude_skills_pr_stack_skill_restack_update_refs, _claude_skills_pr_merge_skill_three_green_lights, _claude_skills_release_skill_semver_from_commits [INFERRED 0.95]
 
-## Communities (147 total, 8 thin omitted)
+## Communities (66 total, 3 thin omitted)
 
 ### Community 0 - "Skill /graphify"
 Cohesion: 0.06
@@ -198,8 +132,8 @@ Cohesion: 0.06
 Nodes (37): Supervivencia a la compactación, Jerarquía de coste de las operaciones, Economía de tokens, Elegir el modelo por tarea, Presupuesto de salida, Prompt caching, Subagentes como cortafuegos de contexto, Principio rector contract-first (+29 more)
 
 ### Community 2 - "build_merge"
-Cohesion: 0.08
-Nodes (31): graphify Commit Hook and CLAUDE.md Integration Reference, Doc and image changes ignored by the hook, Changed-file detection via git diff HEAD~1, graphify claude install, graphify hook install, Append to an existing post-commit hook, Native CLAUDE.md integration, graphify post-commit hook (+23 more)
+Cohesion: 0.06
+Nodes (47): graphify Commit Hook and CLAUDE.md Integration Reference, Doc and image changes ignored by the hook, Changed-file detection via git diff HEAD~1, graphify claude install, graphify hook install, Append to an existing post-commit hook, Native CLAUDE.md integration, graphify post-commit hook (+39 more)
 
 ### Community 3 - "Doctrina Expo/React Native por terminal"
 Cohesion: 0.29
@@ -225,9 +159,9 @@ Nodes (29): Anti-patrón de la tarjeta por costumbre, Paleta contenida, Skill /e
 Cohesion: 0.15
 Nodes (23): checkboxPrompt(), CLAUDE_DIR, commandExists(), copyCore(), createVault(), DEFAULT_VAULT, fs, HOME (+15 more)
 
-### Community 9 - "motion-design skill"
-Cohesion: 0.09
-Nodes (33): Baseline first, Data leakage, Mandatory error analysis, Leak-free feature construction, ml-experiment skill, Single primary metric chosen by error cost, Split before looking at the data, Declared duration scale (+25 more)
+### Community 9 - "Test safety net before touching anything"
+Cohesion: 0.15
+Nodes (20): Baseline first, Data leakage, Mandatory error analysis, Leak-free feature construction, ml-experiment skill, Single primary metric chosen by error cost, Split before looking at the data, Animate only transform and opacity (+12 more)
 
 ### Community 10 - "sync-opencode.js"
 Cohesion: 0.10
@@ -241,13 +175,13 @@ Nodes (16): Skill /fable-mode — protocolo estricto, Prohibiciones del modo, Fa
 Cohesion: 0.23
 Nodes (13): Sync antes que nada (npx cap sync), Compatibilidad opencode, CLAUDE_CONFIG_DIR en la instalacion de graphify, Filtro de archivos sensibles de graphify, _generic_keyword_hit, Gotcha: opencode exige command como un solo array, _is_prose_note (detect.py:207), Carpetas de opencode en singular (+5 more)
 
-### Community 13 - "8. Herramientas del ecosistema"
-Cohesion: 0.07
-Nodes (26): 0. Al iniciar sesión, 10. Compatibilidad opencode, 1. Ciclo obligatorio: ENTENDER → PLANIFICAR → EJECUTAR → VERIFICAR, 2. Reglas de lectura (antes de escribir), 3. Reglas de escritura, 4. Honestidad de resultados, 5. Economía de tokens y contexto, 6. Autocrítica antes de entregar (+18 more)
+### Community 13 - "motion-design skill"
+Cohesion: 0.22
+Nodes (13): Declared duration scale, Easing curve set (entry, exit, loop), motion-design skill, Motion with semantic intent, prefers-reduced-motion fallback, Proportional stagger delay, Breakpoints reserved for structural change, clamp() for fluid typography and spacing (+5 more)
 
-### Community 14 - "Agente android (Sonnet)"
-Cohesion: 0.19
-Nodes (14): Agente android (Sonnet), Fallo de entorno vs fallo de codigo, Evidencia de artefacto (android), Output filtrado en origen (android), Agente capacitor (Sonnet), iOS fuera de alcance en Windows (Capacitor), Medir el radio de explosion del patron defectuoso, iOS local imposible en Windows: siempre EAS (+6 more)
+### Community 14 - "Honestidad de resultados: verificado / inferido / asumido"
+Cohesion: 0.24
+Nodes (12): Agente android (Sonnet), Fallo de entorno vs fallo de codigo, Evidencia de artefacto (android), Output filtrado en origen (android), Agente capacitor (Sonnet), iOS fuera de alcance en Windows (Capacitor), Agente desktop (Sonnet), Firma de codigo como paso opcional y explicito (+4 more)
 
 ### Community 15 - "graphify como capa 0 de recuperacion"
 Cohesion: 0.20
@@ -258,20 +192,20 @@ Cohesion: 0.20
 Nodes (11): Skill android-run: ejecutar y observar una app Android, Arranque con monkey -p sin conocer la MainActivity, Captura de pantalla vía adb exec-out screencap, Sin logs observados no hay verificación, Ionic Appflow en wind-down: no recomendarlo, Bump de versión en package.json y build.gradle, Skill capacitor-release: release Capacitor firmado, iOS solo vía CI en la nube (Actions macOS, Codemagic) (+3 more)
 
 ### Community 17 - "Modelo orquestador y subagentes"
-Cohesion: 0.18
-Nodes (11): Agente architect (Opus), Caza activa de la sobre-ingenieria, Ajuste de doctrina por modelo, Ciclo ENTENDER -> PLANIFICAR -> EJECUTAR -> VERIFICAR, Protocolo NEPTUNO de alto rendimiento, El model: del subagente gana sobre el --model de la sesion, Economia de modelos por rol, Ecosistema NEPTUNO (+3 more)
+Cohesion: 0.20
+Nodes (10): Agente architect (Opus), Caza activa de la sobre-ingenieria, Ajuste de doctrina por modelo, Protocolo NEPTUNO de alto rendimiento, El model: del subagente gana sobre el --model de la sesion, Economia de modelos por rol, Ecosistema NEPTUNO, MCP sequential-thinking (+2 more)
 
 ### Community 18 - "pr skill (create a Pull Request)"
-Cohesion: 0.25
-Nodes (9): Forward-looking token rules, Atomic commits, files added by name, gh --json/-q token rule, gh CLI under the user session, Never open a PR from the default branch, pr skill (create a Pull Request), Each layer leaves the repo working, pr-stack skill (stacked PRs) (+1 more)
+Cohesion: 0.22
+Nodes (10): Forward-looking token rules, Atomic commits, files added by name, gh --json/-q token rule, gh CLI under the user session, Never open a PR from the default branch, pr skill (create a Pull Request), Each layer leaves the repo working, pr-stack skill (stacked PRs) (+2 more)
 
 ### Community 19 - "Agente data-scientist (Sonnet)"
-Cohesion: 0.18
-Nodes (12): Filtro del escenario de fallo concreto, Agente data-engineer (Sonnet), Grano explicito y cardinalidad de los JOIN, Idempotencia por diseno, Baseline primero, Agente data-scientist (Sonnet), Escepticismo estadistico, Reproducibilidad de extremo a extremo (+4 more)
+Cohesion: 0.25
+Nodes (9): Validar en el borde y autorizar en el handler, Agente data-engineer (Sonnet), Grano explicito y cardinalidad de los JOIN, Idempotencia por diseno, Mirar los datos reales antes de escribir codigo, Anti-leakage como reflejo, Baseline primero, Agente data-scientist (Sonnet) (+1 more)
 
-### Community 20 - "Agente frontend (Sonnet)"
-Cohesion: 0.23
-Nodes (13): Agente critic (Opus), Accesibilidad minima no negociable (frontend), Agente frontend (Sonnet), Los 4 estados: loading, vacio, error, exito, Ejercita el flujo real (un typecheck verde no es verificacion), Agente verifier (Sonnet), Skill a11y-review, Contraste de color WCAG (+5 more)
+### Community 20 - "Skill a11y-review"
+Cohesion: 0.33
+Nodes (9): Agente critic (Opus), Ejercita el flujo real (un typecheck verde no es verificacion), Agente verifier (Sonnet), Skill a11y-review, Contraste de color WCAG, Navegacion por teclado y gestion del foco, Proceso de auditoria de accesibilidad, Autocritica antes de entregar (+1 more)
 
 ### Community 21 - "Skill apk-build: build de APK/AAB sin Android Studio"
 Cohesion: 0.28
@@ -289,17 +223,17 @@ Nodes (9): Delegate broad searches to a subagent, Agent assignment by task kind,
 Cohesion: 0.25
 Nodes (9): Conflict resolution by rebase onto base, Merge strategy taken from the repo, Never use --admin on your own initiative, Post-merge stack warning, pr-merge skill, Three green lights before merge, Land the stack bottom-up with retargeting, restack with git rebase --update-refs (+1 more)
 
-### Community 25 - "Agente backend (Sonnet)"
-Cohesion: 0.33
-Nodes (6): Agente backend (Sonnet), El contrato manda (backend), Validar en el borde y autorizar en el handler, Mirar los datos reales antes de escribir codigo, El contrato manda (frontend), Reglas del paralelismo de agentes
+### Community 25 - "Agente frontend (Sonnet)"
+Cohesion: 0.29
+Nodes (8): Agente backend (Sonnet), El contrato manda (backend), Accesibilidad minima no negociable (frontend), El contrato manda (frontend), Agente frontend (Sonnet), Los 4 estados: loading, vacio, error, exito, HTML semantico primero, ARIA como ultimo recurso, Reglas del paralelismo de agentes
 
 ### Community 26 - "Constrained query expansion"
-Cohesion: 0.38
-Nodes (7): Answer only from what the graph contains, Auditable printed token expansion, BFS traversal mode, Constrained query expansion, DFS traversal mode, Token-budget aware ranked output, Node-label vocabulary extraction (.vocab.txt)
+Cohesion: 0.32
+Nodes (8): Answer only from what the graph contains, Auditable printed token expansion, BFS traversal mode, Constrained query expansion, DFS traversal mode, Token-budget aware ranked output, Node-label vocabulary extraction (.vocab.txt), Prompt techniques by failure mode
 
-### Community 27 - "What You Must Do When Invoked"
-Cohesion: 0.07
-Nodes (26): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+18 more)
+### Community 27 - "Agente debugger (Opus)"
+Cohesion: 0.29
+Nodes (7): Filtro del escenario de fallo concreto, Escepticismo estadistico, La causa debe explicar el 100% del sintoma, Agente debugger (Opus), Biseccion con hipotesis falsables, Medir el radio de explosion del patron defectuoso, Reproduce primero
 
 ### Community 28 - "memory"
 Cohesion: 0.32
@@ -323,15 +257,15 @@ Nodes (7): electron-rebuild ante mismatch de NODE_MODULE_VERSION, ABI de módulo
 
 ### Community 33 - "self-review skill"
 Cohesion: 0.29
-Nodes (7): Leakage alarm signals, Consistency grep after renames, Duplication check before accepting new helpers, Logic and data edge-case checklist, Golden rule: suspect the review, not the code, Hostile review stance, self-review skill
+Nodes (7): Leakage alarm signals, Consistency grep after renames, Logic and data edge-case checklist, Fidelity to the original request, Golden rule: suspect the review, not the code, Hostile review stance, self-review skill
 
 ### Community 34 - "release skill"
 Cohesion: 0.33
 Nodes (7): Description written from the real diff, Honest "how it was tested" section, Changelog traceable to commits and PRs, release skill, Semver deduced from commits, Signed release artifacts, Version synchronized in the code
 
-### Community 35 - "Honestidad de resultados: verificado / inferido / asumido"
-Cohesion: 0.24
-Nodes (10): Anti-leakage como reflejo, Agente desktop (Sonnet), Detectar el framework antes de asumir comandos, Firma de codigo como paso opcional y explicito, Patrones del repo primero, Agente implementer (Sonnet), Verificar algo tras cada edicion sustancial, Honestidad de resultados: verificado / inferido / asumido (+2 more)
+### Community 35 - "Nunca inventes APIs"
+Cohesion: 0.40
+Nodes (6): Detectar el framework antes de asumir comandos, Patrones del repo primero, Agente implementer (Sonnet), Verificar algo tras cada edicion sustancial, Lee antes de editar, Nunca inventes APIs
 
 ### Community 36 - "graphify — grafo de conocimiento como capa 0 de recuperación"
 Cohesion: 0.11
@@ -350,8 +284,8 @@ Cohesion: 0.33
 Nodes (3): fs, os, path
 
 ### Community 40 - "Optimized prompt structure"
-Cohesion: 0.40
-Nodes (6): optimize-prompt skill, Prompt diagnosis (what is missing, what is filler), Optimized prompt structure, Prompt techniques by failure mode, Self-sufficient prompt rule, Fidelity to the original request
+Cohesion: 0.67
+Nodes (4): optimize-prompt skill, Prompt diagnosis (what is missing, what is filler), Optimized prompt structure, Self-sufficient prompt rule
 
 ### Community 41 - "plugins/andromeda-context.js"
 Cohesion: 0.83
@@ -361,9 +295,9 @@ Nodes (3): AndromedaContext(), norm(), normPath()
 Cohesion: 0.15
 Nodes (13): AGENTS, [cmd, ...argv], commands, doctor(), ENV, fs, os, path (+5 more)
 
-### Community 47 - "Hivemind — tú decides y verificas; ellos ejecutan"
-Cohesion: 0.18
-Nodes (10): Hivemind — tú decides y verificas; ellos ejecutan, Paralelizar, Paso 0 — ¿esto se delega?, Paso 1 — estado de la flota, Paso 2 — enrutado por forma de tarea, Paso 3 — redactar el encargo, Paso 4 — despachar sin quemar contexto, Paso 5 — verificar (no es opcional) (+2 more)
+### Community 47 - "Jerarquia de coste de recuperacion"
+Cohesion: 0.50
+Nodes (5): Paso 0 de scout: el grafo antes que el grep, Agente scout (Haiku), Jerarquia de coste de recuperacion, Subagentes como cortafuegos de contexto, MCP graphify-mcp deliberadamente no registrado
 
 ### Community 48 - "Hivemind — tú decides y verificas; ellos ejecutan"
 Cohesion: 0.18
@@ -373,65 +307,9 @@ Nodes (10): Hivemind — tú decides y verificas; ellos ejecutan, Paralelizar, P
 Cohesion: 0.18
 Nodes (8): doctrina, fs, GLOBAL, nAgents, nSkills, os, path, SRC
 
-### Community 50 - "Diagram Mermaid — el diagrama correcto, sintaxis verificada"
-Cohesion: 0.20
-Nodes (9): Diagram Mermaid — el diagrama correcto, sintaxis verificada, Dónde va el diagrama, Elección del tipo, Formato de entrega, Paso 0 — ¿merece un diagrama?, Reglas, Reglas de legibilidad (las que separan un diagrama útil de una maraña), Trampas de sintaxis que rompen el render (+1 more)
-
 ### Community 51 - "Diagram Mermaid — el diagrama correcto, sintaxis verificada"
 Cohesion: 0.20
 Nodes (9): Diagram Mermaid — el diagrama correcto, sintaxis verificada, Dónde va el diagrama, Elección del tipo, Formato de entrega, Paso 0 — ¿merece un diagrama?, Reglas, Reglas de legibilidad (las que separan un diagrama útil de una maraña), Trampas de sintaxis que rompen el render (+1 more)
-
-### Community 52 - "HANDOFF.md session handoff note"
-Cohesion: 0.28
-Nodes (9): ANDROMEDA vault project note, Decisions taken (not to be re-litigated), HANDOFF.md session handoff note, handoff skill, Model tiering by task cost, NOTES.md state summary before compaction, optimize-tokens skill, Prompt caching via a stable context prefix (+1 more)
-
-### Community 53 - "Build de una app Expo/React Native"
-Cohesion: 0.22
-Nodes (8): 1. Decide el camino, 2. Perfiles: viven en `eas.json`, 3. Build local (Android), 4. Build EAS (Android o iOS, siempre en la nube), 5. Diagnóstico de errores típicos, Build de una app Expo/React Native, Reglas, Reporte
-
-### Community 54 - "Release de producción: EAS Build + EAS Submit"
-Cohesion: 0.22
-Nodes (8): 1. Versionado — antes de compilar nada, 2. Credenciales, 3. Build de producción, 4. Submit a la tienda, 5. Verificación de que la subida se completó, Reglas, Release de producción: EAS Build + EAS Submit, Reporte
-
-### Community 55 - "Fable Mode — protocolo estricto"
-Cohesion: 0.22
-Nodes (8): Fable Mode — protocolo estricto, Fase 0 — Contrato, Fase 1 — Reconocimiento, Fase 2 — Plan, Fase 3 — Ejecución, Fase 4 — Verificación adversarial, Fase 5 — Entrega, Prohibiciones en este modo
-
-### Community 56 - "graphify reference: extra exports and benchmark"
-Cohesion: 0.22
-Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
-
-### Community 57 - "ML Experiment — ciencia, no alquimia"
-Cohesion: 0.22
-Nodes (8): 1. Definición, 2. Split ANTES de mirar, 3. Baseline primero, 4. Features sin fuga, 5. Entrenamiento y comparación, 6. Evaluación final y entrega, ML Experiment — ciencia, no alquimia, Señales de alarma (si aparecen, para y busca la fuga)
-
-### Community 58 - "Code Standards — buenas prácticas medibles, no opiniones"
-Cohesion: 0.25
-Nodes (7): Code Standards — buenas prácticas medibles, no opiniones, Formato de entrega, Lo que NO es una falta, Los 8 controles (en orden de impacto), Proceso, Regla cero: el repo manda sobre el manual, Reglas
-
-### Community 59 - "Depuración sistemática"
-Cohesion: 0.25
-Nodes (7): Depuración sistemática, Fase 1 — Reproducir (obligatoria, antes de leer código), Fase 2 — Localizar por bisección de hipótesis, Fase 3 — Causa raíz, no síntoma, Fase 4 — Fix y verificación, Reglas, Reporte final
-
-### Community 60 - "Ejecutar y observar una app Expo/React Native"
-Cohesion: 0.25
-Nodes (7): 1. Android — ejecutable desde esta máquina, 2. iOS — NO ejecutable desde esta máquina, 3. Logs — regla de tokens, 4. Veredicto, Ejecutar y observar una app Expo/React Native, Reglas, Reporte
-
-### Community 61 - "Full-Stack Feature — contract-first, capa por capa"
-Cohesion: 0.25
-Nodes (7): Fase 1 — Contrato (ANTES de tocar código), Fase 2 — Datos, Fase 3 — Backend, Fase 4 — Frontend, Fase 5 — Integración, Full-Stack Feature — contract-first, capa por capa, Reglas
-
-### Community 62 - "Subcomandos"
-Cohesion: 0.25
-Nodes (7): `crear <tarea>` — diseñar y montar el stack, `land` — aterrizar en orden, Reglas, `restack` — propagar cambios hacia arriba, Stacked PRs (estilo Graphite, sin Graphite), `status` — ver el stack, Subcomandos
-
-### Community 63 - "Translate & Localize — traducir la intención, no las palabras"
-Cohesion: 0.25
-Nodes (7): Localización de UI, Paso 0 — clasifica el texto antes de traducir, Proceso, Reglas, Reglas duras, Revisar una traducción existente, Translate & Localize — traducir la intención, no las palabras
-
-### Community 64 - "Write Natural — prosa que no delata al modelo"
-Cohesion: 0.25
-Nodes (7): Ajuste por canal, Lo que sí hace la prosa humana, Los 12 tics que delatan a una IA (elimínalos siempre), Proceso, Reglas, Si el texto es en español, Write Natural — prosa que no delata al modelo
 
 ### Community 65 - "Code Standards — buenas prácticas medibles, no opiniones"
 Cohesion: 0.25
@@ -453,22 +331,6 @@ Nodes (7): 1. El mapa mental mínimo, 2. La tríada JDK ↔ Gradle ↔ AGP, 3. D
 Cohesion: 0.25
 Nodes (7): Análisis (comandos: `/eda`, `/data-quality`), Ciencia / ML (comando: `/ml-experiment`), Doctrina de Datos — análisis, ciencia e ingeniería, Elección de agente/comando, Ingeniería (comandos: `/data-pipeline`, `/db-migration`, `/sql-optimize`), MCPs útiles para datos, Principios transversales (las 5 leyes)
 
-### Community 70 - "save-result feedback loop"
-Cohesion: 0.38
-Nodes (7): graphify explain (single node and neighbours), graphify path (shortest path between concepts), graphify reflect and LESSONS.md, graphify Query, Path and Explain Reference, save-result feedback loop, Work memory outcomes (useful / dead_end / corrected), Hard-won facts and dead ends
-
-### Community 71 - "Semantic Web & Accessibility — originalidad que no excluye"
-Cohesion: 0.29
-Nodes (6): Contraste de color (WCAG), HTML semántico primero, ARIA como último recurso, Navegación por teclado, Proceso de auditoría, Reporte, Semantic Web & Accessibility — originalidad que no excluye
-
-### Community 72 - "Bug Hunt — encontrar los bugs antes que los usuarios"
-Cohesion: 0.29
-Nodes (6): Bug Hunt — encontrar los bugs antes que los usuarios, Fase 1 — Priorizar la superficie (nunca barras todo por igual), Fase 2 — Barrido adversarial, Fase 3 — Confirmar, Fase 4 — Entrega (y ruta de solución), Reglas
-
-### Community 73 - "Document Code — documentación derivada del código, no del deseo"
-Cohesion: 0.29
-Nodes (6): Document Code — documentación derivada del código, no del deseo, Los 5 formatos y cuándo usar cada uno, Plantillas, Proceso, Qué NO documentar, Reglas
-
 ### Community 74 - "Document Code — documentación derivada del código, no del deseo"
 Cohesion: 0.29
 Nodes (6): Document Code — documentación derivada del código, no del deseo, Los 5 formatos y cuándo usar cada uno, Plantillas, Proceso, Qué NO documentar, Reglas
@@ -480,38 +342,6 @@ Nodes (6): 1. Hooks — automatización a coste cero de tokens, 2. Loops — vig
 ### Community 76 - "CAPACITOR.md — Doctrina Capacitor/Ionic por terminal"
 Cohesion: 0.29
 Nodes (6): 1. El mapa mental mínimo, 2. Compatibilidad de versiones (Capacitor 8.x, vigente — verificado), 3. Diagnóstico: síntoma → causa → fix, 4. Release, 5. División del trabajo, CAPACITOR.md — Doctrina Capacitor/Ionic por terminal
-
-### Community 77 - "Release Capacitor firmado"
-Cohesion: 0.33
-Nodes (5): iOS: no ejecutable desde Windows, Proceso, Reglas, Release Capacitor firmado, Reporte
-
-### Community 78 - "Data Pipeline — ingeniería de datos que no despierta a nadie a las 3am"
-Cohesion: 0.33
-Nodes (5): Data Pipeline — ingeniería de datos que no despierta a nadie a las 3am, Diseño (antes de código), Implementación, Regla, Verificación (obligatoria)
-
-### Community 79 - "Frontend Design — dirección de arte antes que código"
-Cohesion: 0.33
-Nodes (5): Checklist antes de entregar, Frontend Design — dirección de arte antes que código, Proceso, Prohibido por defecto (si no está justificado por la dirección elegida), Regla
-
-### Community 80 - "graphify reference: query, path, explain"
-Cohesion: 0.33
-Nodes (5): For /graphify explain, For /graphify path, graphify reference: query, path, explain, Step 0 — Constrained query expansion (REQUIRED before traversal), Step 1 — Traversal
-
-### Community 81 - "Handoff — traspaso de sesión sin pérdida"
-Cohesion: 0.33
-Nodes (5): Contenido obligatorio, Handoff — traspaso de sesión sin pérdida, Refrescar el grafo de conocimiento (si existe `graphify-out/`), Reglas, Sincronizar la bóveda ANDROMEDA (si existe `~/ANDROMEDA`)
-
-### Community 82 - "Motion Design — movimiento con intención, no decoración"
-Cohesion: 0.33
-Nodes (5): Checklist, Curvas de easing, Escala de duración (declara y reutiliza, no inventes por componente), Motion Design — movimiento con intención, no decoración, Reglas de implementación
-
-### Community 83 - "Refactor — cambiar la forma sin cambiar el fondo"
-Cohesion: 0.33
-Nodes (5): Entrega, Fase 1 — Red de seguridad (antes de tocar nada), Fase 2 — Refactor en pasos pequeños, Fase 3 — Verificación de equivalencia, Refactor — cambiar la forma sin cambiar el fondo
-
-### Community 84 - "Systemic Responsive Grid — escala continua, no solo breakpoints"
-Cohesion: 0.33
-Nodes (5): Checklist, Escala de espaciado sistemática, Herramientas y cuándo usar cada una, Proceso, Systemic Responsive Grid — escala continua, no solo breakpoints
 
 ### Community 85 - "DEBUGGING.md — Arsenal de depuración"
 Cohesion: 0.33
@@ -525,149 +355,9 @@ Nodes (5): Cuándo NO aplican estas skills, Doctrina de Diseño y Frontend — o
 Cohesion: 0.33
 Nodes (6): Doctrina de apps de escritorio (Electron / Tauri), Electron vs Tauri, Verificación del instalador, Desajuste de ABI de Node en módulos nativos, Regla de tokens para logs de Rust/bundler, Firma de código en Windows
 
-### Community 88 - "Doctor del entorno Android"
-Cohesion: 0.40
-Nodes (4): Chequeos (en orden de dependencia), Doctor del entorno Android, Reglas, Reporte
-
-### Community 89 - "Ejecutar y observar una app Android"
-Cohesion: 0.40
-Nodes (4): Ejecutar y observar una app Android, Proceso, Reporte, Trucos que ahorran sesiones
-
-### Community 90 - "Build de APK/AAB sin Android Studio"
-Cohesion: 0.40
-Nodes (4): Build de APK/AAB sin Android Studio, Proceso, Reglas, Reporte
-
-### Community 91 - "Release Android firmado"
-Cohesion: 0.40
-Nodes (4): Proceso, Reglas, Release Android firmado, Reporte
-
-### Community 92 - "Build de app Capacitor (web + nativo)"
-Cohesion: 0.40
-Nodes (4): Build de app Capacitor (web + nativo), Proceso, Reglas, Reporte
-
-### Community 93 - "Doctor del entorno Capacitor"
-Cohesion: 0.40
-Nodes (4): Chequeos, Doctor del entorno Capacitor, Reglas, Reporte
-
-### Community 94 - "Ejecutar y observar una app Capacitor (Android)"
-Cohesion: 0.40
-Nodes (4): Ejecutar y observar una app Capacitor (Android), iOS: fuera de alcance en esta máquina, Proceso, Reporte
-
-### Community 95 - "Context Prime — mapa del terreno con mínimo coste"
-Cohesion: 0.40
-Nodes (4): Context Prime — mapa del terreno con mínimo coste, Entrega, Proceso, Regla
-
-### Community 96 - "Data Quality — auditoría con checks ejecutables"
-Cohesion: 0.40
-Nodes (4): Data Quality — auditoría con checks ejecutables, Formato del reporte, Las 6 dimensiones (ejecuta checks de cada una), Reglas
-
-### Community 97 - "Build de app de escritorio (Electron / Tauri) sin asumir el framework"
-Cohesion: 0.40
-Nodes (4): Build de app de escritorio (Electron / Tauri) sin asumir el framework, Proceso, Reglas, Reporte
-
-### Community 98 - "Doctor del entorno de escritorio (Electron / Tauri)"
-Cohesion: 0.40
-Nodes (4): Chequeos (en orden de dependencia), Doctor del entorno de escritorio (Electron / Tauri), Reglas, Reporte
-
-### Community 99 - "Release de escritorio (Electron / Tauri)"
-Cohesion: 0.40
-Nodes (4): Proceso, Reglas, Release de escritorio (Electron / Tauri), Reporte
-
-### Community 100 - "Ejecutar y observar una app de escritorio en desarrollo"
-Cohesion: 0.40
-Nodes (4): Ejecutar y observar una app de escritorio en desarrollo, Proceso, Reglas, Reporte
-
-### Community 101 - "Editorial Layout — retícula y tipografía como estructura"
-Cohesion: 0.40
-Nodes (4): Anti-patrones a evitar, Checklist, Editorial Layout — retícula y tipografía como estructura, Proceso
-
-### Community 102 - "Doctor del entorno Expo/React Native"
-Cohesion: 0.40
-Nodes (4): Chequeos (en orden de dependencia), Doctor del entorno Expo/React Native, Reglas, Reporte
-
-### Community 103 - "Algorithmic Art & Canvas Shaders — visuales de código, no de stock"
-Cohesion: 0.40
-Nodes (4): Algorithmic Art & Canvas Shaders — visuales de código, no de stock, Checklist, Familias de algoritmos (elige una que case con la dirección estética), Proceso
-
-### Community 104 - "Optimizador de tokens"
-Cohesion: 0.40
-Nodes (4): Optimizador de tokens, Principios de coste (para recomendar al usuario), Si el usuario pasó un texto/prompt como argumento, Si se invoca sin argumento (auditoría de sesión)
-
-### Community 105 - "Self-review — revisión adversarial del propio trabajo"
-Cohesion: 0.40
-Nodes (4): Checklist de ataque, Entrega, Regla de oro, Self-review — revisión adversarial del propio trabajo
-
-### Community 106 - "SQL Optimize — medir, no adivinar"
-Cohesion: 0.40
-Nodes (4): Advertencias, Formato de entrega, Proceso, SQL Optimize — medir, no adivinar
-
-### Community 107 - "Theme Factory — temas curados, no hex al azar"
-Cohesion: 0.40
-Nodes (4): Catálogo de temas, Proceso, Regla, Theme Factory — temas curados, no hex al azar
-
 ### Community 108 - "Theme Factory — temas curados, no hex al azar"
 Cohesion: 0.40
 Nodes (4): Catálogo de temas, Proceso, Regla, Theme Factory — temas curados, no hex al azar
-
-### Community 109 - "API Contract — la interfaz antes que la implementación"
-Cohesion: 0.50
-Nodes (3): API Contract — la interfaz antes que la implementación, Proceso, Regla
-
-### Community 110 - "DB Migration — cambios de esquema sin romper nada"
-Cohesion: 0.50
-Nodes (3): DB Migration — cambios de esquema sin romper nada, Proceso, Prohibiciones
-
-### Community 111 - "Deep Plan — diseño antes de código"
-Cohesion: 0.50
-Nodes (3): Deep Plan — diseño antes de código, Proceso, Reglas
-
-### Community 112 - "EDA — análisis exploratorio con rigor"
-Cohesion: 0.50
-Nodes (3): EDA — análisis exploratorio con rigor, Proceso, Reglas
-
-### Community 113 - "Figma-to-Agent Alignment — del diseño al código sin perder el sistema"
-Cohesion: 0.50
-Nodes (3): Checklist, Figma-to-Agent Alignment — del diseño al código sin perder el sistema, Proceso
-
-### Community 114 - "graphify reference: add a URL and watch a folder"
-Cohesion: 0.50
-Nodes (3): For /graphify add, For --watch, graphify reference: add a URL and watch a folder
-
-### Community 115 - "graphify reference: commit hook and native CLAUDE.md integration"
-Cohesion: 0.50
-Nodes (3): For git commit hook, For native CLAUDE.md integration, graphify reference: commit hook and native CLAUDE.md integration
-
-### Community 116 - "graphify reference: incremental update and cluster-only"
-Cohesion: 0.50
-Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
-
-### Community 117 - "Optimizador de prompts"
-Cohesion: 0.50
-Nodes (3): Optimizador de prompts, Proceso, Reglas
-
-### Community 118 - "Parallel Split — divide, delega, integra"
-Cohesion: 0.50
-Nodes (3): Parallel Split — divide, delega, integra, Proceso, Regla
-
-### Community 119 - "Merge seguro de un PR"
-Cohesion: 0.50
-Nodes (3): Merge seguro de un PR, Proceso, Reglas
-
-### Community 120 - "Crear un Pull Request"
-Cohesion: 0.50
-Nodes (3): Crear un Pull Request, Proceso, Reglas
-
-### Community 121 - "Release en GitHub"
-Cohesion: 0.50
-Nodes (3): Proceso, Reglas, Release en GitHub
-
-### Community 122 - "Verificación end-to-end"
-Cohesion: 0.50
-Nodes (3): Proceso, Reglas, Verificación end-to-end
-
-### Community 123 - "Write Tests — tests que fallan cuando deben"
-Cohesion: 0.50
-Nodes (3): Proceso, Reglas, Write Tests — tests que fallan cuando deben
 
 ### Community 124 - "Verificación end-to-end"
 Cohesion: 0.50
@@ -684,9 +374,9 @@ Nodes (3): Proceso, Reglas, Write Tests — tests que fallan cuando deben
   .claude/skills/graphify/references/update.md · relation: semantically_similar_to
 
 ## Knowledge Gaps
-- **461 isolated node(s):** `@modelcontextprotocol/server-sequential-thinking`, `@modelcontextprotocol/server-memory`, `MEMORY_FILE_PATH`, `fs`, `path` (+456 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 724 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **182 isolated node(s):** `@modelcontextprotocol/server-sequential-thinking`, `@modelcontextprotocol/server-memory`, `MEMORY_FILE_PATH`, `fs`, `path` (+177 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 363 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -695,13 +385,13 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **What is the exact relationship between `Selective manifest stamping` and `HANDOFF.md session handoff note`?**
   _Edge tagged AMBIGUOUS (relation: semantically_similar_to) - confidence is low._
-- **Why does `Skill /expo-doctor` connect `Skill /expo-build` to `Skill /fable-mode — protocolo estricto`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
-- **Why does `Fase 1 — Reconocimiento` connect `Skill /fable-mode — protocolo estricto` to `Skill /expo-build`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Why does `Skill android-doctor: doctor del entorno Android` connect `Skill android-doctor: doctor del entorno Android` to `Skill desktop-doctor: doctor del entorno de escritorio`, `Skill android-run: ejecutar y observar una app Android`, `Skill apk-build: build de APK/AAB sin Android Studio`, `Skill capacitor-build: build web + sync nativo Capacitor`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `Skill debug: depuración sistemática` connect `Skill debug: depuración sistemática` to `Skill android-doctor: doctor del entorno Android`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `Forward-looking token rules` connect `pr skill (create a Pull Request)` to `Constrained query expansion`, `build_merge`, `Agent assignment by task kind`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Are the 2 inferred relationships involving `main()` (e.g. with `installGraphify()` and `installObsidianApp()`) actually correct?**
+  _`main()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `@modelcontextprotocol/server-sequential-thinking`, `@modelcontextprotocol/server-memory`, `MEMORY_FILE_PATH` to the rest of the system?**
-  _461 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Skill /graphify` be split into smaller, more focused modules?**
-  _Cohesion score 0.0602322206095791 - nodes in this community are weakly interconnected._
-- **Should `Doctrina Full Stack por capa` be split into smaller, more focused modules?**
-  _Cohesion score 0.05855855855855856 - nodes in this community are weakly interconnected._
+  _182 weakly-connected nodes found - possible documentation gaps or missing edges._
