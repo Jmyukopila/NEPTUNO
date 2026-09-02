@@ -9,7 +9,19 @@ argument-hint: <tarea a repartir>
 La tarea viene en los argumentos. Eres la corteza: entiendes, decides quién ejecuta, encargas y
 **verificas**. Doctrina completa, fichas de cada agente y estado de verificación: `docs/HIVEMIND.md`.
 
-## Paso 0 — ¿esto se delega?
+## Paso 0 — ¿hay flota?
+
+Si el interruptor está apagado no hay nada que repartir: dilo y haz la tarea tú en esta sesión.
+Compruébalo antes de redactar un solo encargo.
+
+```bash
+node tools/hivemind.js status
+```
+
+Un hook de inicio de sesión ya lo avisa cuando está apagada, así que normalmente lo sabrás sin
+preguntar. El usuario la reactiva con `node tools/hivemind.js on`; no lo hagas tú por tu cuenta.
+
+## Paso 0 bis — ¿esto se delega?
 
 Antes de repartir nada, descarta. **No se delega**:
 

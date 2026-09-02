@@ -68,6 +68,10 @@
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/tools/hooks/andromeda-context.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/tools/hooks/hivemind-toggle.js\""
           }
         ]
       }

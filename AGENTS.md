@@ -204,6 +204,7 @@ Grafos vivos: `~/github/Jmyukopila/NEPTUNO` (el ecosistema), `~/ANDROMEDA` (la b
 | `protect-secrets` | antes de Edit/Write | Bloquea escrituras sobre `.env*`, keystores, claves y credenciales |
 | `handoff-reminder` | inicio de sesión | Si existe `HANDOFF.md`, inyecta el recordatorio de leerlo (§0) |
 | `andromeda-context` | inicio de sesión | Inyecta la nota del proyecto desde la bóveda `~/ANDROMEDA` (mapa inicial sin explorar en frío; `/handoff` la mantiene viva) |
+| `hivemind-toggle` | inicio de sesión | Si la flota externa está apagada, avisa de que se trabaja en **modo solo Claude** y no se delega. Callado si está encendida |
 | `graphify hook-guard search` | antes de Bash/Grep | Si hay `graphify-out/graph.json` en el proyecto, recuerda consultar el grafo antes de grepear. Nunca bloquea |
 | `graphify hook-guard read` | antes de Read/Glob | Igual, antes de leer fuentes indexadas. El aviso pide propagar la regla a los subagentes |
 
@@ -246,6 +247,7 @@ propias herramientas y **sus propios subagentes**, que tienen permiso de usar.
 
 | Comando | Qué hace |
 |---|---|
+| `node tools/hivemind.js on` / `off` / `status` | **Interruptor**: enciende o apaga la flota. Apagada, `run` y `session` no despachan nada |
 | `node tools/hivemind.js doctor` | Quién está instalado **y autenticado** |
 | `node tools/hivemind.js roster` | Enrutado resumido |
 | `node tools/hivemind.js run <agente> "<encargo>"` | Despacha; el log va a `.hivemind/runs/`, no a tu contexto |

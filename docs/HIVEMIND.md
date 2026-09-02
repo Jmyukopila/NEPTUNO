@@ -177,6 +177,33 @@ forma de tarea** mide cada cosa. Úsalos como rúbrica de reparto, no como ranki
 
 Estado en vivo: `node tools/hivemind.js doctor`. Enrutado resumido: `node tools/hivemind.js roster`.
 
+## El interruptor: trabajar solo con Claude
+
+```bash
+node tools/hivemind.js off      # modo solo Claude
+node tools/hivemind.js on       # vuelve a haber flota
+node tools/hivemind.js status   # cuál de los dos, y de dónde sale el estado
+```
+
+Apagada, `run` y `session` **no llaman a ninguna CLI externa**: salen con código 3 y un mensaje.
+Es un bloqueo, no una advertencia — la decisión de no delegar no debe depender de que el modelo se
+acuerde.
+
+Y para que no dependa de eso, el hook `hivemind-toggle` se lo dice a Claude al abrir sesión. Sin
+él, el aviso llega tarde: habría planificado el reparto y redactado los encargos antes de chocar
+con el error. Cuando la flota está encendida el hook calla, porque §9 de `CLAUDE.md` ya lo dice y
+repetirlo solo gasta contexto.
+
+El estado vive en `~/.neptuno/hivemind.json`, fuera del repo: vale para todos los proyectos y
+ningún `sync-*.js` lo puede pisar. Sin fichero, la flota está disponible — apagarla es una decisión
+explícita, nunca el valor por defecto.
+
+Para una sola invocación, sin tocar el estado guardado, manda la variable de entorno:
+
+```bash
+NEPTUNO_HIVEMIND=0 node tools/hivemind.js run opencode "…"   # rechazado; el estado sigue igual
+```
+
 ### opencode
 - **Qué es**: CLI agéntica de código abierto, multi-proveedor. Elige el modelo por invocación.
 - **Contexto que lee**: `AGENTS.md` (= nuestro `CLAUDE.md`, nativamente), `.opencode/command/`

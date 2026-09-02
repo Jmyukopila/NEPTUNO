@@ -7,6 +7,7 @@
 // resumen corto con la ruta completa.
 //
 // Uso:
+//   node tools/hivemind.js on | off | status             -> enciende/apaga la flota externa
 //   node tools/hivemind.js doctor                       -> quién está instalado y autenticado
 //   node tools/hivemind.js roster                        -> tabla de enrutado (resumen de docs/HIVEMIND.md)
 //   node tools/hivemind.js run <agente> "<prompt>" [opciones]     -> disparo, sin estado
@@ -28,6 +29,7 @@ const { spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const estadoHivemind = require('./hivemind-estado.js');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -153,6 +155,8 @@ function which(bin) {
 // --- doctor -----------------------------------------------------------------
 function doctor() {
   console.log('NEPTUNO Hivemind — estado de la flota\n');
+  const sw = estadoHivemind.leer();
+  if (!sw.activo) console.log('  [interruptor] APAGADA: `run` y `session` no despacharán. Enciende con `hivemind.js on`.\n');
   if (SNAP_CORREGIDO) console.log(`  [entorno] XDG_DATA_HOME apuntaba a un sandbox de snap; corregido a ${ENV.XDG_DATA_HOME}\n`);
   let ready = 0;
   for (const [name, a] of Object.entries(AGENTS)) {
@@ -332,6 +336,34 @@ function run(argv) {
   return 0;
 }
 
+// --- interruptor -------------------------------------------------------------
+// Bloqueo DURO, no un aviso: apagada la flota, `run` y `session` no llaman a ninguna CLI
+// externa. El hook de SessionStart se lo dice ademas a Claude, para que no planifique un
+// reparto que iba a fallar. Los dos leen el mismo estado.
+function exigirEncendido() {
+  const e = estadoHivemind.leer();
+  if (e.activo) return true;
+  console.error('La flota externa está APAGADA (modo solo Claude). No se ha despachado nada.');
+  console.error(`Origen del estado: ${e.origen}`);
+  console.error('Enciéndela con:  node tools/hivemind.js on');
+  return false;
+}
+
+function interruptor(valor) {
+  const e = estadoHivemind.escribir(valor);
+  console.log(`Flota externa: ${e.activo ? 'ENCENDIDA' : 'APAGADA (solo Claude)'}`);
+  console.log(`Estado en: ${estadoHivemind.ESTADO}`);
+  if (!e.activo) console.log('Las sesiones nuevas de Claude lo verán al arrancar; en esta, díselo tú.');
+  return 0;
+}
+
+function status() {
+  const e = estadoHivemind.leer();
+  console.log(`Flota externa: ${e.activo ? 'ENCENDIDA' : 'APAGADA (solo Claude)'}`);
+  console.log(`Origen: ${e.origen}`);
+  return 0;
+}
+
 // --- main -------------------------------------------------------------------
 const [cmd, ...argv] = process.argv.slice(2);
 // ACP vive en tools/acp.js (sesión con turnos); aquí solo se enruta para que el hivemind
@@ -342,7 +374,14 @@ function acp(argv) {
 }
 // `acp` se mantiene como alias de `session`: los dos protocolos viven detrás de la misma
 // interfaz, pero llamar "acp" a la sesión de antigravity seria mentir sobre el protocolo.
-const commands = { doctor, roster, run: () => run(argv), session: () => acp(argv), acp: () => acp(argv) };
+const commands = {
+  doctor, roster, status,
+  on: () => interruptor(true),
+  off: () => interruptor(false),
+  run: () => (exigirEncendido() ? run(argv) : 3),
+  session: () => (exigirEncendido() ? acp(argv) : 3),
+  acp: () => (exigirEncendido() ? acp(argv) : 3),
+};
 if (!cmd || !commands[cmd]) {
   console.log(fs.readFileSync(__filename, 'utf8').split('\n').filter((l) => l.startsWith('//')).map((l) => l.slice(3)).join('\n'));
   process.exit(cmd ? 2 : 0);
